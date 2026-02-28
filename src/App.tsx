@@ -1,11 +1,5 @@
-import { useState, useEffect } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  animate,
-  useTransform,
-} from "motion/react";
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useMotionValue, animate, useTransform } from 'motion/react';
 import {
   Terminal,
   Cpu,
@@ -29,8 +23,8 @@ import {
   X,
   CalendarDays,
   MapPin,
-} from "lucide-react";
-import { RESUME_DATA } from "./constants";
+} from 'lucide-react';
+import { RESUME_DATA } from './constants';
 
 const Counter = ({
   value,
@@ -41,22 +35,18 @@ const Counter = ({
   duration?: number;
   delay?: number;
 }) => {
-  
-
   const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) =>
-    Math.round(latest).toLocaleString(),
-  );
-  const [displayValue, setDisplayValue] = useState("0");
+  const rounded = useTransform(count, latest => Math.round(latest).toLocaleString());
+  const [displayValue, setDisplayValue] = useState('0');
 
   useEffect(() => {
     const controls = animate(count, value, {
       duration,
       delay,
-      ease: "easeOut",
+      ease: 'easeOut',
     });
 
-    const unsubscribe = rounded.on("change", (v) => setDisplayValue(v));
+    const unsubscribe = rounded.on('change', v => setDisplayValue(v));
 
     return () => {
       controls.stop();
@@ -67,20 +57,14 @@ const Counter = ({
   return <span>{displayValue}</span>;
 };
 
-const TerminalLine = ({
-  text,
-  delay = 0,
-}: {
-  text: string;
-  delay?: number;
-}) => (
+const TerminalLine = ({ text, delay = 0 }: { text: string; delay?: number }) => (
   <motion.div
     initial={{ opacity: 0, x: -10 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay }}
-    className="font-mono text-sm text-emerald-400 mb-1"
+    className='font-mono text-sm text-emerald-400 mb-1'
   >
-    <span className="text-emerald-600 mr-2">$</span>
+    <span className='text-emerald-600 mr-2'>$</span>
     {text}
   </motion.div>
 );
@@ -91,7 +75,7 @@ interface SkillBadgeProps {
 }
 
 const SkillBadge = ({ name }: SkillBadgeProps) => (
-  <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-xs font-mono text-emerald-400">
+  <span className='px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-xs font-mono text-emerald-400'>
     {name}
   </span>
 );
@@ -112,45 +96,45 @@ const MetricGauge = ({ label, value, suffix, delay = 0 }: MetricGaugeProps) => {
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay }}
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      className="relative flex flex-col items-center text-center p-10 rounded-[2.5rem] bg-emerald-500/[0.02] border border-white/5 hover:border-emerald-500/40 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all group overflow-hidden"
+      className='relative flex flex-col items-center text-center p-10 rounded-[2.5rem] bg-emerald-500/[0.02] border border-white/5 hover:border-emerald-500/40 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all group overflow-hidden'
     >
       {/* Background Glow Effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.02] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className='absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.02] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
 
       {/* Blueprint Grid Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className='absolute inset-0 opacity-[0.03] pointer-events-none'
         style={{
-          backgroundImage: "radial-gradient(#51c00c 0.5px, transparent 0.5px)",
-          backgroundSize: "12px 12px",
+          backgroundImage: 'radial-gradient(#51c00c 0.5px, transparent 0.5px)',
+          backgroundSize: '12px 12px',
         }}
       />
 
       {/* Animated Light Sweep */}
       <motion.div
         animate={{
-          left: ["-100%", "200%"],
+          left: ['-100%', '200%'],
         }}
         transition={{
           duration: 3,
           repeat: Infinity,
-          ease: "linear",
+          ease: 'linear',
           delay: delay * 2,
         }}
-        className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-emerald-500/[0.05] to-transparent -skew-x-12 pointer-events-none"
+        className='absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-emerald-500/[0.05] to-transparent -skew-x-12 pointer-events-none'
       />
 
-      <div className="relative mb-6">
+      <div className='relative mb-6'>
         {/* Subtle Glow behind number */}
-        <div className="absolute inset-0 rounded-full bg-emerald-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className='absolute inset-0 rounded-full bg-emerald-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700' />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: delay + 0.5, type: "spring", stiffness: 100 }}
-          className="relative z-20 flex flex-col items-center"
+          transition={{ delay: delay + 0.5, type: 'spring', stiffness: 100 }}
+          className='relative z-20 flex flex-col items-center'
         >
-          <span className="text-3xl md:text-4xl font-bold text-white tracking-tighter group-hover:text-emerald-400 transition-colors duration-500">
+          <span className='text-3xl md:text-4xl font-bold text-white tracking-tighter group-hover:text-emerald-400 transition-colors duration-500'>
             <Counter value={value} delay={delay + 0.5} />
             {suffix}
           </span>
@@ -161,7 +145,7 @@ const MetricGauge = ({ label, value, suffix, delay = 0 }: MetricGaugeProps) => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.7 }}
         transition={{ delay: delay + 0.8 }}
-        className="relative z-10 text-[11px] uppercase tracking-[0.3em] text-emerald-400 font-bold leading-tight max-w-[180px] group-hover:opacity-100 group-hover:text-white transition-all"
+        className='relative z-10 text-[11px] uppercase tracking-[0.3em] text-emerald-400 font-bold leading-tight max-w-[180px] group-hover:opacity-100 group-hover:text-white transition-all'
       >
         {label}
       </motion.span>
@@ -169,73 +153,38 @@ const MetricGauge = ({ label, value, suffix, delay = 0 }: MetricGaugeProps) => {
   );
 };
 
-const InterestCard = ({
-  interest,
-  delay = 0,
-}: {
-  interest: string;
-  delay?: number;
-  key?: any;
-}) => (
+const InterestCard = ({ interest, delay = 0 }: { interest: string; delay?: number; key?: any }) => (
   <motion.div
     initial={{ opacity: 0, y: 12 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.45, delay, ease: "easeOut" }}
+    transition={{ duration: 0.45, delay, ease: 'easeOut' }}
     whileHover={{
       y: -3,
-      transition: { type: "spring", stiffness: 360, damping: 28 },
+      transition: { type: 'spring', stiffness: 360, damping: 28 },
     }}
-    className="relative p-5 rounded-2xl bg-emerald-500/[0.02] border border-white/10 hover:border-emerald-500/35 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-[border-color,background-color,box-shadow] duration-300 group overflow-hidden"
-    style={{ willChange: "transform" }}
+    className='relative p-5 rounded-2xl bg-emerald-500/[0.02] border border-white/10 hover:border-emerald-500/35 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-[border-color,background-color,box-shadow] duration-300 group overflow-hidden'
+    style={{ willChange: 'transform' }}
   >
     {/* Background Glow Effect */}
-    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.025] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+    <div className='absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.025] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-400' />
 
-    <div className="relative z-10 flex items-start gap-4">
-      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-[0_0_14px_rgba(81,192,12,0)] group-hover:shadow-[0_0_14px_rgba(81,192,12,0.35)]">
-        <Zap className="w-5 h-5" />
+    <div className='relative z-10 flex items-start gap-4'>
+      <div className='w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-[0_0_14px_rgba(81,192,12,0)] group-hover:shadow-[0_0_14px_rgba(81,192,12,0.35)]'>
+        <Zap className='w-5 h-5' />
       </div>
-      <p className="text-zinc-300 font-medium leading-snug group-hover:text-white transition-colors duration-300">
+      <p className='text-zinc-300 font-medium leading-snug group-hover:text-white transition-colors duration-300'>
         {interest}
       </p>
     </div>
   </motion.div>
 );
 
-const PHOTO_STARFIELD = [
-  { x: 1, y: 18, size: 2, delay: 0.2, duration: 3.4 },
-  { x: 13, y: 8, size: 3, delay: 1.1, duration: 4.2 },
-  { x: 34, y: 16, size: 2, delay: 0.7, duration: 3.8 },
-  { x: 76, y: 12, size: 2, delay: 1.8, duration: 4.5 },
-  { x: 96, y: 24, size: 3, delay: 0.4, duration: 3.2 },
-  { x: 92, y: 46, size: 2, delay: 1.5, duration: 4.1 },
-  { x: 80, y: 78, size: 2, delay: 2.3, duration: 3.9 },
-  { x: 60, y: 90, size: 3, delay: 0.9, duration: 4.4 },
-  { x: 36, y: 84, size: 2, delay: 1.9, duration: 3.5 },
-  { x: 14, y: 72, size: 3, delay: 0.5, duration: 4.6 },
-  { x: 6, y: 48, size: 2, delay: 1.3, duration: 3.7 },
-  { x: 48, y: 4, size: 2, delay: 2.1, duration: 4.3 },
-];
-
-function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== "undefined" && window.innerWidth < breakpoint,
-  );
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [breakpoint]);
-  return isMobile;
-}
-
 const tabs = {
-  HOME: "home",
-  QUALIFICATIONS: "qualifications",
-  RESEARCH: "research",
-  PROFESSIONAL_JOURNEY: "professional-journey",
+  HOME: 'home',
+  QUALIFICATIONS: 'profile',
+  RESEARCH: 'research',
+  PROFESSIONAL_JOURNEY: 'experience',
 } as const;
 
 type TabValue = (typeof tabs)[keyof typeof tabs];
@@ -243,66 +192,64 @@ type TabValue = (typeof tabs)[keyof typeof tabs];
 const menuOptions: TabValue[] = [
   tabs.HOME,
   tabs.QUALIFICATIONS,
-  tabs.RESEARCH,  
+  tabs.RESEARCH,
   tabs.PROFESSIONAL_JOURNEY,
 ];
 
 const TAB_LABELS: Record<TabValue, string> = {
-  [tabs.HOME]: "Home",
-  [tabs.QUALIFICATIONS]: "Qualifications",  
-    [tabs.RESEARCH]: "Research",  
-    [tabs.PROFESSIONAL_JOURNEY]: "Professional Journey",
+  [tabs.HOME]: 'Home',
+  [tabs.QUALIFICATIONS]: 'Profile',
+  [tabs.RESEARCH]: 'Research',
+  [tabs.PROFESSIONAL_JOURNEY]: 'Experience',
 };
 
-const SITE_URL = "https://www.smiguel.net";
+const SITE_URL = 'https://www.smiguel.net';
 
-const PAGE_SEO: Record<
-  TabValue,
-  { title: string; description: string; path: string }
-> = {
+const PAGE_SEO: Record<TabValue, { title: string; description: string; path: string }> = {
   [tabs.HOME]: {
-    title: "Sergio Miguel | CTO & Software Architect",
+    title: 'Sergio Miguel | CTO & Software Architect',
     description:
       "Sergio Miguel's portfolio: AI-driven software architecture, domain design, and delivery acceleration across web, mobile, and cloud.",
-    path: "/",
-  }, 
+    path: '/',
+  },
   [tabs.QUALIFICATIONS]: {
-    title: "Qualifications | Sergio Miguel",
+    title: 'Profile | Sergio Miguel',
     description:
-      "Education, certifications, and technical skills spanning software architecture, cloud, data, and modern engineering.",
-    path: "/qualifications",
+      'Education, certifications, and technical skills spanning software architecture, cloud, data, and modern engineering.',
+    path: '/profile',
   },
   [tabs.RESEARCH]: {
-    title: "Research Projects | Sergio Miguel",
+    title: 'Research Projects | Sergio Miguel',
     description:
-      "Selected research and applied engineering projects in APIs, mobile platforms, architecture accelerators, and DevOps.",
-    path: "/research",
-  },  
-   [tabs.PROFESSIONAL_JOURNEY]: {
-    title: "Professional Journey | Sergio Miguel",
+      'Selected research and applied engineering projects in APIs, mobile platforms, architecture accelerators, and DevOps.',
+    path: '/research',
+  },
+  [tabs.PROFESSIONAL_JOURNEY]: {
+    title: 'Experience | Sergio Miguel',
     description:
-      "Professional timeline across fintech, blockchain, telecom, and enterprise architecture leadership.",
-    path: "/professional-journey",
+      'Professional timeline across fintech, blockchain, telecom, and enterprise architecture leadership.',
+    path: '/experience',
   },
 };
 
 const LEGACY_PATH_TO_TAB: Record<string, TabValue> = {
-  "/experience": tabs.PROFESSIONAL_JOURNEY,
-  "/projects": tabs.RESEARCH,
-  "/expertise": tabs.QUALIFICATIONS,
+  '/professional-journey': tabs.PROFESSIONAL_JOURNEY,
+  '/projects': tabs.RESEARCH,
+  '/expertise': tabs.QUALIFICATIONS,
+  '/qualifications': tabs.QUALIFICATIONS,
 };
 
 const normalizePath = (pathname: string) => {
-  if (!pathname) return "/";
-  if (pathname === "/") return "/";
-  return pathname.replace(/\/+$/, "") || "/";
+  if (!pathname) return '/';
+  if (pathname === '/') return '/';
+  return pathname.replace(/\/+$/, '') || '/';
 };
 
 const getTabFromPath = (pathname: string): TabValue => {
   const normalized = normalizePath(pathname.toLowerCase());
-  const matched = Object.entries(PAGE_SEO).find(
-    ([, page]) => page.path === normalized,
-  )?.[0] as TabValue | undefined;
+  const matched = Object.entries(PAGE_SEO).find(([, page]) => page.path === normalized)?.[0] as
+    | TabValue
+    | undefined;
   if (matched) return matched;
   return LEGACY_PATH_TO_TAB[normalized] ?? tabs.HOME;
 };
@@ -310,33 +257,32 @@ const getTabFromPath = (pathname: string): TabValue => {
 export default function App() {
   const [booting, setBooting] = useState(true);
   const [activeTab, setActiveTab] = useState<TabValue>(() =>
-    typeof window === "undefined" ? tabs.HOME : getTabFromPath(window.location.pathname),
+    typeof window === 'undefined' ? tabs.HOME : getTabFromPath(window.location.pathname),
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isMobile = useIsMobile();
   const expertiseSkillGroups = [
     {
-      title: "Core Languages",
+      title: 'Core Languages',
       skills: RESUME_DATA.skills.languages,
       levels: [95, 90, 88, 83, 80, 76],
     },
     {
-      title: "Frontend",
+      title: 'Frontend',
       skills: RESUME_DATA.skills.frontend,
       levels: [90, 86, 72, 68],
     },
     {
-      title: "Cloud & DevOps",
+      title: 'Cloud & DevOps',
       skills: RESUME_DATA.skills.cloud,
       levels: [92, 84, 82, 79],
     },
     {
-      title: "Data Architectures",
+      title: 'Data Architectures',
       skills: RESUME_DATA.skills.databases,
       levels: [91, 87, 84, 83, 78],
     },
     {
-      title: "Special Ops",
+      title: 'Special Ops',
       skills: RESUME_DATA.skills.special,
       levels: [88, 86, 84, 80, 78],
     },
@@ -351,66 +297,52 @@ export default function App() {
     const resolvedTab = getTabFromPath(window.location.pathname);
     const canonicalPath = PAGE_SEO[resolvedTab].path;
     if (normalizePath(window.location.pathname) !== canonicalPath) {
-      window.history.replaceState(null, "", canonicalPath);
+      window.history.replaceState(null, '', canonicalPath);
     }
     setActiveTab(resolvedTab);
 
     const onPopState = () => {
       setActiveTab(getTabFromPath(window.location.pathname));
     };
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
   useEffect(() => {
     const page = PAGE_SEO[activeTab];
-    const pageUrl = `${SITE_URL}${page.path === "/" ? "" : page.path}`;
+    const pageUrl = `${SITE_URL}${page.path === '/' ? '' : page.path}`;
 
     document.title = page.title;
 
-    const setMeta = (
-      selector: string,
-      attrs: Record<string, string>,
-      content: string,
-    ) => {
+    const setMeta = (selector: string, attrs: Record<string, string>, content: string) => {
       let meta = document.head.querySelector(selector) as HTMLMetaElement | null;
       if (!meta) {
-        meta = document.createElement("meta");
+        meta = document.createElement('meta');
         Object.entries(attrs).forEach(([k, v]) => meta!.setAttribute(k, v));
         document.head.appendChild(meta);
       }
-      meta.setAttribute("content", content);
+      meta.setAttribute('content', content);
     };
 
     const setLink = (rel: string, href: string) => {
-      let link = document.head.querySelector(
-        `link[rel="${rel}"]`,
-      ) as HTMLLinkElement | null;
+      let link = document.head.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
       if (!link) {
-        link = document.createElement("link");
-        link.setAttribute("rel", rel);
+        link = document.createElement('link');
+        link.setAttribute('rel', rel);
         document.head.appendChild(link);
       }
-      link.setAttribute("href", href);
+      link.setAttribute('href', href);
     };
 
-    setMeta('meta[name="description"]', { name: "description" }, page.description);
-    setMeta('meta[property="og:title"]', { property: "og:title" }, page.title);
-    setMeta(
-      'meta[property="og:description"]',
-      { property: "og:description" },
-      page.description,
-    );
-    setMeta('meta[property="og:url"]', { property: "og:url" }, pageUrl);
-    setMeta('meta[property="og:type"]', { property: "og:type" }, "website");
-    setMeta('meta[name="twitter:card"]', { name: "twitter:card" }, "summary_large_image");
-    setMeta('meta[name="twitter:title"]', { name: "twitter:title" }, page.title);
-    setMeta(
-      'meta[name="twitter:description"]',
-      { name: "twitter:description" },
-      page.description,
-    );
-    setLink("canonical", pageUrl);
+    setMeta('meta[name="description"]', { name: 'description' }, page.description);
+    setMeta('meta[property="og:title"]', { property: 'og:title' }, page.title);
+    setMeta('meta[property="og:description"]', { property: 'og:description' }, page.description);
+    setMeta('meta[property="og:url"]', { property: 'og:url' }, pageUrl);
+    setMeta('meta[property="og:type"]', { property: 'og:type' }, 'website');
+    setMeta('meta[name="twitter:card"]', { name: 'twitter:card' }, 'summary_large_image');
+    setMeta('meta[name="twitter:title"]', { name: 'twitter:title' }, page.title);
+    setMeta('meta[name="twitter:description"]', { name: 'twitter:description' }, page.description);
+    setLink('canonical', pageUrl);
   }, [activeTab]);
 
   const navigateToTab = (tab: TabValue, replace = false) => {
@@ -418,31 +350,28 @@ export default function App() {
     const targetPath = PAGE_SEO[tab].path;
     if (normalizePath(window.location.pathname) !== targetPath) {
       if (replace) {
-        window.history.replaceState(null, "", targetPath);
+        window.history.replaceState(null, '', targetPath);
       } else {
-        window.history.pushState(null, "", targetPath);
+        window.history.pushState(null, '', targetPath);
       }
     }
   };
 
   if (booting) {
     return (
-      <div className="fixed inset-0 bg-black flex flex-col items-center justify-center p-6 font-mono">
-        <div className="w-full max-w-md">
-          <TerminalLine text="Initializing SérgioOS v20.24..." delay={0.2} />
-          <TerminalLine text="Loading 20+ years of experience..." delay={0.5} />
-          <TerminalLine text="Bypassing mainframe security..." delay={0.8} />
-          <TerminalLine text="Optimizing coffee-to-code ratio..." delay={1.1} />
-          <TerminalLine
-            text="Checking for legacy Java 1.3 dependencies..."
-            delay={1.4}
-          />
-          <TerminalLine text="System ready. Welcome, Architect." delay={1.8} />
+      <div className='fixed inset-0 bg-black flex flex-col items-center justify-center p-6 font-mono'>
+        <div className='w-full max-w-md'>
+          <TerminalLine text='Initializing SérgioOS v20.24...' delay={0.2} />
+          <TerminalLine text='Loading 20+ years of experience...' delay={0.5} />
+          <TerminalLine text='Bypassing mainframe security...' delay={0.8} />
+          <TerminalLine text='Optimizing coffee-to-code ratio...' delay={1.1} />
+          <TerminalLine text='Checking for legacy Java 1.3 dependencies...' delay={1.4} />
+          <TerminalLine text='System ready. Welcome, Architect.' delay={1.8} />
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.5, delay: 0.2 }}
-            className="h-1 bg-emerald-500 mt-4 origin-left"
+            className='h-1 bg-emerald-500 mt-4 origin-left'
           />
         </div>
       </div>
@@ -450,101 +379,93 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-300 selection:bg-emerald-500/30">
+    <div className='min-h-screen bg-[#0a0a0a] text-zinc-300 selection:bg-emerald-500/30'>
       {/* Background Grid Effect */}
-      <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+      <div className='fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none' />
 
       {/* Header / Top Bar */}
-      <header className="sticky top-0 z-50 border-b border-white/5 bg-black/50 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <header className='sticky top-0 z-50 border-b border-white/5 bg-black/50 backdrop-blur-xl'>
+        <div className='max-w-6xl mx-auto px-6 h-16 flex items-center justify-between'>
           <button
             onClick={() => navigateToTab(tabs.HOME)}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity text-left"
+            className='flex items-center gap-3 hover:opacity-80 transition-opacity text-left'
           >
-            <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0">
-              <Terminal className="w-5 h-5 text-black" />
+            <div className='w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0'>
+              <Terminal className='w-5 h-5 text-black' />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-sm font-bold text-white tracking-tight uppercase">
-                  Sergio Barriviera Miguel
+              <div className='flex items-center gap-2'>
+                <h1 className='text-sm font-bold text-white tracking-tight uppercase'>
+                  Sergio Miguel
                 </h1>
-                <span className="hidden sm:inline text-[10px] text-zinc-500 font-mono border border-white/10 px-1.5 rounded">
+                <span className='hidden sm:inline text-[10px] text-zinc-500 font-mono border border-white/10 px-1.5 rounded'>
                   HANDS-ON ARCHITECT
                 </span>
               </div>
-              <p className="text-[10px] text-emerald-500 font-mono leading-none">
+              <p className='text-[10px] text-emerald-500 font-mono leading-none'>
                 Codename: SMIGUELNET
               </p>
             </div>
           </button>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            {menuOptions.map(
-              (tab) => (
-                <button
-                  key={tab}
-                  onClick={() => navigateToTab(tab)}
-                  className={`text-xs font-mono uppercase tracking-widest transition-colors ${
-                    activeTab === tab
-                      ? "text-emerald-400"
-                      : "text-zinc-500 hover:text-zinc-300"
-                  }`}
-                >
-                  {TAB_LABELS[tab]}
-                </button>
-              ),
-            )}
+          <nav className='hidden xl:flex items-center gap-6'>
+            {menuOptions.map(tab => (
+              <button
+                key={tab}
+                onClick={() => navigateToTab(tab)}
+                className={`text-xs font-mono uppercase tracking-widest transition-colors ${
+                  activeTab === tab ? 'text-emerald-400' : 'text-zinc-500 hover:text-zinc-300'
+                }`}
+              >
+                {TAB_LABELS[tab]}
+              </button>
+            ))}
           </nav>
 
-          <div className="flex items-center gap-2 md:gap-4">
-            <div className="hidden sm:flex items-center gap-2">
+          <div className='flex items-center gap-2 xl:gap-4'>
+            <div className='hidden xl:flex items-center gap-2'>
               <a
                 href={`mailto:${RESUME_DATA.email}`}
-                className="p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]"
-                aria-label="Email Sergio Miguel"
+                className='p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]'
+                aria-label='Email Sergio Miguel'
               >
-                <Mail className="w-4 h-4" />
+                <Mail className='w-4 h-4' />
               </a>
               <a
                 href={RESUME_DATA.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]"
-                aria-label="LinkedIn profile"
+                target='_blank'
+                rel='noopener noreferrer'
+                className='p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]'
+                aria-label='LinkedIn profile'
               >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className='w-4 h-4' />
               </a>
               <a
                 href={RESUME_DATA.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]"
-                aria-label="GitHub profile"
+                target='_blank'
+                rel='noopener noreferrer'
+                className='p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]'
+                aria-label='GitHub profile'
               >
-                <Github className="w-4 h-4" />
+                <Github className='w-4 h-4' />
               </a>
               <a
                 href={RESUME_DATA.resumePdf}
-                download="sergiomiguel-resume.pdf"
-                className="p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]"
-                aria-label="Download Sergio Miguel resume"
+                download='sergiomiguel-resume.pdf'
+                className='p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]'
+                aria-label='Download Sergio Miguel resume'
               >
-                <FileDown className="w-4 h-4" />
+                <FileDown className='w-4 h-4' />
               </a>
             </div>
 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 hover:bg-white/5 rounded-lg transition-colors text-emerald-500"
+              className='xl:hidden p-2 hover:bg-white/5 rounded-lg transition-colors text-emerald-500'
             >
-              {isMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {isMenuOpen ? <X className='w-6 h-6' /> : <Menu className='w-6 h-6' />}
             </button>
           </div>
         </div>
@@ -554,56 +475,54 @@ export default function App() {
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
+              animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-black border-b border-white/5 overflow-hidden"
+              className='xl:hidden bg-black border-b border-white/5 overflow-hidden'
             >
-              <div className="px-6 py-8 flex flex-col gap-6">
-                {menuOptions.map(
-                  (tab) => (
-                    <button
-                      key={tab}
-                      onClick={() => {
-                        navigateToTab(tab);
-                        setIsMenuOpen(false);
-                      }}
-                      className={`text-left text-lg font-mono uppercase tracking-widest transition-colors ${
-                        activeTab === tab ? "text-emerald-400" : "text-zinc-500"
-                      }`}
-                    >
-                      {TAB_LABELS[tab]}
-                    </button>
-                  ),
-                )}
-                <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+              <div className='px-6 py-8 flex flex-col gap-6'>
+                {menuOptions.map(tab => (
+                  <button
+                    key={tab}
+                    onClick={() => {
+                      navigateToTab(tab);
+                      setIsMenuOpen(false);
+                    }}
+                    className={`text-left text-lg font-mono uppercase tracking-widest transition-colors ${
+                      activeTab === tab ? 'text-emerald-400' : 'text-zinc-500'
+                    }`}
+                  >
+                    {TAB_LABELS[tab]}
+                  </button>
+                ))}
+                <div className='flex items-center gap-4 pt-4 border-t border-white/5'>
                   <a
                     href={`mailto:${RESUME_DATA.email}`}
-                    className="flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]"
+                    className='flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]'
                   >
-                    <Mail className="w-4 h-4" /> Email
+                    <Mail className='w-4 h-4' /> Email
                   </a>
                   <a
                     href={RESUME_DATA.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]"
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]'
                   >
-                    <Linkedin className="w-4 h-4" /> LinkedIn
+                    <Linkedin className='w-4 h-4' /> LinkedIn
                   </a>
                   <a
                     href={RESUME_DATA.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]"
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]'
                   >
-                    <Github className="w-4 h-4" /> GitHub
+                    <Github className='w-4 h-4' /> GitHub
                   </a>
                   <a
                     href={RESUME_DATA.resumePdf}
-                    download="sergiomiguel-resume.pdf"
-                    className="flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]"
+                    download='sergiomiguel-resume.pdf'
+                    className='flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]'
                   >
-                    <FileDown className="w-4 h-4" /> Resume
+                    <FileDown className='w-4 h-4' /> Resume
                   </a>
                 </div>
               </div>
@@ -612,28 +531,28 @@ export default function App() {
         </AnimatePresence>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-12 relative">
+      <main className='max-w-6xl mx-auto px-6 py-12 relative'>
         {/* Content Switcher */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode='wait'>
           {activeTab === tabs.HOME && (
             <motion.div
               key={tabs.HOME}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="space-y-20"
+              className='space-y-20'
             >
               {/* Hero Section */}
               <section>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-                  <div className="lg:col-span-2 space-y-8">
+                <div className='grid grid-cols-1 lg:grid-cols-[1.92fr_0.78fr] gap-10 lg:gap-14 items-center'>
+                  <div className='space-y-8'>
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6 }}
-                      className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono"
+                      className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono'
                     >
-                      <Zap className="w-3 h-3" />
+                      <Zap className='w-3 h-3' />
                       <span>AI & Architecture Accelerator</span>
                     </motion.div>
 
@@ -641,23 +560,19 @@ export default function App() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.2 }}
-                      className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9]"
+                      className='text-5xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9] max-w-4xl'
                     >
-                      Accelerate software delivery with{" "}
+                      Accelerate software delivery with{' '}
                       <motion.span
                         animate={{
-                          textShadow: [
-                            "0 0 0px #51c00c",
-                            "0 0 10px #51c00c",
-                            "0 0 0px #51c00c",
-                          ],
+                          textShadow: ['0 0 0px #51c00c', '0 0 10px #51c00c', '0 0 0px #51c00c'],
                         }}
                         transition={{
                           duration: 3,
                           repeat: Infinity,
-                          ease: "easeInOut",
+                          ease: 'easeInOut',
                         }}
-                        className="text-emerald-500 italic"
+                        className='text-emerald-500 italic'
                       >
                         AI, SDD, and Agentic Coding.
                       </motion.span>
@@ -667,127 +582,76 @@ export default function App() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 1, delay: 0.4 }}
-                      className="text-lg text-zinc-400 max-w-xl leading-relaxed"
+                      className='text-lg text-zinc-400 max-w-3xl leading-relaxed'
                     >
-                       {RESUME_DATA.about} 
+                      {RESUME_DATA.about}
                     </motion.p>
 
                     {/* The Quote */}
-                    <motion.div
+                    <motion.blockquote
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.8, delay: 0.6 }}
-                      className="p-4 border-l-2 border-emerald-500 bg-emerald-500/5 rounded-r-xl max-w-xl"
+                      className='relative max-w-3xl pl-6 md:pl-8 py-1 border-l border-emerald-500/40'
                     >
-                      <Quote className="w-4 h-4 text-emerald-500 mb-2 opacity-50" />
-                      <p className="text-sm text-zinc-300 italic leading-relaxed">
-                        "{RESUME_DATA.quote.text}"
+                      <Quote className='absolute -left-3 top-0 w-8 h-8 text-emerald-400/65 bg-black rounded-full p-1.5' />
+                      <p className='text-base md:text-lg text-zinc-200 leading-relaxed'>
+                        {RESUME_DATA.quote.text}
                       </p>
-                      <p className="text-[10px] text-emerald-500 font-mono mt-2 uppercase tracking-widest">
-                        — {RESUME_DATA.quote.author}
-                      </p>
-                    </motion.div>
+
+                      <footer className='mt-3 flex items-center gap-3'>
+                        <span className='h-px w-10 bg-emerald-500/45' />
+                        <cite className='text-[10px] text-emerald-400 font-mono not-italic uppercase tracking-[0.22em]'>
+                          {RESUME_DATA.quote.author}
+                        </cite>
+                      </footer>
+                    </motion.blockquote>
                   </div>
 
-                  {/* Photo Section */}
+                  {/* Profile Widget */}
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.6, rotate: isMobile ? -8 : -14 }}
-                    animate={{ opacity: 1, scale: isMobile? 0.80: 1, rotate: isMobile ? 0 : -2 }}
-                    transition={{ duration: 1, delay: 0.3, type: "spring" }}
-                    className="relative w-full max-w-[280px] md:max-w-[360px] lg:max-w-none aspect-square group mx-auto lg:mx-0 lg:mr-20"
+                    initial={{ opacity: 0, scale: 0.92, y: 14 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                    transition={{ duration: 0.8, delay: 0.35 }}
+                    className='relative w-full max-w-[260px] md:max-w-[270px] mx-auto lg:ml-auto group'
                   >
-                    {/* Starfield / Aura Layer */}
-                    <div className="absolute -inset-10 pointer-events-none">
-                      <div className="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_20%,rgba(81,192,12,0.28),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(81,192,12,0.2),transparent_55%)] blur-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                      <motion.div
-                        animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-                        className="absolute inset-0 rounded-[2.5rem] bg-[conic-gradient(from_0deg,rgba(81,192,12,0.0),rgba(81,192,12,0.1),rgba(81,192,12,0.0),rgba(81,192,12,0.08),rgba(81,192,12,0.0))] opacity-70 blur-2xl"
-                      />
-                      {PHOTO_STARFIELD.map((star, i) => (
-                        <motion.span
-                          key={i}
-                          className="absolute rounded-full bg-emerald-200/95"
-                          style={{
-                            left: `${star.x}%`,
-                            top: `${star.y}%`,
-                            width: `${star.size}px`,
-                            height: `${star.size}px`,
-                            boxShadow: "0 0 12px rgba(81,192,12,0.7)",
-                          }}
-                          animate={{
-                            opacity: [0.22, 0.95, 0.3],
-                            scale: [1, 1.9, 1],
-                            y: [0, -5, 0],
-                          }}
-                          transition={{
-                            duration: star.duration,
-                            delay: star.delay,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
+                    <div className='absolute -inset-6 rounded-[2rem] bg-[radial-gradient(circle_at_60%_30%,rgba(81,192,12,0.24),transparent_62%)] blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none' />
+                    <div className='relative rounded-3xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.12] via-black/75 to-black/60 backdrop-blur-sm px-3 py-3 md:px-4 md:py-4 text-center transition-all duration-300 shadow-[0_0_0_rgba(81,192,12,0)] group-hover:border-emerald-500/45 group-hover:shadow-[0_0_28px_rgba(81,192,12,0.22)]'>
+                      <p className='text-[9px] font-mono uppercase tracking-[0.26em] text-emerald-300 mb-3 text-center'>
+                        Profile Snapshot
+                      </p>
+
+                      <div className='relative mx-auto w-[166px] h-[191px] md:w-[176px] md:h-[202px] lg:w-[185px] lg:h-[212px] rounded-2xl overflow-hidden border border-white/15 shadow-[0_0_18px_rgba(81,192,12,0.2)] transition-all duration-300 group-hover:border-emerald-400/40 group-hover:shadow-[0_0_24px_rgba(81,192,12,0.26)]'>
+                        <img
+                          src={RESUME_DATA.photo}
+                          alt={RESUME_DATA.name}
+                          className='w-full h-full max-w-full object-cover'
+                          referrerPolicy='no-referrer'
                         />
-                      ))}
-                    </div>
+                        <div className='absolute inset-0 pointer-events-none opacity-[0.05] bg-[repeating-linear-gradient(to_bottom,transparent_0px,transparent_2px,rgba(16,185,129,0.28)_3px)]' />
+                        <motion.div
+                          animate={{ top: ['-5%', '105%'], opacity: [0, 0.85, 0] }}
+                          transition={{
+                            duration: 7,
+                            repeat: Infinity,
+                            repeatDelay: 1,
+                            ease: 'linear',
+                          }}
+                          className='absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-300 to-transparent shadow-[0_0_10px_rgba(81,192,12,0.8)] pointer-events-none'
+                        />
+                      </div>
 
-                    <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10">
-                      <img
-                        src={RESUME_DATA.photo}
-                        alt={RESUME_DATA.name}
-                        className={`w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110`}
-                        referrerPolicy="no-referrer"
-                      />
-
-                      {/* Hacker Scan Overlay */}
-                      <div className="absolute inset-0 pointer-events-none opacity-[0.06] bg-[repeating-linear-gradient(to_bottom,transparent_0px,transparent_2px,rgba(16,185,129,0.25)_3px)] z-[8]" />
-                      <motion.div
-                        animate={{
-                          top: ["-5%", "105%"],
-                          x: ["0%", "0.4%", "-0.3%", "0%"],
-                          opacity: [0, 0.95, 0.6, 0.9, 0],
-                        }}
-                        transition={{
-                          duration: 8,
-                          repeat: Infinity,
-                          repeatDelay: 1.2,
-                          ease: "linear",
-                          times: [0, 0.12, 0.45, 0.82, 1],
-                        }}
-                        className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-300 to-transparent mix-blend-screen shadow-[0_0_10px_rgba(81,192,12,0.8)] z-10 pointer-events-none"
-                      />
-                      <motion.div
-                        animate={{
-                          top: ["-10%", "110%"],
-                          opacity: [0, 0, 0.35, 0],
-                        }}
-                        transition={{
-                          duration: 8,
-                          repeat: Infinity,
-                          repeatDelay: 1.2,
-                          ease: "linear",
-                          times: [0, 0.72, 0.86, 1],
-                        }}
-                        className="absolute left-0 right-0 h-[7px] bg-emerald-500/20 blur-[2px] z-[9] pointer-events-none"
-                      />
-
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                      <div className="absolute bottom-6 left-6">
-                        <motion.p
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.8 }}
-                          className="text-white font-bold text-xl tracking-tight"
-                        >
-                          {RESUME_DATA.name}
-                        </motion.p>
-                        <motion.p
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 1 }}
-                          className="text-emerald-400 text-[10px] font-mono uppercase tracking-[0.2em]"
-                        >
-                          {RESUME_DATA.location}
-                        </motion.p>
+                      <div className='mt-3 space-y-2 flex flex-col items-center'>
+                        <p className='text-white font-bold text-[16px] leading-tight uppercase'>
+                          Sergio Miguel
+                        </p>
+                        <div className='inline-flex items-center gap-2 px-2.5 py-1 rounded-lg border border-emerald-500/35 bg-emerald-500/10'>
+                          <MapPin className='w-3.5 h-3.5 text-emerald-400' />
+                          <span className='text-[10px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
+                            {RESUME_DATA.location}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -795,18 +659,18 @@ export default function App() {
               </section>
 
               {/* Executive Achievement Dashboard */}
-              <section className="relative pt-1 pb-8 border-white/5 overflow-hidden">
+              <section className='relative pt-1 pb-8 border-white/5 overflow-hidden'>
                 {/* Section Background Glow */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-emerald-500/[0.02] blur-[140px] pointer-events-none" />
+                <div className='absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-emerald-500/[0.02] blur-[140px] pointer-events-none' />
 
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-12">
-                    <h3 className="text-2xl font-bold text-white uppercase tracking-tighter">
+                <div className='relative z-10'>
+                  <div className='flex items-center gap-4 mb-12'>
+                    <h3 className='text-2xl font-bold text-white uppercase tracking-tighter'>
                       Key Achievements
                     </h3>
-                    <div className="h-px flex-1 bg-white/10" />
+                    <div className='h-px flex-1 bg-white/10' />
                   </div>
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className='grid grid-cols-2 lg:grid-cols-4 gap-6'>
                     {RESUME_DATA.achievements.map((achievement, i) => (
                       <MetricGauge
                         key={i}
@@ -821,79 +685,73 @@ export default function App() {
               </section>
 
               {/* Areas of Interest - Now on Home */}
-              <section className="relative pt-1 border-white/5 overflow-visible">
+              <section className='relative pt-1 border-white/5 overflow-visible'>
                 {/* Section Background Glow */}
-                <div className="absolute bottom-0 right-0 w-full h-full bg-emerald-500/[0.02] blur-[100px] pointer-events-none" />
+                <div className='absolute bottom-0 right-0 w-full h-full bg-emerald-500/[0.02] blur-[100px] pointer-events-none' />
 
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-12">
-                    <h3 className="text-2xl font-bold text-white uppercase tracking-tighter">
+                <div className='relative z-10'>
+                  <div className='flex items-center gap-4 mb-12'>
+                    <h3 className='text-2xl font-bold text-white uppercase tracking-tighter'>
                       Areas of Interest
                     </h3>
-                    <div className="h-px flex-1 bg-white/10" />
+                    <div className='h-px flex-1 bg-white/10' />
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {RESUME_DATA.interests.map((interest, i) => (
-                      <InterestCard
-                        key={i}
-                        interest={interest}
-                        delay={i * 0.15}
-                      />
+                      <InterestCard key={i} interest={interest} delay={i * 0.15} />
                     ))}
                   </div>
                 </div>
               </section>
 
               {/* Line of Research */}
-              <section className="pt-1 border-white/5">
-                <div className="flex items-center gap-4 mb-8">
-                  <h3 className="text-2xl font-bold text-white uppercase tracking-tighter">
+              <section className='pt-1 border-white/5'>
+                <div className='flex items-center gap-4 mb-8'>
+                  <h3 className='text-2xl font-bold text-white uppercase tracking-tighter'>
                     Line of Research
                   </h3>
-                  <div className="h-px flex-1 bg-white/10" />
+                  <div className='h-px flex-1 bg-white/10' />
                 </div>
-                <div className="relative overflow-hidden p-8 md:p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] via-white/[0.03] to-transparent">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(81,192,12,0.2),transparent_48%)] pointer-events-none" />
+                <div className='relative overflow-hidden p-8 md:p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] via-white/[0.03] to-transparent'>
+                  <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(81,192,12,0.2),transparent_48%)] pointer-events-none' />
 
-                  <div className="relative flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0">
-                        <FlaskConical className="w-6 h-6" />
+                  <div className='relative flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10'>
+                    <div className='flex items-start gap-4'>
+                      <div className='w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0'>
+                        <FlaskConical className='w-6 h-6' />
                       </div>
                       <div>
-                        <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-400 mb-2">
+                        <p className='text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-400 mb-2'>
                           Research Focus
                         </p>
-                        <h4 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                        <h4 className='text-2xl md:text-3xl font-bold text-white tracking-tight'>
                           {RESUME_DATA.research.title}
                         </h4>
                       </div>
                     </div>
-                    <p className="text-sm text-zinc-300 leading-relaxed max-w-md">
+                    <p className='text-sm text-zinc-300 leading-relaxed max-w-md'>
                       {RESUME_DATA.research.description}
                     </p>
                   </div>
 
-                  <div className="relative space-y-5">
+                  <div className='relative space-y-5'>
                     {RESUME_DATA.research.phases.map((phase, i) => (
                       <div
                         key={i}
-                        className="group rounded-2xl border border-white/10 bg-black/30 p-6 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300"
+                        className='group rounded-2xl border border-white/10 bg-black/30 p-6 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300'
                       >
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className="w-8 h-8 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold flex items-center justify-center">
+                        <div className='flex items-center gap-3 mb-4'>
+                          <span className='w-8 h-8 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold flex items-center justify-center'>
                             {i + 1}
                           </span>
-                          <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-zinc-500">
+                          <span className='text-[10px] font-mono uppercase tracking-[0.22em] text-zinc-500'>
                             Step 0{i + 1}
                           </span>
                         </div>
-                        <h5 className="text-base font-semibold text-white leading-snug mb-3">
+                        <h5 className='text-base font-semibold text-white leading-snug mb-3'>
                           {phase.name}
                         </h5>
-                        <p className="text-sm text-zinc-400 leading-relaxed">
-                          {phase.details}
-                        </p>
+                        <p className='text-sm text-zinc-400 leading-relaxed'>{phase.details}</p>
                       </div>
                     ))}
                   </div>
@@ -908,24 +766,23 @@ export default function App() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="space-y-10"
+              className='space-y-10'
             >
-              <div className="flex items-center gap-4">
-                <h3 className="text-2xl font-bold text-white uppercase tracking-tight">
+              <div className='flex items-center gap-4'>
+                <h3 className='text-2xl font-bold text-white uppercase tracking-tight'>
                   Professional Experience Timeline
                 </h3>
-                <div className="h-px flex-1 bg-white/10" />
+                <div className='h-px flex-1 bg-white/10' />
               </div>
-              <p className="text-zinc-400 max-w-3xl">
-                Career progression across architecture, engineering leadership,
-                fintech, blockchain, telecom, and early web product
-                development.
+              <p className='text-zinc-400 max-w-3xl'>
+                Career progression across architecture, engineering leadership, fintech, blockchain,
+                telecom, and early web product development.
               </p>
 
-              <div className="relative">
-                <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/70 via-emerald-500/25 to-transparent" />
+              <div className='relative'>
+                <div className='absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/70 via-emerald-500/25 to-transparent' />
 
-                <div className="space-y-8">
+                <div className='space-y-8'>
                   {RESUME_DATA.experience.map((exp, i) => (
                     <motion.article
                       key={i}
@@ -933,55 +790,51 @@ export default function App() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.3 }}
                       transition={{ duration: 0.45, delay: i * 0.04 }}
-                      className="relative pl-12 group"
+                      className='relative pl-12 group'
                     >
-                      <div className="absolute left-0 top-5 w-8 h-8 rounded-full border border-emerald-500/40 bg-black/80 text-emerald-300 font-mono text-[10px] flex items-center justify-center shadow-[0_0_14px_rgba(81,192,12,0.35)]">
-                        {String(i + 1).padStart(2, "0")}
+                      <div className='absolute left-0 top-5 w-8 h-8 rounded-full border border-emerald-500/40 bg-black/80 text-emerald-300 font-mono text-[10px] flex items-center justify-center shadow-[0_0_14px_rgba(81,192,12,0.35)]'>
+                        {String(i + 1).padStart(2, '0')}
                       </div>
 
-                      <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-7 hover:border-emerald-500/35 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.14)] transition-all duration-300">
-                        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
-                          <div className="space-y-2">
-                            <p className="text-[10px] font-mono uppercase tracking-[0.24em] text-emerald-400">
+                      <div className='rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-7 hover:border-emerald-500/35 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.14)] transition-all duration-300'>
+                        <div className='flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4'>
+                          <div className='space-y-2'>
+                            <p className='text-[10px] font-mono uppercase tracking-[0.24em] text-emerald-400'>
                               {exp.company}
                             </p>
-                            <h4 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                            <h4 className='text-xl font-bold text-white group-hover:text-emerald-300 transition-colors'>
                               {exp.role}
                             </h4>
                           </div>
 
-                          <div className="flex flex-wrap gap-2 text-[10px] font-mono uppercase tracking-wider">
-                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/10 bg-black/40 text-zinc-300">
-                              <CalendarDays className="w-3 h-3 text-emerald-400" />
+                          <div className='flex flex-wrap gap-2 text-[10px] font-mono uppercase tracking-wider'>
+                            <span className='inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/10 bg-black/40 text-zinc-300'>
+                              <CalendarDays className='w-3 h-3 text-emerald-400' />
                               {exp.period}
                             </span>
                             {exp.location && (
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/10 bg-black/40 text-zinc-300">
-                                <MapPin className="w-3 h-3 text-emerald-400" />
+                              <span className='inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/10 bg-black/40 text-zinc-300'>
+                                <MapPin className='w-3 h-3 text-emerald-400' />
                                 {exp.location}
                               </span>
                             )}
                           </div>
                         </div>
 
-                        <p className="text-zinc-300 leading-relaxed">
-                          {exp.description}
-                        </p>
+                        <p className='text-zinc-300 leading-relaxed'>{exp.description}</p>
 
                         {exp.highlights && exp.highlights.length > 0 && (
-                          <div className="mt-4 space-y-2.5">
+                          <div className='mt-4 space-y-2.5'>
                             {exp.highlights.map((highlight, j) => (
-                              <div key={j} className="flex items-start gap-2.5">
-                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                                <p className="text-sm text-zinc-400 leading-relaxed">
-                                  {highlight}
-                                </p>
+                              <div key={j} className='flex items-start gap-2.5'>
+                                <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                                <p className='text-sm text-zinc-400 leading-relaxed'>{highlight}</p>
                               </div>
                             ))}
                           </div>
                         )}
 
-                        <div className="flex flex-wrap gap-2 mt-5">
+                        <div className='flex flex-wrap gap-2 mt-5'>
                           {exp.tech.map((t, j) => (
                             <SkillBadge key={j} name={t} />
                           ))}
@@ -1000,77 +853,71 @@ export default function App() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="space-y-8"
+              className='space-y-8'
             >
               <div>
-                <div className="flex items-center gap-4 mb-3">
-                  <h3 className="text-2xl font-bold text-white uppercase tracking-tight">
+                <div className='flex items-center gap-4 mb-3'>
+                  <h3 className='text-2xl font-bold text-white uppercase tracking-tight'>
                     Research Projects
                   </h3>
-                  <div className="h-px flex-1 bg-white/10" />
+                  <div className='h-px flex-1 bg-white/10' />
                 </div>
-                <p className="text-zinc-400 max-w-3xl leading-relaxed">
-                  Selected initiatives where architecture, product strategy, and
-                  execution converge. These projects demonstrate practical
-                  research applied to APIs, mobile platforms, and delivery
-                  systems.
+                <p className='text-zinc-400 max-w-3xl leading-relaxed'>
+                  Selected initiatives where architecture, product strategy, and execution converge.
+                  These projects demonstrate practical research applied to APIs, mobile platforms,
+                  and delivery systems.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 {RESUME_DATA.projects.map((project, i) => (
                   <article
                     key={i}
-                    className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/30 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all duration-300 flex flex-col justify-between group"
+                    className='p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/30 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all duration-300 flex flex-col justify-between group'
                   >
                     <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
-                          <FlaskConical className="w-5 h-5" />
+                      <div className='flex items-center justify-between mb-4'>
+                        <div className='w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500'>
+                          <FlaskConical className='w-5 h-5' />
                         </div>
-                        <div className="flex gap-2">
+                        <div className='flex gap-2'>
                           {project.links.map((link, j) => (
                             <a
                               key={j}
                               href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-2 bg-white/5 rounded-lg hover:bg-emerald-500 hover:text-black transition-all"
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              className='p-2 bg-white/5 rounded-lg hover:bg-emerald-500 hover:text-black transition-all'
                             >
-                              <ExternalLink className="w-3 h-3" />
+                              <ExternalLink className='w-3 h-3' />
                             </a>
                           ))}
                         </div>
                       </div>
-                      <h4 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                      <h4 className='text-xl font-bold text-white group-hover:text-emerald-400 transition-colors'>
                         {project.title}
                       </h4>
-                      <p className="text-emerald-500 font-mono text-[10px] uppercase tracking-widest mb-4">
+                      <p className='text-emerald-500 font-mono text-[10px] uppercase tracking-widest mb-4'>
                         {project.subtitle}
                       </p>
-                      <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                      <p className='text-sm text-zinc-400 leading-relaxed mb-6'>
                         {project.description}
                       </p>
 
-                      <div className="flex flex-wrap gap-2">
+                      <div className='flex flex-wrap gap-2'>
                         {project.tech.map((t, j) => (
-                          <span
-                            key={j}
-                            className="text-[10px] font-mono text-zinc-500"
-                          >
+                          <span key={j} className='text-[10px] font-mono text-zinc-500'>
                             {t}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    <div className="mt-5 pt-4 border-t border-white/10">
-                      <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-emerald-400 mb-2">
+                    <div className='mt-5 pt-4 border-t border-white/10'>
+                      <p className='text-[10px] font-mono uppercase tracking-[0.22em] text-emerald-400 mb-2'>
                         Notes
                       </p>
-                      <p className="text-xs text-zinc-400 leading-relaxed">
-                        {project.note}
-                      </p>
+                      <p className='text-xs text-zinc-400 leading-relaxed'>{project.note}</p>
                     </div>
                   </article>
                 ))}
@@ -1078,37 +925,28 @@ export default function App() {
             </motion.section>
           )}
 
-          {activeTab ===tabs.QUALIFICATIONS && (
+          {activeTab === tabs.QUALIFICATIONS && (
             <motion.section
               key={tabs.QUALIFICATIONS}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="grid grid-cols-1 xl:grid-cols-[1.35fr_0.65fr] gap-8"
+              className='grid grid-cols-1 xl:grid-cols-[1.35fr_0.65fr] gap-8'
             >
               {/* Left Column: Education -> Certifications */}
-              <div className="space-y-8">
-                <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
-                  <div className="flex items-center gap-4 mb-8">
-                    <GraduationCap className="w-6 h-6 text-emerald-500" />
-                    <h3 className="text-2xl font-bold text-white">
-                      Education
-                    </h3>
+              <div className='space-y-8'>
+                <div className='p-8 rounded-3xl bg-white/5 border border-white/10'>
+                  <div className='flex items-center gap-4 mb-8'>
+                    <GraduationCap className='w-6 h-6 text-emerald-500' />
+                    <h3 className='text-2xl font-bold text-white'>Education</h3>
                   </div>
-                  <div className="space-y-8">
+                  <div className='space-y-8'>
                     {RESUME_DATA.education.map((edu, i) => (
-                      <div
-                        key={i}
-                        className="relative pl-6 border-l border-white/10 group"
-                      >
-                        <div className="absolute -left-1 w-2 h-2 rounded-full bg-emerald-500/50 group-hover:bg-emerald-500 transition-colors" />
-                        <h4 className="text-lg font-bold text-white">
-                          {edu.degree}
-                        </h4>
-                        <p className="text-emerald-500 font-mono text-xs">
-                          {edu.institution}
-                        </p>
-                        <p className="text-zinc-500 text-xs mt-1">
+                      <div key={i} className='relative pl-6 border-l border-white/10 group'>
+                        <div className='absolute -left-1 w-2 h-2 rounded-full bg-emerald-500/50 group-hover:bg-emerald-500 transition-colors' />
+                        <h4 className='text-lg font-bold text-white'>{edu.degree}</h4>
+                        <p className='text-emerald-500 font-mono text-xs'>{edu.institution}</p>
+                        <p className='text-zinc-500 text-xs mt-1'>
                           {edu.period} • {edu.location}
                         </p>
                       </div>
@@ -1116,25 +954,21 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
-                  <div className="flex items-center gap-4 mb-8">
-                    <Award className="w-6 h-6 text-emerald-500" />
-                    <h3 className="text-2xl font-bold text-white">
-                      Certifications
-                    </h3>
+                <div className='p-8 rounded-3xl bg-white/5 border border-white/10'>
+                  <div className='flex items-center gap-4 mb-8'>
+                    <Award className='w-6 h-6 text-emerald-500' />
+                    <h3 className='text-2xl font-bold text-white'>Certifications</h3>
                   </div>
-                  <div className="grid grid-cols-1 gap-3">
+                  <div className='grid grid-cols-1 gap-3'>
                     {RESUME_DATA.certifications.map((cert, i) => (
                       <div
                         key={i}
-                        className="p-4 rounded-xl bg-black/30 border border-white/5 hover:border-emerald-500/30 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all flex items-center gap-4 group"
+                        className='p-4 rounded-xl bg-black/30 border border-white/5 hover:border-emerald-500/30 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all flex items-center gap-4 group'
                       >
-                        <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
-                          <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                        <div className='w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors'>
+                          <ShieldCheck className='w-4 h-4 text-emerald-500' />
                         </div>
-                        <span className="text-sm text-zinc-300 leading-tight">
-                          {cert}
-                        </span>
+                        <span className='text-sm text-zinc-300 leading-tight'>{cert}</span>
                       </div>
                     ))}
                   </div>
@@ -1142,41 +976,35 @@ export default function App() {
               </div>
 
               {/* Right Column: All Technical Skills */}
-              <div className="p-6 rounded-3xl bg-white/5 border border-white/10 h-fit">
-                <div className="flex items-center gap-4 mb-3">
-                  <Code2 className="w-6 h-6 text-emerald-500" />
-                  <h3 className="text-2xl font-bold text-white">
-                    Technical Skills
-                  </h3>
+              <div className='p-6 rounded-3xl bg-white/5 border border-white/10 h-fit'>
+                <div className='flex items-center gap-4 mb-3'>
+                  <Code2 className='w-6 h-6 text-emerald-500' />
+                  <h3 className='text-2xl font-bold text-white'>Technical Skills</h3>
                 </div>
-                <p className="text-xs text-zinc-400">
-                  Skill snapshot with proficiency indicators.
-                </p>
+                <p className='text-xs text-zinc-400'>Skill snapshot with proficiency indicators.</p>
 
-                <div className="space-y-6 mt-6">
+                <div className='space-y-6 mt-6'>
                   {expertiseSkillGroups.map((group, groupIndex) => (
                     <div
                       key={group.title}
-                      className="relative space-y-3 p-4 rounded-2xl border border-white/5 bg-gradient-to-br from-emerald-500/[0.06] via-emerald-500/[0.015] to-transparent hover:border-emerald-500/25 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_20px_rgba(81,192,12,0.12)] transition-all duration-300"
+                      className='relative space-y-3 p-4 rounded-2xl border border-white/5 bg-gradient-to-br from-emerald-500/[0.06] via-emerald-500/[0.015] to-transparent hover:border-emerald-500/25 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_20px_rgba(81,192,12,0.12)] transition-all duration-300'
                     >
-                      <div className="absolute left-0 top-3 bottom-3 w-[2px] rounded-full bg-emerald-500/45" />
-                      <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-300 pl-3">
+                      <div className='absolute left-0 top-3 bottom-3 w-[2px] rounded-full bg-emerald-500/45' />
+                      <p className='text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-300 pl-3'>
                         {group.title}
                       </p>
-                      <div className="space-y-2.5">
+                      <div className='space-y-2.5'>
                         {group.skills.map((skill, i) => {
                           const level = group.levels[i] ?? 75;
                           return (
-                            <div key={skill} className="space-y-1.5">
-                              <div className="flex items-center justify-between gap-3">
-                                <span className="text-xs text-zinc-300 leading-tight">
-                                  {skill}
-                                </span>
-                                <span className="text-[10px] font-mono text-emerald-400 shrink-0">
+                            <div key={skill} className='space-y-1.5'>
+                              <div className='flex items-center justify-between gap-3'>
+                                <span className='text-xs text-zinc-300 leading-tight'>{skill}</span>
+                                <span className='text-[10px] font-mono text-emerald-400 shrink-0'>
                                   {level}%
                                 </span>
                               </div>
-                              <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                              <div className='h-1.5 rounded-full bg-white/10 overflow-hidden'>
                                 <motion.div
                                   initial={{ width: 0 }}
                                   whileInView={{ width: `${level}%` }}
@@ -1184,9 +1012,9 @@ export default function App() {
                                   transition={{
                                     duration: 0.7,
                                     delay: groupIndex * 0.08 + i * 0.03,
-                                    ease: "easeOut",
+                                    ease: 'easeOut',
                                   }}
-                                  className="h-full rounded-full bg-gradient-to-r from-emerald-500/70 to-emerald-300 shadow-[0_0_10px_rgba(81,192,12,0.35)]"
+                                  className='h-full rounded-full bg-gradient-to-r from-emerald-500/70 to-emerald-300 shadow-[0_0_10px_rgba(81,192,12,0.35)]'
                                 />
                               </div>
                             </div>
@@ -1199,63 +1027,60 @@ export default function App() {
               </div>
             </motion.section>
           )}
-
         </AnimatePresence>
       </main>
 
       {/* Footer */}
-      <footer className="mt-20 border-t border-white/5 bg-black/30">
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-emerald-500/10 via-emerald-500/[0.03] to-transparent p-8 md:p-10 mb-12">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(81,192,12,0.22),transparent_42%)] pointer-events-none" />
-            <div className="relative grid grid-cols-1 md:grid-cols-[1.2fr_auto] gap-8 md:items-center">
+      <footer className='mt-20 border-t border-white/5 bg-black/30'>
+        <div className='max-w-6xl mx-auto px-6 py-16'>
+          <div className='relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-emerald-500/10 via-emerald-500/[0.03] to-transparent p-8 md:p-10 mb-12'>
+            <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(81,192,12,0.22),transparent_42%)] pointer-events-none' />
+            <div className='relative grid grid-cols-1 md:grid-cols-[1.2fr_auto] gap-8 md:items-center'>
               <div>
-                <p className="text-emerald-400 font-mono text-xs mb-3 uppercase tracking-[0.3em]">
+                <p className='text-emerald-400 font-mono text-xs mb-3 uppercase tracking-[0.3em]'>
                   Let&apos;s Build
                 </p>
-                <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+                <h3 className='text-3xl md:text-4xl font-bold text-white tracking-tight mb-4'>
                   Ready to turn your next idea into reality?
                 </h3>
-                <p className="text-zinc-300 max-w-2xl leading-relaxed">
-                  From API architecture to polished web and mobile products, I
-                  help teams ship faster with technical depth and pragmatic
-                  execution.
+                <p className='text-zinc-300 max-w-2xl leading-relaxed'>
+                  From API architecture to polished web and mobile products, I help teams ship
+                  faster with technical depth and pragmatic execution.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-col gap-3">
+              <div className='flex flex-col sm:flex-row md:flex-col gap-3'>
                 <a
                   href={`mailto:${RESUME_DATA.email}`}
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-emerald-500 text-black font-bold rounded-xl hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(81,192,12,0.3)]"
+                  className='inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-emerald-500 text-black font-bold rounded-xl hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(81,192,12,0.3)]'
                 >
                   Start a Project
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className='w-4 h-4' />
                 </a>
                 <a
                   href={RESUME_DATA.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/5 border border-white/15 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors"
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/5 border border-white/15 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors'
                 >
                   Connect on LinkedIn
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className='w-4 h-4' />
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-zinc-500 font-mono text-xs">
-              <Command className="w-3 h-3" />
+          <div className='pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4'>
+            <div className='flex items-center gap-2 text-zinc-500 font-mono text-xs'>
+              <Command className='w-3 h-3' />
               <span>
-                Sérgio Miguel © {new Date().getFullYear()} • Built with React &
-                Emerald Energy
+                Sérgio Miguel © {new Date().getFullYear()} • Built with React & Emerald Energy
               </span>
             </div>
             <button
               onClick={() => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest"
+              className='text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest'
             >
               Back to Top
             </button>

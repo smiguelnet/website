@@ -12,8 +12,8 @@ const pages = [
       "Sergio Miguel's portfolio: AI-driven software architecture, domain design, and delivery acceleration across web, mobile, and cloud.",
   },
   {
-    path: '/professional-journey',
-    title: 'Professional Journey | Sergio Miguel',
+    path: '/experience',
+    title: 'Experience | Sergio Miguel',
     description:
       'Professional timeline across fintech, blockchain, telecom, and enterprise architecture leadership.',
   },
@@ -24,8 +24,8 @@ const pages = [
       'Selected research and applied engineering projects in APIs, mobile platforms, architecture accelerators, and DevOps.',
   },
   {
-    path: '/qualifications',
-    title: 'Qualifications | Sergio Miguel',
+    path: '/profile',
+    title: 'Profile | Sergio Miguel',
     description:
       'Education, certifications, and technical skills spanning software architecture, cloud, data, and modern engineering.',
   },
