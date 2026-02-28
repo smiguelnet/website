@@ -873,66 +873,61 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-20 border-t border-white/5 py-12 bg-black/30">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-2">
-                Looking to turn your ideas into reality?
-              </h3>
-              <p className="text-emerald-500 font-mono text-sm mb-4 uppercase tracking-widest">
-                API, Web and Mobile
-              </p>
-              <p className="text-zinc-400 max-w-md">
-                Contact me at{" "}
+      <footer className="mt-20 border-t border-white/5 bg-black/30">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-emerald-500/10 via-emerald-500/[0.03] to-transparent p-8 md:p-10 mb-12">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(81,192,12,0.22),transparent_42%)] pointer-events-none" />
+            <div className="relative grid grid-cols-1 md:grid-cols-[1.2fr_auto] gap-8 md:items-center">
+              <div>
+                <p className="text-emerald-400 font-mono text-xs mb-3 uppercase tracking-[0.3em]">
+                  Let&apos;s Build
+                </p>
+                <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+                  Ready to turn your next idea into reality?
+                </h3>
+                <p className="text-zinc-300 max-w-2xl leading-relaxed">
+                  From API architecture to polished web and mobile products, I
+                  help teams ship faster with technical depth and pragmatic
+                  execution.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-col gap-3">
                 <a
                   href={`mailto:${RESUME_DATA.email}`}
-                  className="text-emerald-400 hover:underline"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-emerald-500 text-black font-bold rounded-xl hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(81,192,12,0.3)]"
                 >
-                  {RESUME_DATA.email}
+                  Start a Project
+                  <ChevronRight className="w-4 h-4" />
                 </a>
-                , and I'll assist you in bringing them to fruition.
-              </p>
-            </div>
-            <div className="flex justify-start md:justify-end gap-4">
-              <a
-                href={`mailto:${RESUME_DATA.email}`}
-                className="px-8 py-4 bg-emerald-500 text-black font-bold rounded-2xl hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(81,192,12,0.3)]"
-              >
-                Start a Project
-              </a>
+                <a
+                  href={RESUME_DATA.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/5 border border-white/15 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors"
+                >
+                  Connect on LinkedIn
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-zinc-500 font-mono text-xs">
               <Command className="w-3 h-3" />
               <span>
-                Sérgio Miguel © 2024 • Built with React & Emerald Energy
+                Sérgio Miguel © {new Date().getFullYear()} • Built with React &
+                Emerald Energy
               </span>
             </div>
-            <div className="flex items-center gap-6">
-              <button
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
-                className="text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest"
-              >
-                BACK TO TOP
-              </button>
-              <a
-                href={RESUME_DATA.linkedin}
-                className="text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest"
-              >
-                LINKEDIN
-              </a>
-              <a
-                href={`mailto:${RESUME_DATA.email}`}
-                className="text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest"
-              >
-                EMAIL
-              </a>
-            </div>
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest"
+            >
+              Back to Top
+            </button>
           </div>
         </div>
       </footer>
