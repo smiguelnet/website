@@ -402,9 +402,7 @@ export default function App() {
                   HANDS-ON ARCHITECT
                 </span>
               </div>
-              <p className='text-[10px] text-emerald-500 font-mono leading-none'>
-                Codename: SMIGUELNET
-              </p>
+              <p className='text-[10px] text-emerald-500 font-mono leading-none'>SMIGUELNET</p>
             </div>
           </button>
 
