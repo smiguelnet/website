@@ -500,7 +500,7 @@ export default function App() {
                     initial={{ opacity: 0, scale: 0.6, rotate: isMobile ? -8 : -14 }}
                     animate={{ opacity: 1, scale: isMobile? 0.80: 1, rotate: isMobile ? 0 : -2 }}
                     transition={{ duration: 1, delay: 0.3, type: "spring" }}
-                    className="relative aspect-square group lg:mr-20 lg:ml-0 mr-10 ml-10"
+                    className="relative w-full max-w-[280px] md:max-w-[360px] lg:max-w-none aspect-square group mx-auto lg:mx-0 lg:mr-20"
                   >
                     {/* Starfield / Aura Layer */}
                     <div className="absolute -inset-10 pointer-events-none">
@@ -680,11 +680,11 @@ export default function App() {
                     </p>
                   </div>
 
-                  <div className="relative grid grid-cols-1 md:grid-cols-3 gap-5">
+                  <div className="relative space-y-5">
                     {RESUME_DATA.research.phases.map((phase, i) => (
                       <div
                         key={i}
-                        className="group h-full rounded-2xl border border-white/10 bg-black/30 p-6 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300"
+                        className="group rounded-2xl border border-white/10 bg-black/30 p-6 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300"
                       >
                         <div className="flex items-center gap-3 mb-4">
                           <span className="w-8 h-8 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold flex items-center justify-center">
