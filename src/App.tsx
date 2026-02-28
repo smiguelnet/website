@@ -1,0 +1,965 @@
+import React, { useState, useEffect } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  animate,
+  useTransform,
+} from "motion/react";
+import {
+  Terminal,
+  Cpu,
+  Globe,
+  Mail,
+  Linkedin,
+  ExternalLink,
+  Code2,
+  Database,
+  Cloud,
+  ShieldCheck,
+  Gamepad2,
+  ChevronRight,
+  Command,
+  Activity,
+  Zap,
+  GraduationCap,
+  Award,
+  FlaskConical,
+  Quote,
+  Menu,
+  X,
+} from "lucide-react";
+import { RESUME_DATA } from "./constants";
+
+const Counter = ({
+  value,
+  duration = 2,
+  delay = 0,
+}: {
+  value: number;
+  duration?: number;
+  delay?: number;
+}) => {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) =>
+    Math.round(latest).toLocaleString(),
+  );
+  const [displayValue, setDisplayValue] = useState("0");
+
+  useEffect(() => {
+    const controls = animate(count, value, {
+      duration,
+      delay,
+      ease: "easeOut",
+    });
+
+    const unsubscribe = rounded.on("change", (v) => setDisplayValue(v));
+
+    return () => {
+      controls.stop();
+      unsubscribe();
+    };
+  }, [value, duration, delay, count, rounded]);
+
+  return <span>{displayValue}</span>;
+};
+
+const TerminalLine = ({
+  text,
+  delay = 0,
+}: {
+  text: string;
+  delay?: number;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, x: -10 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay }}
+    className="font-mono text-sm text-emerald-400 mb-1"
+  >
+    <span className="text-emerald-600 mr-2">$</span>
+    {text}
+  </motion.div>
+);
+
+interface SkillBadgeProps {
+  name: string;
+  key?: any;
+}
+
+const SkillBadge = ({ name }: SkillBadgeProps) => (
+  <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-xs font-mono text-emerald-400">
+    {name}
+  </span>
+);
+
+interface MetricGaugeProps {
+  label: string;
+  value: number;
+  suffix: string;
+  delay?: number;
+  key?: any;
+}
+
+const MetricGauge = ({ label, value, suffix, delay = 0 }: MetricGaugeProps) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay }}
+      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      className="relative flex flex-col items-center text-center p-10 rounded-[2.5rem] bg-emerald-500/[0.02] border border-white/5 hover:border-emerald-500/40 transition-all group overflow-hidden"
+    >
+      {/* Background Glow Effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.02] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      {/* Blueprint Grid Pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(#51c00c 0.5px, transparent 0.5px)",
+          backgroundSize: "12px 12px",
+        }}
+      />
+
+      {/* Animated Light Sweep */}
+      <motion.div
+        animate={{
+          left: ["-100%", "200%"],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "linear",
+          delay: delay * 2,
+        }}
+        className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-emerald-500/[0.05] to-transparent -skew-x-12 pointer-events-none"
+      />
+
+      <div className="relative mb-6">
+        {/* Subtle Glow behind number */}
+        <div className="absolute inset-0 rounded-full bg-emerald-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ delay: delay + 0.5, type: "spring", stiffness: 100 }}
+          className="relative z-20 flex flex-col items-center"
+        >
+          <span className="text-3xl md:text-4xl font-bold text-white tracking-tighter group-hover:text-emerald-400 transition-colors duration-500">
+            <Counter value={value} delay={delay + 0.5} />
+            {suffix}
+          </span>
+        </motion.div>
+      </div>
+
+      <motion.span
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 0.7 }}
+        transition={{ delay: delay + 0.8 }}
+        className="relative z-10 text-[11px] uppercase tracking-[0.3em] text-emerald-400 font-bold leading-tight max-w-[180px] group-hover:opacity-100 group-hover:text-white transition-all"
+      >
+        {label}
+      </motion.span>
+    </motion.div>
+  );
+};
+
+const InterestCard = ({
+  interest,
+  delay = 0,
+}: {
+  interest: string;
+  delay?: number;
+  key?: any;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay }}
+    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+    className="relative p-6 rounded-2xl bg-emerald-500/[0.02] border border-white/5 hover:border-emerald-500/40 transition-all group overflow-hidden"
+  >
+    {/* Background Glow Effect */}
+    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.03] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+    {/* Animated Light Sweep */}
+    <motion.div
+      animate={{
+        left: ["-100%", "200%"],
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "linear",
+        delay: delay * 1.5,
+      }}
+      className="absolute top-0 bottom-0 w-full bg-gradient-to-r from-transparent via-emerald-500/[0.03] to-transparent -skew-x-12 pointer-events-none"
+    />
+
+    <div className="relative z-10 flex items-start gap-4">
+      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500 shadow-[0_0_15px_rgba(81,192,12,0)] group-hover:shadow-[0_0_15px_rgba(81,192,12,0.4)]">
+        <Zap className="w-5 h-5" />
+      </div>
+      <p className="text-zinc-300 font-medium leading-snug group-hover:text-white transition-colors">
+        {interest}
+      </p>
+    </div>
+  </motion.div>
+);
+
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth < breakpoint,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
+export default function App() {
+  const [booting, setBooting] = useState(true);
+  const [activeTab, setActiveTab] = useState("home");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const timer = setTimeout(() => setBooting(false), 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (booting) {
+    return (
+      <div className="fixed inset-0 bg-black flex flex-col items-center justify-center p-6 font-mono">
+        <div className="w-full max-w-md">
+          <TerminalLine text="Initializing SérgioOS v20.24..." delay={0.2} />
+          <TerminalLine text="Loading 20+ years of experience..." delay={0.5} />
+          <TerminalLine text="Bypassing mainframe security..." delay={0.8} />
+          <TerminalLine text="Optimizing coffee-to-code ratio..." delay={1.1} />
+          <TerminalLine
+            text="Checking for legacy Java 1.3 dependencies..."
+            delay={1.4}
+          />
+          <TerminalLine text="System ready. Welcome, Architect." delay={1.8} />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1.5, delay: 0.2 }}
+            className="h-1 bg-emerald-500 mt-4 origin-left"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-300 selection:bg-emerald-500/30">
+      {/* Background Grid Effect */}
+      <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
+      {/* Header / Top Bar */}
+      <header className="sticky top-0 z-50 border-b border-white/5 bg-black/50 backdrop-blur-xl">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <button
+            onClick={() => setActiveTab("home")}
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity text-left"
+          >
+            <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0">
+              <Terminal className="w-5 h-5 text-black" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-sm font-bold text-white tracking-tight uppercase">
+                  Sergio Barriviera Miguel
+                </h1>
+                <span className="hidden sm:inline text-[10px] text-zinc-500 font-mono border border-white/10 px-1.5 rounded">
+                  HANDS-ON ARCHITECT
+                </span>
+              </div>
+              <p className="text-[10px] text-emerald-500 font-mono leading-none">
+                Codename: SMIGUELNET
+              </p>
+            </div>
+          </button>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-6">
+            {["home", "experience", "projects", "expertise", "about"].map(
+              (tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`text-xs font-mono uppercase tracking-widest transition-colors ${
+                    activeTab === tab
+                      ? "text-emerald-400"
+                      : "text-zinc-500 hover:text-zinc-300"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ),
+            )}
+          </nav>
+
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="hidden sm:flex items-center gap-2">
+              <a
+                href={`mailto:${RESUME_DATA.email}`}
+                className="p-2 hover:bg-white/5 rounded-lg transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+              <a
+                href={RESUME_DATA.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 hover:bg-white/5 rounded-lg transition-colors"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 hover:bg-white/5 rounded-lg transition-colors text-emerald-500"
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Nav Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-black border-b border-white/5 overflow-hidden"
+            >
+              <div className="px-6 py-8 flex flex-col gap-6">
+                {["home", "experience", "projects", "expertise", "about"].map(
+                  (tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => {
+                        setActiveTab(tab);
+                        setIsMenuOpen(false);
+                      }}
+                      className={`text-left text-lg font-mono uppercase tracking-widest transition-colors ${
+                        activeTab === tab ? "text-emerald-400" : "text-zinc-500"
+                      }`}
+                    >
+                      {tab}
+                    </button>
+                  ),
+                )}
+                <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+                  <a
+                    href={`mailto:${RESUME_DATA.email}`}
+                    className="flex items-center gap-2 text-sm text-zinc-400"
+                  >
+                    <Mail className="w-4 h-4" /> Email
+                  </a>
+                  <a
+                    href={RESUME_DATA.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-zinc-400"
+                  >
+                    <Linkedin className="w-4 h-4" /> LinkedIn
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      <main className="max-w-6xl mx-auto px-6 py-12 relative">
+        {/* Content Switcher */}
+        <AnimatePresence mode="wait">
+          {activeTab === "home" && (
+            <motion.div
+              key="home"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="space-y-20"
+            >
+              {/* Hero Section */}
+              <section>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+                  <div className="lg:col-span-2 space-y-8">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6 }}
+                      className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono"
+                    >
+                      <Zap className="w-3 h-3" />
+                      <span>AI & Architecture Accelerator</span>
+                    </motion.div>
+
+                    <motion.h2
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                      className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9]"
+                    >
+                      Accelerate software delivery with{" "}
+                      <motion.span
+                        animate={{
+                          textShadow: [
+                            "0 0 0px #51c00c",
+                            "0 0 10px #51c00c",
+                            "0 0 0px #51c00c",
+                          ],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                        className="text-emerald-500 italic"
+                      >
+                        AI, SDD, and Agentic Coding.
+                      </motion.span>
+                    </motion.h2>
+
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1, delay: 0.4 }}
+                      className="text-lg text-zinc-400 max-w-xl leading-relaxed"
+                    >
+                       {RESUME_DATA.about} 
+                    </motion.p>
+
+                    {/* The Quote */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                      className="p-4 border-l-2 border-emerald-500 bg-emerald-500/5 rounded-r-xl max-w-xl"
+                    >
+                      <Quote className="w-4 h-4 text-emerald-500 mb-2 opacity-50" />
+                      <p className="text-sm text-zinc-300 italic leading-relaxed">
+                        "{RESUME_DATA.quote.text}"
+                      </p>
+                      <p className="text-[10px] text-emerald-500 font-mono mt-2 uppercase tracking-widest">
+                        — {RESUME_DATA.quote.author}
+                      </p>
+                    </motion.div>
+                  </div>
+
+                  {/* Photo Section */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.6, rotate: isMobile ? -8 : -14 }}
+                    animate={{ opacity: 1, scale: isMobile? 0.80: 1, rotate: isMobile ? 0 : -2 }}
+                    transition={{ duration: 1, delay: 0.3, type: "spring" }}
+                    className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 group lg:mr-20 lg:ml-0 mr-10 ml-10"
+                  >
+                    <img
+                      src={RESUME_DATA.photo}
+                      alt={RESUME_DATA.name}
+                      className={`w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110`}
+                      referrerPolicy="no-referrer"
+                    />
+
+                    {/* Scanning Line Effect */}
+                    <motion.div
+                      animate={{ top: ["0%", "100%", "0%"] }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="absolute left-0 right-0 h-[2px] bg-emerald-500/30 blur-[1px] z-10 pointer-events-none"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-6 left-6">
+                      <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8 }}
+                        className="text-white font-bold text-xl tracking-tight"
+                      >
+                        {RESUME_DATA.name}
+                      </motion.p>
+                      <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1 }}
+                        className="text-emerald-400 text-[10px] font-mono uppercase tracking-[0.2em]"
+                      >
+                        {RESUME_DATA.location}
+                      </motion.p>
+                    </div>
+                  </motion.div>
+                </div>
+              </section>
+
+              {/* Executive Achievement Dashboard */}
+              <section className="relative pt-12 border-t border-white/5 overflow-hidden">
+                {/* Section Background Glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-emerald-500/[0.03] blur-[120px] pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-12">
+                    <h3 className="text-2xl font-bold text-white uppercase tracking-tighter">
+                      Key Achievements
+                    </h3>
+                    <div className="h-px flex-1 bg-white/10" />
+                  </div>
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    {RESUME_DATA.achievements.map((achievement, i) => (
+                      <MetricGauge
+                        key={i}
+                        label={achievement.label}
+                        value={achievement.value}
+                        suffix={achievement.suffix}
+                        delay={i * 0.1}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Areas of Interest - Now on Home */}
+              <section className="relative pt-12 border-t border-white/5 overflow-hidden">
+                {/* Section Background Glow */}
+                <div className="absolute bottom-0 right-0 w-full h-full bg-emerald-500/[0.02] blur-[100px] pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-12">
+                    <h3 className="text-2xl font-bold text-white uppercase tracking-tighter">
+                      Areas of Interest
+                    </h3>
+                    <div className="h-px flex-1 bg-white/10" />
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {RESUME_DATA.interests.map((interest, i) => (
+                      <InterestCard
+                        key={i}
+                        interest={interest}
+                        delay={i * 0.15}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Line of Research */}
+              <section className="pt-12 border-t border-white/5">
+                <div className="flex items-center gap-4 mb-8">
+                  <h3 className="text-2xl font-bold text-white uppercase tracking-tighter">
+                    Line of Research
+                  </h3>
+                  <div className="h-px flex-1 bg-white/10" />
+                </div>
+                <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-500">
+                      <FlaskConical className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-white">
+                        {RESUME_DATA.research.title}
+                      </h4>
+                      <p className="text-sm text-zinc-400">
+                        {RESUME_DATA.research.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    {RESUME_DATA.research.phases.map((phase, i) => (
+                      <div key={i} className="space-y-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-mono text-emerald-500 border border-emerald-500/30 px-1.5 py-0.5 rounded">
+                            PHASE 0{i + 1}
+                          </span>
+                          <h5 className="text-sm font-bold text-white uppercase tracking-wider">
+                            {phase.name}
+                          </h5>
+                        </div>
+                        <p className="text-xs text-zinc-500 leading-relaxed">
+                          {phase.details}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </motion.div>
+          )}
+
+          {activeTab === "experience" && (
+            <motion.div
+              key="experience"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-12"
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <h3 className="text-2xl font-bold text-white">
+                  Professional Log
+                </h3>
+                <div className="h-px flex-1 bg-white/10" />
+              </div>
+
+              <div className="space-y-16">
+                {RESUME_DATA.experience.map((exp, i) => (
+                  <div
+                    key={i}
+                    className="relative pl-8 border-l border-white/10 group"
+                  >
+                    <div className="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                      <div>
+                        <h4 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                          {exp.role}
+                        </h4>
+                        <p className="text-emerald-500 font-mono text-sm">
+                          {exp.company} • {exp.period}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-zinc-400 mb-6 max-w-3xl leading-relaxed">
+                      {exp.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.tech.map((t, j) => (
+                        <SkillBadge key={j} name={t} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {activeTab === "projects" && (
+            <motion.section
+              key="projects"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              {RESUME_DATA.projects.map((project, i) => (
+                <div
+                  key={i}
+                  className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                        <FlaskConical className="w-5 h-5" />
+                      </div>
+                      <div className="flex gap-2">
+                        {project.links.map((link, j) => (
+                          <a
+                            key={j}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 bg-white/5 rounded-lg hover:bg-emerald-500 hover:text-black transition-all"
+                          >
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <h4 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                      {project.title}
+                    </h4>
+                    <p className="text-emerald-500 font-mono text-[10px] uppercase tracking-widest mb-4">
+                      {project.subtitle}
+                    </p>
+                    <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                      {project.description}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((t, j) => (
+                      <span
+                        key={j}
+                        className="text-[10px] font-mono text-zinc-500"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </motion.section>
+          )}
+
+          {activeTab === "expertise" && (
+            <motion.section
+              key="expertise"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-16"
+            >
+              {/* Skills Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-8">
+                  <SkillCategory
+                    icon={<Code2 className="w-5 h-5" />}
+                    title="Core Languages"
+                    skills={RESUME_DATA.skills.languages}
+                  />
+                  <SkillCategory
+                    icon={<Cloud className="w-5 h-5" />}
+                    title="Cloud & DevOps"
+                    skills={RESUME_DATA.skills.cloud}
+                  />
+                </div>
+                <div className="space-y-8">
+                  <SkillCategory
+                    icon={<Database className="w-5 h-5" />}
+                    title="Data Architectures"
+                    skills={RESUME_DATA.skills.databases}
+                  />
+                  <SkillCategory
+                    icon={<Gamepad2 className="w-5 h-5" />}
+                    title="Special Ops"
+                    skills={RESUME_DATA.skills.special}
+                  />
+                </div>
+              </div>
+
+              {/* Education & Certs Row */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-12 border-t border-white/10">
+                {/* Education */}
+                <div className="space-y-8">
+                  <div className="flex items-center gap-4 mb-8">
+                    <GraduationCap className="w-6 h-6 text-emerald-500" />
+                    <h3 className="text-2xl font-bold text-white">
+                      Academic Training
+                    </h3>
+                  </div>
+                  <div className="space-y-8">
+                    {RESUME_DATA.education.map((edu, i) => (
+                      <div
+                        key={i}
+                        className="relative pl-6 border-l border-white/10 group"
+                      >
+                        <div className="absolute -left-1 w-2 h-2 rounded-full bg-emerald-500/50 group-hover:bg-emerald-500 transition-colors" />
+                        <h4 className="text-lg font-bold text-white">
+                          {edu.degree}
+                        </h4>
+                        <p className="text-emerald-500 font-mono text-xs">
+                          {edu.institution}
+                        </p>
+                        <p className="text-zinc-500 text-xs mt-1">
+                          {edu.period} • {edu.location}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Certifications */}
+                <div className="space-y-8">
+                  <div className="flex items-center gap-4 mb-8">
+                    <Award className="w-6 h-6 text-emerald-500" />
+                    <h3 className="text-2xl font-bold text-white">
+                      Certifications
+                    </h3>
+                  </div>
+                  <div className="grid grid-cols-1 gap-3">
+                    {RESUME_DATA.certifications.map((cert, i) => (
+                      <div
+                        key={i}
+                        className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-all flex items-center gap-4 group"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
+                          <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                        </div>
+                        <span className="text-sm text-zinc-300 leading-tight">
+                          {cert}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.section>
+          )}
+
+          {activeTab === "about" && (
+            <motion.section
+              key="about"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="max-w-3xl"
+            >
+              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 space-y-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 flex items-center justify-center">
+                    <Zap className="w-8 h-8 text-emerald-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">
+                      The Architect's Manifesto
+                    </h3>
+                    <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest">
+                      Established 1979 • Porto, Portugal
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-zinc-300 leading-relaxed italic">
+                  "I believe that software should be robust enough to survive a
+                  zombie apocalypse, or at least a Monday morning traffic
+                  spike."
+                </p>
+                <div className="space-y-4 text-zinc-400 leading-relaxed">
+                  <p>
+                    With over two decades in the industry, I've transitioned
+                    from coding in the basement to leading distributed teams
+                    across the globe. My journey has taken me from the rigid
+                    structures of banking mainframes to the decentralized wild
+                    west of Blockchain and NFTs.
+                  </p>
+                  <p>
+                    As a CTO, I focus on the intersection of business goals and
+                    technical excellence. I don't just build features; I build
+                    systems that empower teams and delight users. And yes, I
+                    still write code because if you don't keep your hands dirty,
+                    you forget how the mud feels.
+                  </p>
+                </div>
+
+                <div className="pt-6 border-t border-white/10 flex flex-wrap gap-4">
+                  <a
+                    href={`mailto:${RESUME_DATA.email}`}
+                    className="flex items-center gap-2 px-6 py-3 bg-emerald-500 text-black font-bold rounded-xl hover:bg-emerald-400 transition-colors"
+                  >
+                    <Mail className="w-4 h-4" />
+                    Hire the Architect
+                  </a>
+                  <a
+                    href={RESUME_DATA.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 bg-white/5 text-white font-bold rounded-xl hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    Network Sync
+                  </a>
+                </div>
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-20 border-t border-white/5 py-12 bg-black/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12 items-center">
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Looking to turn your ideas into reality?
+              </h3>
+              <p className="text-emerald-500 font-mono text-sm mb-4 uppercase tracking-widest">
+                API, Web and Mobile
+              </p>
+              <p className="text-zinc-400 max-w-md">
+                Contact me at{" "}
+                <a
+                  href={`mailto:${RESUME_DATA.email}`}
+                  className="text-emerald-400 hover:underline"
+                >
+                  {RESUME_DATA.email}
+                </a>
+                , and I'll assist you in bringing them to fruition.
+              </p>
+            </div>
+            <div className="flex justify-start md:justify-end gap-4">
+              <a
+                href={`mailto:${RESUME_DATA.email}`}
+                className="px-8 py-4 bg-emerald-500 text-black font-bold rounded-2xl hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(81,192,12,0.3)]"
+              >
+                Start a Project
+              </a>
+            </div>
+          </div>
+
+          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-2 text-zinc-500 font-mono text-xs">
+              <Command className="w-3 h-3" />
+              <span>
+                Sérgio Miguel © 2024 • Built with React & Emerald Energy
+              </span>
+            </div>
+            <div className="flex items-center gap-6">
+              <button
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest"
+              >
+                BACK TO TOP
+              </button>
+              <a
+                href={RESUME_DATA.linkedin}
+                className="text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest"
+              >
+                LINKEDIN
+              </a>
+              <a
+                href={`mailto:${RESUME_DATA.email}`}
+                className="text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest"
+              >
+                EMAIL
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+function SkillCategory({
+  icon,
+  title,
+  skills,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  skills: string[];
+}) {
+  return (
+    <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-colors">
+      <div className="flex items-center gap-3 mb-6 text-emerald-400">
+        {icon}
+        <h4 className="font-bold uppercase tracking-wider text-sm">{title}</h4>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill, i) => (
+          <SkillBadge key={i} name={skill} />
+        ))}
+      </div>
+    </div>
+  );
+}
