@@ -321,7 +321,7 @@ export default function App() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {["home", "experience", "projects", "expertise", "about"].map(
+            {["home", "experience", "projects", "expertise"].map(
               (tab) => (
                 <button
                   key={tab}
@@ -380,7 +380,7 @@ export default function App() {
               className="md:hidden bg-black border-b border-white/5 overflow-hidden"
             >
               <div className="px-6 py-8 flex flex-col gap-6">
-                {["home", "experience", "projects", "expertise", "about"].map(
+                {["home", "experience", "projects", "expertise"].map(
                   (tab) => (
                     <button
                       key={tab}
@@ -979,71 +979,6 @@ export default function App() {
             </motion.section>
           )}
 
-          {activeTab === "about" && (
-            <motion.section
-              key="about"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="max-w-3xl"
-            >
-              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 space-y-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 flex items-center justify-center">
-                    <Zap className="w-8 h-8 text-emerald-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white">
-                      The Architect's Manifesto
-                    </h3>
-                    <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest">
-                      Established 1979 • Porto, Portugal
-                    </p>
-                  </div>
-                </div>
-                <p className="text-lg text-zinc-300 leading-relaxed italic">
-                  "I believe that software should be robust enough to survive a
-                  zombie apocalypse, or at least a Monday morning traffic
-                  spike."
-                </p>
-                <div className="space-y-4 text-zinc-400 leading-relaxed">
-                  <p>
-                    With over two decades in the industry, I've transitioned
-                    from coding in the basement to leading distributed teams
-                    across the globe. My journey has taken me from the rigid
-                    structures of banking mainframes to the decentralized wild
-                    west of Blockchain and NFTs.
-                  </p>
-                  <p>
-                    As a CTO, I focus on the intersection of business goals and
-                    technical excellence. I don't just build features; I build
-                    systems that empower teams and delight users. And yes, I
-                    still write code because if you don't keep your hands dirty,
-                    you forget how the mud feels.
-                  </p>
-                </div>
-
-                <div className="pt-6 border-t border-white/10 flex flex-wrap gap-4">
-                  <a
-                    href={`mailto:${RESUME_DATA.email}`}
-                    className="flex items-center gap-2 px-6 py-3 bg-emerald-500 text-black font-bold rounded-xl hover:bg-emerald-400 transition-colors"
-                  >
-                    <Mail className="w-4 h-4" />
-                    Hire the Architect
-                  </a>
-                  <a
-                    href={RESUME_DATA.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-white/5 text-white font-bold rounded-xl hover:bg-white/10 transition-colors border border-white/10"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                    Network Sync
-                  </a>
-                </div>
-              </div>
-            </motion.section>
-          )}
         </AnimatePresence>
       </main>
 
