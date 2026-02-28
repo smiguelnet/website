@@ -12,6 +12,8 @@ import {
   Globe,
   Mail,
   Linkedin,
+  Github,
+  FileDown,
   ExternalLink,
   Code2,
   ShieldCheck,
@@ -500,7 +502,8 @@ export default function App() {
             <div className="hidden sm:flex items-center gap-2">
               <a
                 href={`mailto:${RESUME_DATA.email}`}
-                className="p-2 hover:bg-white/5 rounded-lg transition-colors"
+                className="p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]"
+                aria-label="Email Sergio Miguel"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -508,9 +511,27 @@ export default function App() {
                 href={RESUME_DATA.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 hover:bg-white/5 rounded-lg transition-colors"
+                className="p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]"
+                aria-label="LinkedIn profile"
               >
                 <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href={RESUME_DATA.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]"
+                aria-label="GitHub profile"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a
+                href={RESUME_DATA.resumePdf}
+                download="sergiomiguel-resume.pdf"
+                className="p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]"
+                aria-label="Download Sergio Miguel resume"
+              >
+                <FileDown className="w-4 h-4" />
               </a>
             </div>
 
@@ -557,7 +578,7 @@ export default function App() {
                 <div className="flex items-center gap-4 pt-4 border-t border-white/5">
                   <a
                     href={`mailto:${RESUME_DATA.email}`}
-                    className="flex items-center gap-2 text-sm text-zinc-400"
+                    className="flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]"
                   >
                     <Mail className="w-4 h-4" /> Email
                   </a>
@@ -565,9 +586,24 @@ export default function App() {
                     href={RESUME_DATA.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-zinc-400"
+                    className="flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]"
                   >
                     <Linkedin className="w-4 h-4" /> LinkedIn
+                  </a>
+                  <a
+                    href={RESUME_DATA.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]"
+                  >
+                    <Github className="w-4 h-4" /> GitHub
+                  </a>
+                  <a
+                    href={RESUME_DATA.resumePdf}
+                    download="sergiomiguel-resume.pdf"
+                    className="flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]"
+                  >
+                    <FileDown className="w-4 h-4" /> Resume
                   </a>
                 </div>
               </div>

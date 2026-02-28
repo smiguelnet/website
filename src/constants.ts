@@ -4,6 +4,8 @@ export const RESUME_DATA = {
   location: "Porto, Portugal",
   email: "sergio@smiguel.net",
   linkedin: "https://www.linkedin.com/in/smiguelnet",
+  github: "https://github.com/smiguelnet",
+  resumePdf: "/assets/pdf/sergiomiguel-resume.pdf",
   website: "www.smiguel.net",
   photo: "assets/images/photo.jpg", // Placeholder - user can update if path is different
   about: "IT professional with 20+ years of hands-on experience. I specialize in Accelerating Software Development by bridging the gap between deep architectural foundations (DDD) and the future of engineering: AI-driven Agentic Coding and Spec-Driven Development (SDD). An eternal learner who builds robust, scalable systems that evolve with the tech landscape.",

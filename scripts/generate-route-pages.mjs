@@ -1,45 +1,45 @@
-import fs from "node:fs/promises";
-import path from "node:path";
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
-const distDir = path.resolve(process.cwd(), "dist");
-const indexPath = path.join(distDir, "index.html");
+const distDir = path.resolve(process.cwd(), 'dist');
+const indexPath = path.join(distDir, 'index.html');
 
 const pages = [
   {
-    path: "/",
-    title: "Sergio Miguel | CTO & Software Architect",
+    path: '/',
+    title: 'Sergio Miguel | CTO & Software Architect',
     description:
       "Sergio Miguel's portfolio: AI-driven software architecture, domain design, and delivery acceleration across web, mobile, and cloud.",
   },
   {
-    path: "/professional-journey",
-    title: "Professional Journey | Sergio Miguel",
+    path: '/professional-journey',
+    title: 'Professional Journey | Sergio Miguel',
     description:
-      "Professional timeline across fintech, blockchain, telecom, and enterprise architecture leadership.",
+      'Professional timeline across fintech, blockchain, telecom, and enterprise architecture leadership.',
   },
   {
-    path: "/research",
-    title: "Research Projects | Sergio Miguel",
+    path: '/research',
+    title: 'Research Projects | Sergio Miguel',
     description:
-      "Selected research and applied engineering projects in APIs, mobile platforms, architecture accelerators, and DevOps.",
+      'Selected research and applied engineering projects in APIs, mobile platforms, architecture accelerators, and DevOps.',
   },
   {
-    path: "/qualifications",
-    title: "Qualifications | Sergio Miguel",
+    path: '/qualifications',
+    title: 'Qualifications | Sergio Miguel',
     description:
-      "Education, certifications, and technical skills spanning software architecture, cloud, data, and modern engineering.",
+      'Education, certifications, and technical skills spanning software architecture, cloud, data, and modern engineering.',
   },
 ];
 
-const siteUrl = "https://www.smiguel.net";
+const siteUrl = 'https://www.smiguel.net';
 
 const upsertTag = (html, matcher, replacement) =>
   matcher.test(html)
     ? html.replace(matcher, replacement)
-    : html.replace("</head>", `  ${replacement}\n</head>`);
+    : html.replace('</head>', `  ${replacement}\n</head>`);
 
 const renderForPage = (baseHtml, page) => {
-  const pageUrl = `${siteUrl}${page.path === "/" ? "/" : page.path}`;
+  const pageUrl = `${siteUrl}${page.path === '/' ? '/' : page.path}`;
   let html = baseHtml;
 
   html = upsertTag(html, /<title>.*?<\/title>/is, `<title>${page.title}</title>`);
@@ -86,26 +86,22 @@ const renderForPage = (baseHtml, page) => {
 };
 
 const main = async () => {
-  const baseHtml = await fs.readFile(indexPath, "utf-8");
+  const baseHtml = await fs.readFile(indexPath, 'utf-8');
 
   for (const page of pages) {
-    if (page.path === "/") continue;
+    if (page.path === '/') continue;
     const routeDir = path.join(distDir, page.path.slice(1));
     await fs.mkdir(routeDir, { recursive: true });
-    await fs.writeFile(
-      path.join(routeDir, "index.html"),
-      renderForPage(baseHtml, page),
-      "utf-8",
-    );
+    await fs.writeFile(path.join(routeDir, 'index.html'), renderForPage(baseHtml, page), 'utf-8');
   }
 
   // Fallback page for static hosts that support custom 404 fallback.
-  await fs.writeFile(path.join(distDir, "404.html"), baseHtml, "utf-8");
+  await fs.writeFile(path.join(distDir, '404.html'), baseHtml, 'utf-8');
 
-  process.stdout.write("Generated SEO route pages and 404 fallback.\n");
+  process.stdout.write('Generated SEO route pages and 404 fallback.\n');
 };
 
-main().catch((error) => {
+main().catch(error => {
   console.error(error);
   process.exit(1);
 });
