@@ -39,6 +39,8 @@ const Counter = ({
   duration?: number;
   delay?: number;
 }) => {
+  
+
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) =>
     Math.round(latest).toLocaleString(),
@@ -227,7 +229,16 @@ function useIsMobile(breakpoint = 768) {
   return isMobile;
 }
 
+const tabs = {
+  HOME: "home", 
+  QUALIFICATIONS: "Qualifications",
+  RESEARCH: "Research",
+  PROFESSIONAL_JOURNEY: "Professional Journey"
+}
+
 export default function App() {
+  const menuOptions =[tabs.HOME, tabs.QUALIFICATIONS, tabs.RESEARCH, tabs.PROFESSIONAL_JOURNEY];
+
   const [booting, setBooting] = useState(true);
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -321,7 +332,7 @@ export default function App() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {["home", "experience", "projects", "expertise"].map(
+            {menuOptions.map(
               (tab) => (
                 <button
                   key={tab}
@@ -380,7 +391,7 @@ export default function App() {
               className="md:hidden bg-black border-b border-white/5 overflow-hidden"
             >
               <div className="px-6 py-8 flex flex-col gap-6">
-                {["home", "experience", "projects", "expertise"].map(
+                {menuOptions.map(
                   (tab) => (
                     <button
                       key={tab}
@@ -421,9 +432,9 @@ export default function App() {
       <main className="max-w-6xl mx-auto px-6 py-12 relative">
         {/* Content Switcher */}
         <AnimatePresence mode="wait">
-          {activeTab === "home" && (
+          {activeTab === tabs.HOME && (
             <motion.div
-              key="home"
+              key={tabs.HOME}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -708,9 +719,9 @@ export default function App() {
             </motion.div>
           )}
 
-          {activeTab === "experience" && (
+          {activeTab === tabs.PROFESSIONAL_JOURNEY && (
             <motion.section
-              key="experience"
+              key={tabs.PROFESSIONAL_JOURNEY}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
@@ -800,9 +811,9 @@ export default function App() {
             </motion.section>
           )}
 
-          {activeTab === "projects" && (
+          {activeTab === tabs.RESEARCH && (
             <motion.section
-              key="projects"
+              key={tabs.RESEARCH}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
@@ -857,9 +868,9 @@ export default function App() {
             </motion.section>
           )}
 
-          {activeTab === "expertise" && (
+          {activeTab ===tabs.QUALIFICATIONS && (
             <motion.section
-              key="expertise"
+              key={tabs.QUALIFICATIONS}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
