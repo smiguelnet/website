@@ -18,7 +18,6 @@ import {
   GraduationCap,
   Award,
   FlaskConical,
-  Quote,
   Menu,
   X,
   CalendarDays,
@@ -599,11 +598,22 @@ export default function App() {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.8, delay: 0.6 }}
-                      className='relative max-w-3xl pl-6 md:pl-8 py-1 border-l border-emerald-500/40'
+                      className='relative max-w-3xl pl-6 md:pl-8 py-1.5 border-l border-emerald-500/40'
                     >
-                      <Quote className='absolute -left-3 top-0 w-8 h-8 text-emerald-400/65 bg-black rounded-full p-1.5' />
                       <p className='text-base md:text-lg text-zinc-200 leading-relaxed'>
+                        <span
+                          aria-hidden='true'
+                          className='inline-block align-middle leading-none text-2xl md:text-3xl text-emerald-400/75 mr-1'
+                        >
+                          &ldquo;
+                        </span>
                         {RESUME_DATA.quote.text}
+                        <span
+                          aria-hidden='true'
+                          className='inline-block align-middle leading-none text-2xl md:text-3xl text-emerald-400/75 ml-1'
+                        >
+                          &rdquo;
+                        </span>
                       </p>
 
                       <footer className='mt-3 flex items-center gap-3'>
