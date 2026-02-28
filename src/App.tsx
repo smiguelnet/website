@@ -230,17 +230,86 @@ function useIsMobile(breakpoint = 768) {
 }
 
 const tabs = {
-  HOME: "home", 
-  QUALIFICATIONS: "Qualifications",
-  RESEARCH: "Research",
-  PROFESSIONAL_JOURNEY: "Professional Journey"
-}
+  HOME: "home",
+  QUALIFICATIONS: "qualifications",
+  RESEARCH: "research",
+  PROFESSIONAL_JOURNEY: "professional-journey",
+} as const;
+
+type TabValue = (typeof tabs)[keyof typeof tabs];
+
+const menuOptions: TabValue[] = [
+  tabs.HOME,
+  tabs.QUALIFICATIONS,
+  tabs.RESEARCH,  
+  tabs.PROFESSIONAL_JOURNEY,
+];
+
+const TAB_LABELS: Record<TabValue, string> = {
+  [tabs.HOME]: "Home",
+  [tabs.QUALIFICATIONS]: "Qualifications",  
+    [tabs.RESEARCH]: "Research",  
+    [tabs.PROFESSIONAL_JOURNEY]: "Professional Journey",
+};
+
+const SITE_URL = "https://www.smiguel.net";
+
+const PAGE_SEO: Record<
+  TabValue,
+  { title: string; description: string; path: string }
+> = {
+  [tabs.HOME]: {
+    title: "Sergio Miguel | CTO & Software Architect",
+    description:
+      "Sergio Miguel's portfolio: AI-driven software architecture, domain design, and delivery acceleration across web, mobile, and cloud.",
+    path: "/",
+  }, 
+  [tabs.QUALIFICATIONS]: {
+    title: "Qualifications | Sergio Miguel",
+    description:
+      "Education, certifications, and technical skills spanning software architecture, cloud, data, and modern engineering.",
+    path: "/qualifications",
+  },
+  [tabs.RESEARCH]: {
+    title: "Research Projects | Sergio Miguel",
+    description:
+      "Selected research and applied engineering projects in APIs, mobile platforms, architecture accelerators, and DevOps.",
+    path: "/research",
+  },  
+   [tabs.PROFESSIONAL_JOURNEY]: {
+    title: "Professional Journey | Sergio Miguel",
+    description:
+      "Professional timeline across fintech, blockchain, telecom, and enterprise architecture leadership.",
+    path: "/professional-journey",
+  },
+};
+
+const LEGACY_PATH_TO_TAB: Record<string, TabValue> = {
+  "/experience": tabs.PROFESSIONAL_JOURNEY,
+  "/projects": tabs.RESEARCH,
+  "/expertise": tabs.QUALIFICATIONS,
+};
+
+const normalizePath = (pathname: string) => {
+  if (!pathname) return "/";
+  if (pathname === "/") return "/";
+  return pathname.replace(/\/+$/, "") || "/";
+};
+
+const getTabFromPath = (pathname: string): TabValue => {
+  const normalized = normalizePath(pathname.toLowerCase());
+  const matched = Object.entries(PAGE_SEO).find(
+    ([, page]) => page.path === normalized,
+  )?.[0] as TabValue | undefined;
+  if (matched) return matched;
+  return LEGACY_PATH_TO_TAB[normalized] ?? tabs.HOME;
+};
 
 export default function App() {
-  const menuOptions =[tabs.HOME, tabs.QUALIFICATIONS, tabs.RESEARCH, tabs.PROFESSIONAL_JOURNEY];
-
   const [booting, setBooting] = useState(true);
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab] = useState<TabValue>(() =>
+    typeof window === "undefined" ? tabs.HOME : getTabFromPath(window.location.pathname),
+  );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
   const expertiseSkillGroups = [
@@ -276,6 +345,84 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const resolvedTab = getTabFromPath(window.location.pathname);
+    const canonicalPath = PAGE_SEO[resolvedTab].path;
+    if (normalizePath(window.location.pathname) !== canonicalPath) {
+      window.history.replaceState(null, "", canonicalPath);
+    }
+    setActiveTab(resolvedTab);
+
+    const onPopState = () => {
+      setActiveTab(getTabFromPath(window.location.pathname));
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  useEffect(() => {
+    const page = PAGE_SEO[activeTab];
+    const pageUrl = `${SITE_URL}${page.path === "/" ? "" : page.path}`;
+
+    document.title = page.title;
+
+    const setMeta = (
+      selector: string,
+      attrs: Record<string, string>,
+      content: string,
+    ) => {
+      let meta = document.head.querySelector(selector) as HTMLMetaElement | null;
+      if (!meta) {
+        meta = document.createElement("meta");
+        Object.entries(attrs).forEach(([k, v]) => meta!.setAttribute(k, v));
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute("content", content);
+    };
+
+    const setLink = (rel: string, href: string) => {
+      let link = document.head.querySelector(
+        `link[rel="${rel}"]`,
+      ) as HTMLLinkElement | null;
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", rel);
+        document.head.appendChild(link);
+      }
+      link.setAttribute("href", href);
+    };
+
+    setMeta('meta[name="description"]', { name: "description" }, page.description);
+    setMeta('meta[property="og:title"]', { property: "og:title" }, page.title);
+    setMeta(
+      'meta[property="og:description"]',
+      { property: "og:description" },
+      page.description,
+    );
+    setMeta('meta[property="og:url"]', { property: "og:url" }, pageUrl);
+    setMeta('meta[property="og:type"]', { property: "og:type" }, "website");
+    setMeta('meta[name="twitter:card"]', { name: "twitter:card" }, "summary_large_image");
+    setMeta('meta[name="twitter:title"]', { name: "twitter:title" }, page.title);
+    setMeta(
+      'meta[name="twitter:description"]',
+      { name: "twitter:description" },
+      page.description,
+    );
+    setLink("canonical", pageUrl);
+  }, [activeTab]);
+
+  const navigateToTab = (tab: TabValue, replace = false) => {
+    setActiveTab(tab);
+    const targetPath = PAGE_SEO[tab].path;
+    if (normalizePath(window.location.pathname) !== targetPath) {
+      if (replace) {
+        window.history.replaceState(null, "", targetPath);
+      } else {
+        window.history.pushState(null, "", targetPath);
+      }
+    }
+  };
+
   if (booting) {
     return (
       <div className="fixed inset-0 bg-black flex flex-col items-center justify-center p-6 font-mono">
@@ -309,7 +456,7 @@ export default function App() {
       <header className="sticky top-0 z-50 border-b border-white/5 bg-black/50 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <button
-            onClick={() => setActiveTab("home")}
+            onClick={() => navigateToTab(tabs.HOME)}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity text-left"
           >
             <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0">
@@ -336,14 +483,14 @@ export default function App() {
               (tab) => (
                 <button
                   key={tab}
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => navigateToTab(tab)}
                   className={`text-xs font-mono uppercase tracking-widest transition-colors ${
                     activeTab === tab
                       ? "text-emerald-400"
                       : "text-zinc-500 hover:text-zinc-300"
                   }`}
                 >
-                  {tab}
+                  {TAB_LABELS[tab]}
                 </button>
               ),
             )}
@@ -396,14 +543,14 @@ export default function App() {
                     <button
                       key={tab}
                       onClick={() => {
-                        setActiveTab(tab);
+                        navigateToTab(tab);
                         setIsMenuOpen(false);
                       }}
                       className={`text-left text-lg font-mono uppercase tracking-widest transition-colors ${
                         activeTab === tab ? "text-emerald-400" : "text-zinc-500"
                       }`}
                     >
-                      {tab}
+                      {TAB_LABELS[tab]}
                     </button>
                   ),
                 )}
