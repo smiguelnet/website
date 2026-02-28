@@ -616,15 +616,11 @@ export default function App() {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     whileHover={{ y: -5, transition: { duration: 0.2 } }}
                     transition={{ duration: 0.8, delay: 0.35 }}
-                    className='relative w-full max-w-[260px] md:max-w-[270px] mx-auto lg:ml-auto group'
+                    className='relative w-full max-w-[260px] md:max-w-[270px] mx-auto lg:ml-auto group pt-2 pb-3'
                   >
                     <div className='absolute -inset-6 rounded-[2rem] bg-[radial-gradient(circle_at_60%_30%,rgba(81,192,12,0.24),transparent_62%)] blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none' />
-                    <div className='relative rounded-3xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.12] via-black/75 to-black/60 backdrop-blur-sm px-3 py-3 md:px-4 md:py-4 text-center transition-all duration-300 shadow-[0_0_0_rgba(81,192,12,0)] group-hover:border-emerald-500/45 group-hover:shadow-[0_0_28px_rgba(81,192,12,0.22)]'>
-                      <p className='text-[9px] font-mono uppercase tracking-[0.26em] text-emerald-300 mb-3 text-center'>
-                        Profile Snapshot
-                      </p>
-
-                      <div className='relative mx-auto w-[166px] h-[191px] md:w-[176px] md:h-[202px] lg:w-[185px] lg:h-[212px] rounded-2xl overflow-hidden border border-white/15 shadow-[0_0_18px_rgba(81,192,12,0.2)] transition-all duration-300 group-hover:border-emerald-400/40 group-hover:shadow-[0_0_24px_rgba(81,192,12,0.26)]'>
+                    <div className='relative rounded-[2rem] border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.12] via-black/75 to-black/60 backdrop-blur-sm px-3 pt-6 pb-11 md:px-4 text-center transition-all duration-300 shadow-[0_0_0_rgba(81,192,12,0)] group-hover:border-emerald-500/45 group-hover:shadow-[0_0_28px_rgba(81,192,12,0.22)]'>
+                      <div className='relative mx-auto w-[170px] h-[195px] md:w-[180px] md:h-[200px] lg:w-[190px] lg:h-[218px] rounded-2xl overflow-hidden border border-white/15 shadow-[0_0_18px_rgba(81,192,12,0.2)] transition-all duration-300 group-hover:border-emerald-400/40 group-hover:shadow-[0_0_24px_rgba(81,192,12,0.26)]'>
                         <img
                           src={RESUME_DATA.photo}
                           alt={RESUME_DATA.name}
@@ -644,16 +640,16 @@ export default function App() {
                         />
                       </div>
 
-                      <div className='mt-3 space-y-2 flex flex-col items-center'>
-                        <p className='text-white font-bold text-[16px] leading-tight uppercase'>
+                      <div className='mt-6 mb-0 flex flex-col items-center'>
+                        <p className='text-white font-bold text-[18px] leading-tight uppercase tracking-wide'>
                           Sergio Miguel
                         </p>
-                        <div className='inline-flex items-center gap-2 px-2.5 py-1 rounded-lg border border-emerald-500/35 bg-emerald-500/10'>
-                          <MapPin className='w-3.5 h-3.5 text-emerald-400' />
-                          <span className='text-[10px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
-                            {RESUME_DATA.location}
-                          </span>
-                        </div>
+                      </div>
+                      <div className='absolute left-1/2 bottom-2 -translate-x-1/2 translate-y-1/2 inline-flex items-center justify-center gap-2 px-4.5 py-2 rounded-xl border border-emerald-500/40 bg-black shadow-[0_0_14px_rgba(81,192,12,0.2)] whitespace-nowrap'>
+                        <MapPin className='w-4.5 h-4 text-emerald-400' />
+                        <span className='text-[11px] font-mono uppercase tracking-[0.1em] text-emerald-300 whitespace-nowrap'>
+                          {RESUME_DATA.location}
+                        </span>
                       </div>
                     </div>
                   </motion.div>
