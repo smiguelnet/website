@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
@@ -14,10 +14,7 @@ import {
   Linkedin,
   ExternalLink,
   Code2,
-  Database,
-  Cloud,
   ShieldCheck,
-  Gamepad2,
   ChevronRight,
   Command,
   Activity,
@@ -233,6 +230,33 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const expertiseSkillGroups = [
+    {
+      title: "Core Languages",
+      skills: RESUME_DATA.skills.languages,
+      levels: [95, 90, 88, 83, 80, 76],
+    },
+    {
+      title: "Frontend",
+      skills: RESUME_DATA.skills.frontend,
+      levels: [90, 86, 72, 68],
+    },
+    {
+      title: "Cloud & DevOps",
+      skills: RESUME_DATA.skills.cloud,
+      levels: [92, 84, 82, 79],
+    },
+    {
+      title: "Data Architectures",
+      skills: RESUME_DATA.skills.databases,
+      levels: [91, 87, 84, 83, 78],
+    },
+    {
+      title: "Special Ops",
+      skills: RESUME_DATA.skills.special,
+      levels: [88, 86, 84, 80, 78],
+    },
+  ];
 
   useEffect(() => {
     const timer = setTimeout(() => setBooting(false), 2500);
@@ -575,9 +599,9 @@ export default function App() {
               </section>
 
               {/* Executive Achievement Dashboard */}
-              <section className="relative pt-1 border-white/5 overflow-hidden">
+              <section className="relative pt-1 pb-8 border-white/5 overflow-hidden">
                 {/* Section Background Glow */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-emerald-500/[0.03] blur-[120px] pointer-events-none" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-emerald-500/[0.02] blur-[140px] pointer-events-none" />
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-12">
@@ -791,44 +815,15 @@ export default function App() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="space-y-16"
+              className="grid grid-cols-1 xl:grid-cols-[1.35fr_0.65fr] gap-8"
             >
-              {/* Skills Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-8">
-                  <SkillCategory
-                    icon={<Code2 className="w-5 h-5" />}
-                    title="Core Languages"
-                    skills={RESUME_DATA.skills.languages}
-                  />
-                  <SkillCategory
-                    icon={<Cloud className="w-5 h-5" />}
-                    title="Cloud & DevOps"
-                    skills={RESUME_DATA.skills.cloud}
-                  />
-                </div>
-                <div className="space-y-8">
-                  <SkillCategory
-                    icon={<Database className="w-5 h-5" />}
-                    title="Data Architectures"
-                    skills={RESUME_DATA.skills.databases}
-                  />
-                  <SkillCategory
-                    icon={<Gamepad2 className="w-5 h-5" />}
-                    title="Special Ops"
-                    skills={RESUME_DATA.skills.special}
-                  />
-                </div>
-              </div>
-
-              {/* Education & Certs Row */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-12 border-t border-white/10">
-                {/* Education */}
-                <div className="space-y-8">
+              {/* Left Column: Education -> Certifications */}
+              <div className="space-y-8">
+                <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
                   <div className="flex items-center gap-4 mb-8">
                     <GraduationCap className="w-6 h-6 text-emerald-500" />
                     <h3 className="text-2xl font-bold text-white">
-                      Academic Training
+                      Education
                     </h3>
                   </div>
                   <div className="space-y-8">
@@ -852,8 +847,7 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Certifications */}
-                <div className="space-y-8">
+                <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
                   <div className="flex items-center gap-4 mb-8">
                     <Award className="w-6 h-6 text-emerald-500" />
                     <h3 className="text-2xl font-bold text-white">
@@ -864,7 +858,7 @@ export default function App() {
                     {RESUME_DATA.certifications.map((cert, i) => (
                       <div
                         key={i}
-                        className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-all flex items-center gap-4 group"
+                        className="p-4 rounded-xl bg-black/30 border border-white/5 hover:border-emerald-500/30 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all flex items-center gap-4 group"
                       >
                         <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
                           <ShieldCheck className="w-4 h-4 text-emerald-500" />
@@ -875,6 +869,63 @@ export default function App() {
                       </div>
                     ))}
                   </div>
+                </div>
+              </div>
+
+              {/* Right Column: All Technical Skills */}
+              <div className="p-6 rounded-3xl bg-white/5 border border-white/10 h-fit">
+                <div className="flex items-center gap-4 mb-3">
+                  <Code2 className="w-6 h-6 text-emerald-500" />
+                  <h3 className="text-2xl font-bold text-white">
+                    Technical Skills
+                  </h3>
+                </div>
+                <p className="text-xs text-zinc-400">
+                  Skill snapshot with proficiency indicators.
+                </p>
+
+                <div className="space-y-6 mt-6">
+                  {expertiseSkillGroups.map((group, groupIndex) => (
+                    <div
+                      key={group.title}
+                      className="relative space-y-3 p-4 rounded-2xl border border-white/5 bg-gradient-to-br from-emerald-500/[0.06] via-emerald-500/[0.015] to-transparent hover:border-emerald-500/25 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_20px_rgba(81,192,12,0.12)] transition-all duration-300"
+                    >
+                      <div className="absolute left-0 top-3 bottom-3 w-[2px] rounded-full bg-emerald-500/45" />
+                      <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-300 pl-3">
+                        {group.title}
+                      </p>
+                      <div className="space-y-2.5">
+                        {group.skills.map((skill, i) => {
+                          const level = group.levels[i] ?? 75;
+                          return (
+                            <div key={skill} className="space-y-1.5">
+                              <div className="flex items-center justify-between gap-3">
+                                <span className="text-xs text-zinc-300 leading-tight">
+                                  {skill}
+                                </span>
+                                <span className="text-[10px] font-mono text-emerald-400 shrink-0">
+                                  {level}%
+                                </span>
+                              </div>
+                              <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: `${level}%` }}
+                                  viewport={{ once: true, amount: 0.6 }}
+                                  transition={{
+                                    duration: 0.7,
+                                    delay: groupIndex * 0.08 + i * 0.03,
+                                    ease: "easeOut",
+                                  }}
+                                  className="h-full rounded-full bg-gradient-to-r from-emerald-500/70 to-emerald-300 shadow-[0_0_10px_rgba(81,192,12,0.35)]"
+                                />
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.section>
@@ -1007,30 +1058,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-    </div>
-  );
-}
-
-function SkillCategory({
-  icon,
-  title,
-  skills,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  skills: string[];
-}) {
-  return (
-    <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-colors">
-      <div className="flex items-center gap-3 mb-6 text-emerald-400">
-        {icon}
-        <h4 className="font-bold uppercase tracking-wider text-sm">{title}</h4>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill, i) => (
-          <SkillBadge key={i} name={skill} />
-        ))}
-      </div>
     </div>
   );
 }
