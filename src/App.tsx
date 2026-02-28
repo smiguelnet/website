@@ -568,7 +568,7 @@ export default function App() {
                       transition={{ duration: 0.8, delay: 0.2 }}
                       className='text-5xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9] max-w-4xl'
                     >
-                      Accelerate software delivery with{' '}
+                      Accelerating Software Engineering with{' '}
                       <motion.span
                         animate={{
                           textShadow: ['0 0 0px #51c00c', '0 0 10px #51c00c', '0 0 0px #51c00c'],
@@ -580,7 +580,7 @@ export default function App() {
                         }}
                         className='text-emerald-500 italic'
                       >
-                        AI, SDD, and Agentic Coding.
+                        AI, Specs, and Agentic Systems
                       </motion.span>
                     </motion.h2>
 

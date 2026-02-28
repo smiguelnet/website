@@ -9,7 +9,7 @@ export const RESUME_DATA = {
   website: 'www.smiguel.net',
   photo: 'assets/images/photo.jpg', // Placeholder - user can update if path is different
   about:
-    'IT professional with 20+ years of hands-on experience. I specialize in Accelerating Software Development by bridging the gap between deep architectural foundations (DDD) and the future of engineering: AI-driven Agentic Coding and Spec-Driven Development (SDD). An eternal learner who builds robust, scalable systems that evolve with the tech landscape.',
+    'Software architect and researcher with 20+ years of experience designing and evolving complex systems. My work focuses on accelerating software engineering through AI, specification-driven development, and agentic systems — bridging classical architectural rigor with the next generation of intelligent development. I build scalable, resilient systems designed to continuously evolve with technology.',
   quote: {
     text: 'Without right requirements and a good design, programming is the art of adding bugs to an empty text file.',
     author: 'Louis Srygley',
