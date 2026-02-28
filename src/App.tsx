@@ -503,7 +503,7 @@ export default function App() {
               </section>
 
               {/* Executive Achievement Dashboard */}
-              <section className="relative pt-12 border-t border-white/5 overflow-hidden">
+              <section className="relative pt-1 border-white/5 overflow-hidden">
                 {/* Section Background Glow */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-emerald-500/[0.03] blur-[120px] pointer-events-none" />
 
@@ -529,7 +529,7 @@ export default function App() {
               </section>
 
               {/* Areas of Interest - Now on Home */}
-              <section className="relative pt-12 border-t border-white/5 overflow-visible">
+              <section className="relative pt-1 border-white/5 overflow-visible">
                 {/* Section Background Glow */}
                 <div className="absolute bottom-0 right-0 w-full h-full bg-emerald-500/[0.02] blur-[100px] pointer-events-none" />
 
@@ -553,39 +553,53 @@ export default function App() {
               </section>
 
               {/* Line of Research */}
-              <section className="pt-12 border-t border-white/5">
+              <section className="pt-1 border-white/5">
                 <div className="flex items-center gap-4 mb-8">
                   <h3 className="text-2xl font-bold text-white uppercase tracking-tighter">
                     Line of Research
                   </h3>
                   <div className="h-px flex-1 bg-white/10" />
                 </div>
-                <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-500">
-                      <FlaskConical className="w-6 h-6" />
+                <div className="relative overflow-hidden p-8 md:p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] via-white/[0.03] to-transparent">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(81,192,12,0.2),transparent_48%)] pointer-events-none" />
+
+                  <div className="relative flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0">
+                        <FlaskConical className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-400 mb-2">
+                          Research Focus
+                        </p>
+                        <h4 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                          {RESUME_DATA.research.title}
+                        </h4>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-white">
-                        {RESUME_DATA.research.title}
-                      </h4>
-                      <p className="text-sm text-zinc-400">
-                        {RESUME_DATA.research.description}
-                      </p>
-                    </div>
+                    <p className="text-sm text-zinc-300 leading-relaxed max-w-md">
+                      {RESUME_DATA.research.description}
+                    </p>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+
+                  <div className="relative grid grid-cols-1 md:grid-cols-3 gap-5">
                     {RESUME_DATA.research.phases.map((phase, i) => (
-                      <div key={i} className="space-y-3">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-mono text-emerald-500 border border-emerald-500/30 px-1.5 py-0.5 rounded">
-                            PHASE 0{i + 1}
+                      <div
+                        key={i}
+                        className="group h-full rounded-2xl border border-white/10 bg-black/30 p-6 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300"
+                      >
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="w-8 h-8 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold flex items-center justify-center">
+                            {i + 1}
                           </span>
-                          <h5 className="text-sm font-bold text-white uppercase tracking-wider">
-                            {phase.name}
-                          </h5>
+                          <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-zinc-500">
+                            Step 0{i + 1}
+                          </span>
                         </div>
-                        <p className="text-xs text-zinc-500 leading-relaxed">
+                        <h5 className="text-base font-semibold text-white leading-snug mb-3">
+                          {phase.name}
+                        </h5>
+                        <p className="text-sm text-zinc-400 leading-relaxed">
                           {phase.details}
                         </p>
                       </div>

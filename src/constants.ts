@@ -20,20 +20,20 @@ export const RESUME_DATA = {
     "Machine Learning & Robotic Process Automation"
   ],
   research: {
-    title: "Accelerating Software Development with AI & SDD",
-    description: "Evolving the development lifecycle by integrating Spec-Driven Development (SDD) and Agentic Coding into a solid DDD foundation.",
+    title: "Accelerating Software Development with AI",
+    description: "A practical framework to increase delivery speed while preserving architecture, quality, and scalability.",
     phases: [
       {
-        name: "AI & Spec-Driven Foundation",
-        details: "Leveraging SDD to transform requirements into executable specs. Using AI agents to bootstrap DDD-aligned architectures and domain models."
+        name: "Build an AI-Ready Foundation",
+        details: "Acceleration starts with clear architecture and business alignment. By combining Domain-Driven Design, modern architectural patterns, and intelligent starter templates, teams avoid reinventing the wheel. AI supports this foundation by generating architecture drafts, validating design decisions, and identifying risks early before they become costly."
       },
       {
-        name: "Agentic Implementation",
-        details: "Accelerating the coding phase through Agentic workflows. AI agents don't just write code; they reason about the domain and maintain architectural integrity."
+        name: "Augment the Development Lifecycle",
+        details: "AI enhances every phase of delivery - from requirements and design to coding, testing, and deployment. Specifications can evolve into structured artifacts, code scaffolds, and automated tests. This shifts development from manual effort to AI-assisted engineering, increasing speed while preserving quality and architectural integrity."
       },
       {
-        name: "Automated Evolution",
-        details: "Continuous acceleration via automated testing and deployment pipelines that understand the spec, ensuring rapid, high-quality delivery."
+        name: "Reuse, Optimize, and Scale",
+        details: "Sustainable acceleration depends on reusable assets and continuous feedback. APIs, microservices, and shared components evolve as strategic building blocks. With DevOps automation and AI-driven insights, teams reduce redundancy, prevent recurring errors, and achieve predictable, scalable software delivery."
       }
     ]
   },
