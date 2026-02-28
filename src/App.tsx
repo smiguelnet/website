@@ -200,6 +200,21 @@ const InterestCard = ({
   </motion.div>
 );
 
+const PHOTO_STARFIELD = [
+  { x: 1, y: 18, size: 2, delay: 0.2, duration: 3.4 },
+  { x: 13, y: 8, size: 3, delay: 1.1, duration: 4.2 },
+  { x: 34, y: 16, size: 2, delay: 0.7, duration: 3.8 },
+  { x: 76, y: 12, size: 2, delay: 1.8, duration: 4.5 },
+  { x: 96, y: 24, size: 3, delay: 0.4, duration: 3.2 },
+  { x: 92, y: 46, size: 2, delay: 1.5, duration: 4.1 },
+  { x: 80, y: 78, size: 2, delay: 2.3, duration: 3.9 },
+  { x: 60, y: 90, size: 3, delay: 0.9, duration: 4.4 },
+  { x: 36, y: 84, size: 2, delay: 1.9, duration: 3.5 },
+  { x: 14, y: 72, size: 3, delay: 0.5, duration: 4.6 },
+  { x: 6, y: 48, size: 2, delay: 1.3, duration: 3.7 },
+  { x: 48, y: 4, size: 2, delay: 2.1, duration: 4.3 },
+];
+
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(
     () => typeof window !== "undefined" && window.innerWidth < breakpoint,
@@ -459,44 +474,101 @@ export default function App() {
                     initial={{ opacity: 0, scale: 0.6, rotate: isMobile ? -8 : -14 }}
                     animate={{ opacity: 1, scale: isMobile? 0.80: 1, rotate: isMobile ? 0 : -2 }}
                     transition={{ duration: 1, delay: 0.3, type: "spring" }}
-                    className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 group lg:mr-20 lg:ml-0 mr-10 ml-10"
+                    className="relative aspect-square group lg:mr-20 lg:ml-0 mr-10 ml-10"
                   >
-                    <img
-                      src={RESUME_DATA.photo}
-                      alt={RESUME_DATA.name}
-                      className={`w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110`}
-                      referrerPolicy="no-referrer"
-                    />
+                    {/* Starfield / Aura Layer */}
+                    <div className="absolute -inset-10 pointer-events-none">
+                      <div className="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_20%,rgba(81,192,12,0.28),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(81,192,12,0.2),transparent_55%)] blur-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                      <motion.div
+                        animate={{ rotate: [0, 360] }}
+                        transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+                        className="absolute inset-0 rounded-[2.5rem] bg-[conic-gradient(from_0deg,rgba(81,192,12,0.0),rgba(81,192,12,0.1),rgba(81,192,12,0.0),rgba(81,192,12,0.08),rgba(81,192,12,0.0))] opacity-70 blur-2xl"
+                      />
+                      {PHOTO_STARFIELD.map((star, i) => (
+                        <motion.span
+                          key={i}
+                          className="absolute rounded-full bg-emerald-200/95"
+                          style={{
+                            left: `${star.x}%`,
+                            top: `${star.y}%`,
+                            width: `${star.size}px`,
+                            height: `${star.size}px`,
+                            boxShadow: "0 0 12px rgba(81,192,12,0.7)",
+                          }}
+                          animate={{
+                            opacity: [0.22, 0.95, 0.3],
+                            scale: [1, 1.9, 1],
+                            y: [0, -5, 0],
+                          }}
+                          transition={{
+                            duration: star.duration,
+                            delay: star.delay,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                        />
+                      ))}
+                    </div>
 
-                    {/* Scanning Line Effect */}
-                    <motion.div
-                      animate={{ top: ["0%", "100%", "0%"] }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                      className="absolute left-0 right-0 h-[2px] bg-emerald-500/30 blur-[1px] z-10 pointer-events-none"
-                    />
+                    <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10">
+                      <img
+                        src={RESUME_DATA.photo}
+                        alt={RESUME_DATA.name}
+                        className={`w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110`}
+                        referrerPolicy="no-referrer"
+                      />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    <div className="absolute bottom-6 left-6">
-                      <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8 }}
-                        className="text-white font-bold text-xl tracking-tight"
-                      >
-                        {RESUME_DATA.name}
-                      </motion.p>
-                      <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1 }}
-                        className="text-emerald-400 text-[10px] font-mono uppercase tracking-[0.2em]"
-                      >
-                        {RESUME_DATA.location}
-                      </motion.p>
+                      {/* Hacker Scan Overlay */}
+                      <div className="absolute inset-0 pointer-events-none opacity-[0.06] bg-[repeating-linear-gradient(to_bottom,transparent_0px,transparent_2px,rgba(16,185,129,0.25)_3px)] z-[8]" />
+                      <motion.div
+                        animate={{
+                          top: ["-5%", "105%"],
+                          x: ["0%", "0.4%", "-0.3%", "0%"],
+                          opacity: [0, 0.95, 0.6, 0.9, 0],
+                        }}
+                        transition={{
+                          duration: 8,
+                          repeat: Infinity,
+                          repeatDelay: 1.2,
+                          ease: "linear",
+                          times: [0, 0.12, 0.45, 0.82, 1],
+                        }}
+                        className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-300 to-transparent mix-blend-screen shadow-[0_0_10px_rgba(81,192,12,0.8)] z-10 pointer-events-none"
+                      />
+                      <motion.div
+                        animate={{
+                          top: ["-10%", "110%"],
+                          opacity: [0, 0, 0.35, 0],
+                        }}
+                        transition={{
+                          duration: 8,
+                          repeat: Infinity,
+                          repeatDelay: 1.2,
+                          ease: "linear",
+                          times: [0, 0.72, 0.86, 1],
+                        }}
+                        className="absolute left-0 right-0 h-[7px] bg-emerald-500/20 blur-[2px] z-[9] pointer-events-none"
+                      />
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                      <div className="absolute bottom-6 left-6">
+                        <motion.p
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.8 }}
+                          className="text-white font-bold text-xl tracking-tight"
+                        >
+                          {RESUME_DATA.name}
+                        </motion.p>
+                        <motion.p
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 1 }}
+                          className="text-emerald-400 text-[10px] font-mono uppercase tracking-[0.2em]"
+                        >
+                          {RESUME_DATA.location}
+                        </motion.p>
+                      </div>
                     </div>
                   </motion.div>
                 </div>
