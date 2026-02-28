@@ -426,6 +426,8 @@ export default function App() {
               <a
                 href={`mailto:${RESUME_DATA.email}`}
                 className='p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]'
+                rel='noopener noreferrer'
+                title='Mail to: sergio@smiguel.net'
                 aria-label='Email Sergio Miguel'
               >
                 <Mail className='w-4 h-4' />
@@ -435,6 +437,7 @@ export default function App() {
                 target='_blank'
                 rel='noopener noreferrer'
                 className='p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]'
+                title='Sergio Miguel - LinkedIn'
                 aria-label='LinkedIn profile'
               >
                 <Linkedin className='w-4 h-4' />
@@ -444,6 +447,7 @@ export default function App() {
                 target='_blank'
                 rel='noopener noreferrer'
                 className='p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]'
+                title='Sergio Miguel - Github'
                 aria-label='GitHub profile'
               >
                 <Github className='w-4 h-4' />
@@ -452,6 +456,7 @@ export default function App() {
                 href={RESUME_DATA.resumePdf}
                 download='sergiomiguel-resume.pdf'
                 className='p-2 rounded-lg transition-all hover:bg-emerald-500/10 hover:text-emerald-400 hover:shadow-[0_0_12px_rgba(81,192,12,0.25)]'
+                title='Sergio Miguel - Europass CV'
                 aria-label='Download Sergio Miguel resume'
               >
                 <FileDown className='w-4 h-4' />
