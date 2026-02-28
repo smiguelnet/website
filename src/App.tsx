@@ -817,54 +817,81 @@ export default function App() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              className="space-y-8"
             >
-              {RESUME_DATA.projects.map((project, i) => (
-                <div
-                  key={i}
-                  className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
-                        <FlaskConical className="w-5 h-5" />
+              <div>
+                <div className="flex items-center gap-4 mb-3">
+                  <h3 className="text-2xl font-bold text-white uppercase tracking-tight">
+                    Research Projects
+                  </h3>
+                  <div className="h-px flex-1 bg-white/10" />
+                </div>
+                <p className="text-zinc-400 max-w-3xl leading-relaxed">
+                  Selected initiatives where architecture, product strategy, and
+                  execution converge. These projects demonstrate practical
+                  research applied to APIs, mobile platforms, and delivery
+                  systems.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {RESUME_DATA.projects.map((project, i) => (
+                  <article
+                    key={i}
+                    className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/30 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all duration-300 flex flex-col justify-between group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                          <FlaskConical className="w-5 h-5" />
+                        </div>
+                        <div className="flex gap-2">
+                          {project.links.map((link, j) => (
+                            <a
+                              key={j}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-2 bg-white/5 rounded-lg hover:bg-emerald-500 hover:text-black transition-all"
+                            >
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          ))}
+                        </div>
                       </div>
-                      <div className="flex gap-2">
-                        {project.links.map((link, j) => (
-                          <a
+                      <h4 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                        {project.title}
+                      </h4>
+                      <p className="text-emerald-500 font-mono text-[10px] uppercase tracking-widest mb-4">
+                        {project.subtitle}
+                      </p>
+                      <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((t, j) => (
+                          <span
                             key={j}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 bg-white/5 rounded-lg hover:bg-emerald-500 hover:text-black transition-all"
+                            className="text-[10px] font-mono text-zinc-500"
                           >
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
+                            {t}
+                          </span>
                         ))}
                       </div>
                     </div>
-                    <h4 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
-                      {project.title}
-                    </h4>
-                    <p className="text-emerald-500 font-mono text-[10px] uppercase tracking-widest mb-4">
-                      {project.subtitle}
-                    </p>
-                    <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-                      {project.description}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((t, j) => (
-                      <span
-                        key={j}
-                        className="text-[10px] font-mono text-zinc-500"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+
+                    <div className="mt-5 pt-4 border-t border-white/10">
+                      <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-emerald-400 mb-2">
+                        Notes
+                      </p>
+                      <p className="text-xs text-zinc-400 leading-relaxed">
+                        {project.note}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </motion.section>
           )}
 

@@ -54,6 +54,7 @@ export const RESUME_DATA = {
       title: "BrandConnect",
       subtitle: "Mobile White Label Platform",
       description: "Empowering businesses with customizable mobile engagement. A hybrid React Native approach with a serverless event-driven backend on AWS.",
+      note: "Designed for rapid white-label onboarding with reusable mobile modules and event-driven backend workflows.",
       links: [],
       tech: ["React Native", "Serverless", "DynamoDB", "Kinesis", "SageMaker"]
     },
@@ -61,6 +62,7 @@ export const RESUME_DATA = {
       title: "Engage Platform",
       subtitle: "Gamification-as-a-Service",
       description: "Connects smaller tasks to larger goals with Gamification. A comprehensive API offering endpoints for user participation and motivation.",
+      note: "API-first platform focused on extensible gamification mechanics and high engagement loops for product teams.",
       links: [
         { label: "Platform", url: "https://github.com/smiguelnet/setia-engage" },
         { label: "SDK", url: "https://github.com/smiguelnet/engage-api-java-sdk" }
@@ -71,6 +73,7 @@ export const RESUME_DATA = {
       title: "Android Starter App",
       subtitle: "Architecture Accelerator",
       description: "Comprehensive Android Starter Kit offering data synchronization (Server-First or Local-First) and pre-configured common features.",
+      note: "Built to accelerate delivery with tested architectural patterns and ready-to-use cross-cutting capabilities.",
       links: [
         { label: "Full Article", url: "https://smiguel.net/android-architecture.html" }
       ],
@@ -80,6 +83,7 @@ export const RESUME_DATA = {
       title: "DevOps Lab",
       subtitle: "CI/CD Showcase",
       description: "A local environment setup and demo project showcasing comprehensive CI/CD implementation with Prometheus, Splunk, and Grafana monitoring.",
+      note: "Demonstrates production-like observability and delivery pipelines for faster feedback and safer releases.",
       links: [
         { label: "View Lab", url: "https://github.com/smiguelnet/engage-ci-cd-setup" }
       ],
