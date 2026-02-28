@@ -494,35 +494,39 @@ export default function App() {
                     {TAB_LABELS[tab]}
                   </button>
                 ))}
-                <div className='flex items-center gap-4 pt-4 border-t border-white/5'>
+                <div className='grid grid-cols-2 gap-3 pt-5 border-t border-white/10'>
                   <a
                     href={`mailto:${RESUME_DATA.email}`}
-                    className='flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]'
+                    className='flex items-center gap-2.5 px-3 py-2 rounded-xl border border-white/10 bg-white/[0.02] text-sm text-zinc-200 transition-all hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-white hover:shadow-[0_0_14px_rgba(81,192,12,0.22)]'
                   >
-                    <Mail className='w-4 h-4' /> Email
+                    <Mail className='w-4 h-4 text-emerald-400 shrink-0' />
+                    <span className='font-medium'>Email</span>
                   </a>
                   <a
                     href={RESUME_DATA.linkedin}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]'
+                    className='flex items-center gap-2.5 px-3 py-2 rounded-xl border border-white/10 bg-white/[0.02] text-sm text-zinc-200 transition-all hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-white hover:shadow-[0_0_14px_rgba(81,192,12,0.22)]'
                   >
-                    <Linkedin className='w-4 h-4' /> LinkedIn
+                    <Linkedin className='w-4 h-4 text-emerald-400 shrink-0' />
+                    <span className='font-medium'>LinkedIn</span>
                   </a>
                   <a
                     href={RESUME_DATA.github}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]'
+                    className='flex items-center gap-2.5 px-3 py-2 rounded-xl border border-white/10 bg-white/[0.02] text-sm text-zinc-200 transition-all hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-white hover:shadow-[0_0_14px_rgba(81,192,12,0.22)]'
                   >
-                    <Github className='w-4 h-4' /> GitHub
+                    <Github className='w-4 h-4 text-emerald-400 shrink-0' />
+                    <span className='font-medium'>GitHub</span>
                   </a>
                   <a
                     href={RESUME_DATA.resumePdf}
                     download='sergiomiguel-resume.pdf'
-                    className='flex items-center gap-2 text-sm text-zinc-400 transition-all hover:text-emerald-400 hover:drop-shadow-[0_0_6px_rgba(81,192,12,0.35)]'
+                    className='flex items-center gap-2.5 px-3 py-2 rounded-xl border border-white/10 bg-white/[0.02] text-sm text-zinc-200 transition-all hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-white hover:shadow-[0_0_14px_rgba(81,192,12,0.22)]'
                   >
-                    <FileDown className='w-4 h-4' /> Resume
+                    <FileDown className='w-4 h-4 text-emerald-400 shrink-0' />
+                    <span className='font-medium'>Resume</span>
                   </a>
                 </div>
               </div>
