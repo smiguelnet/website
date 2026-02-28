@@ -91,29 +91,102 @@ export const RESUME_DATA = {
       company: "Everup",
       role: "CTO, Hands-On Software Architect",
       period: "2020 – Current",
-      description: "Designing a prize-linked savings platform. Gamifying finance because saving money should be as addictive as Candy Crush, but better for your bank account. Managed distributed teams and got FCA approval (which is harder than it sounds).",
+      location: "London, United Kingdom",
+      description: "Leading architecture and product engineering for a prize-linked savings platform in a regulated fintech context. Responsible for platform strategy, delivery acceleration, and technical leadership across distributed teams.",
+      highlights: [
+        "Designed and evolved a resilient, event-driven architecture for financial products.",
+        "Coordinated engineering execution across distributed teams with strong delivery discipline.",
+        "Supported platform growth under regulatory and operational constraints."
+      ],
       tech: ["React Native", "AWS", "Serverless", "Event-Driven Architecture"]
     },
     {
       company: "Animoca Brands",
       role: "Blockchain Engineer",
       period: "2019 – 2020",
-      description: "Managing digital game assets with smart contracts. Making sure your digital sword is actually yours and not just a bunch of pixels someone else can delete. ERC-20, 721, 1155 expert.",
+      location: "Hong Kong",
+      description: "Built and maintained blockchain solutions for digital game assets and tokenized ecosystems, with a focus on secure smart contract engineering and NFT standards.",
+      highlights: [
+        "Implemented and integrated smart contracts for digital asset ownership.",
+        "Worked with ERC-20, ERC-721, and ERC-1155 standards in production workflows.",
+        "Supported secure asset lifecycle management for gaming products."
+      ],
       tech: ["Solidity", "Truffle", "Hardhat", "Ethereum"]
     },
     {
       company: "SingularCK",
       role: "CTO, Hands-On Software Architect",
       period: "2018 – 2019",
-      description: "Created a cloud-native architecture for a digital collectibles marketplace. Basically, I was into NFTs before they were cool (and before they were uncool, and cool again).",
+      location: "Sao Paulo, Brazil",
+      description: "Defined and led the architecture of a cloud-native digital collectibles marketplace, aligning product growth with scalable engineering foundations.",
+      highlights: [
+        "Designed a modern cloud-native architecture for marketplace operations.",
+        "Guided technical direction across product and engineering teams.",
+        "Delivered foundations for digital asset and NFT marketplace capabilities."
+      ],
       tech: ["Blockchain", "NFTs", "Cloud-Native", "Team Leadership"]
     },
     {
       company: "Setia Tecnologia",
       role: "Software Architect & Full-stack Developer",
       period: "2008 – 2018",
-      description: "A decade of building everything from payment gateways to internet banking. If it involves moving money or data securely, I've probably built a version of it.",
+      location: "Sao Paulo, Brazil",
+      description: "Delivered enterprise solutions across banking, payments, and digital channels, covering architecture, integration, and full-stack implementation.",
+      highlights: [
+        "Built internet banking and payment solutions for enterprise clients.",
+        "Integrated modern applications with legacy and mainframe environments.",
+        "Led architecture and implementation across web, backend, and mobile initiatives."
+      ],
       tech: ["Java", "WebSphere", "Mainframe Integration", "Android", "Docker"]
+    },
+    {
+      company: "Safra National Bank",
+      role: "Senior Software Engineer",
+      period: "August 2, 2008 – December 12, 2008",
+      location: "Sao Paulo, Brazil",
+      description: "Cared for and evolved Safra Home Broker, the bank's online stock trading platform.",
+      highlights: [
+        "Maintained and improved critical online trading workflows.",
+        "Supported platform reliability in a time-sensitive financial environment."
+      ],
+      tech: ["Online Trading", "Banking Systems", "Java", "Web Applications"]
+    },
+    {
+      company: "Compugraf Telecom",
+      role: "System Analyst and Software Development Team Leader",
+      period: "August 30, 2001 – July 31, 2008",
+      location: "Sao Paulo, Brazil",
+      description: "Developed CRM software integrated with Telco and CTI solutions for enterprise clients.",
+      highlights: [
+        "Delivered CRM and telco solutions for Carrefour, Citroen, Peugeot, Axial, Telefonica, and Casas Bahia.",
+        "Integrated Alcatel, Avaya, and Aspect systems into customer service workflows.",
+        "Connected enterprise platforms with CRMs such as Siebel and Clarify."
+      ],
+      tech: ["CRM", "CTI", "Alcatel", "Avaya", "Aspect", "Siebel", "Clarify"]
+    },
+    {
+      company: "Sebrae",
+      role: "System Analyst",
+      period: "October 2, 2000 – August 27, 2001",
+      location: "Sao Paulo, Brazil",
+      description: "Built a financial product simulation tool focused on loans and investment scenarios.",
+      highlights: [
+        "Implemented calculation and simulation modules for financial planning use cases.",
+        "Supported decision-making with structured loan and investment comparisons."
+      ],
+      tech: ["Financial Systems", "Simulation", "System Analysis"]
+    },
+    {
+      company: "3D Brasil Advertising",
+      role: "Designer, WebDesigner and Developer",
+      period: "March 2, 1998 – September 29, 2000",
+      location: "Sao Paulo, Brazil",
+      description: "Created brands, logos, websites, and e-commerce platforms for client campaigns.",
+      highlights: [
+        "Designed and implemented digital experiences from brand identity to web delivery.",
+        "Worked with CGI, Perl, and ASP in early web application stacks."
+      ],
+      tech: ["Brand Design", "Web Design", "E-commerce", "CGI", "Perl", "ASP"]
     }
   ],
   skills: {

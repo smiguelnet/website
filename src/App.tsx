@@ -25,6 +25,8 @@ import {
   Quote,
   Menu,
   X,
+  CalendarDays,
+  MapPin,
 } from "lucide-react";
 import { RESUME_DATA } from "./constants";
 
@@ -707,49 +709,95 @@ export default function App() {
           )}
 
           {activeTab === "experience" && (
-            <motion.div
+            <motion.section
               key="experience"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="space-y-12"
+              className="space-y-10"
             >
-              <div className="flex items-center gap-4 mb-8">
-                <h3 className="text-2xl font-bold text-white">
-                  Professional Log
+              <div className="flex items-center gap-4">
+                <h3 className="text-2xl font-bold text-white uppercase tracking-tight">
+                  Professional Experience Timeline
                 </h3>
                 <div className="h-px flex-1 bg-white/10" />
               </div>
+              <p className="text-zinc-400 max-w-3xl">
+                Career progression across architecture, engineering leadership,
+                fintech, blockchain, telecom, and early web product
+                development.
+              </p>
 
-              <div className="space-y-16">
-                {RESUME_DATA.experience.map((exp, i) => (
-                  <div
-                    key={i}
-                    className="relative pl-8 border-l border-white/10 group"
-                  >
-                    <div className="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                      <div>
-                        <h4 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
-                          {exp.role}
-                        </h4>
-                        <p className="text-emerald-500 font-mono text-sm">
-                          {exp.company} • {exp.period}
-                        </p>
+              <div className="relative">
+                <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/70 via-emerald-500/25 to-transparent" />
+
+                <div className="space-y-8">
+                  {RESUME_DATA.experience.map((exp, i) => (
+                    <motion.article
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.45, delay: i * 0.04 }}
+                      className="relative pl-12 group"
+                    >
+                      <div className="absolute left-0 top-5 w-8 h-8 rounded-full border border-emerald-500/40 bg-black/80 text-emerald-300 font-mono text-[10px] flex items-center justify-center shadow-[0_0_14px_rgba(81,192,12,0.35)]">
+                        {String(i + 1).padStart(2, "0")}
                       </div>
-                    </div>
-                    <p className="text-zinc-400 mb-6 max-w-3xl leading-relaxed">
-                      {exp.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.tech.map((t, j) => (
-                        <SkillBadge key={j} name={t} />
-                      ))}
-                    </div>
-                  </div>
-                ))}
+
+                      <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-7 hover:border-emerald-500/35 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.14)] transition-all duration-300">
+                        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
+                          <div className="space-y-2">
+                            <p className="text-[10px] font-mono uppercase tracking-[0.24em] text-emerald-400">
+                              {exp.company}
+                            </p>
+                            <h4 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                              {exp.role}
+                            </h4>
+                          </div>
+
+                          <div className="flex flex-wrap gap-2 text-[10px] font-mono uppercase tracking-wider">
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/10 bg-black/40 text-zinc-300">
+                              <CalendarDays className="w-3 h-3 text-emerald-400" />
+                              {exp.period}
+                            </span>
+                            {exp.location && (
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/10 bg-black/40 text-zinc-300">
+                                <MapPin className="w-3 h-3 text-emerald-400" />
+                                {exp.location}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        <p className="text-zinc-300 leading-relaxed">
+                          {exp.description}
+                        </p>
+
+                        {exp.highlights && exp.highlights.length > 0 && (
+                          <div className="mt-4 space-y-2.5">
+                            {exp.highlights.map((highlight, j) => (
+                              <div key={j} className="flex items-start gap-2.5">
+                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                                <p className="text-sm text-zinc-400 leading-relaxed">
+                                  {highlight}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        <div className="flex flex-wrap gap-2 mt-5">
+                          {exp.tech.map((t, j) => (
+                            <SkillBadge key={j} name={t} />
+                          ))}
+                        </div>
+                      </div>
+                    </motion.article>
+                  ))}
+                </div>
               </div>
-            </motion.div>
+            </motion.section>
           )}
 
           {activeTab === "projects" && (
