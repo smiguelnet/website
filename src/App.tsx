@@ -109,7 +109,7 @@ const MetricGauge = ({ label, value, suffix, delay = 0 }: MetricGaugeProps) => {
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay }}
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      className="relative flex flex-col items-center text-center p-10 rounded-[2.5rem] bg-emerald-500/[0.02] border border-white/5 hover:border-emerald-500/40 transition-all group overflow-hidden"
+      className="relative flex flex-col items-center text-center p-10 rounded-[2.5rem] bg-emerald-500/[0.02] border border-white/5 hover:border-emerald-500/40 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all group overflow-hidden"
     >
       {/* Background Glow Effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.02] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -175,35 +175,25 @@ const InterestCard = ({
   key?: any;
 }) => (
   <motion.div
-    initial={{ opacity: 0, x: -20 }}
-    whileInView={{ opacity: 1, x: 0 }}
+    initial={{ opacity: 0, y: 12 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.5, delay }}
-    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-    className="relative p-6 rounded-2xl bg-emerald-500/[0.02] border border-white/5 hover:border-emerald-500/40 transition-all group overflow-hidden"
+    transition={{ duration: 0.45, delay, ease: "easeOut" }}
+    whileHover={{
+      y: -3,
+      transition: { type: "spring", stiffness: 360, damping: 28 },
+    }}
+    className="relative p-5 rounded-2xl bg-emerald-500/[0.02] border border-white/10 hover:border-emerald-500/35 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-[border-color,background-color,box-shadow] duration-300 group overflow-hidden"
+    style={{ willChange: "transform" }}
   >
     {/* Background Glow Effect */}
-    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.03] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-    {/* Animated Light Sweep */}
-    <motion.div
-      animate={{
-        left: ["-100%", "200%"],
-      }}
-      transition={{
-        duration: 4,
-        repeat: Infinity,
-        ease: "linear",
-        delay: delay * 1.5,
-      }}
-      className="absolute top-0 bottom-0 w-full bg-gradient-to-r from-transparent via-emerald-500/[0.03] to-transparent -skew-x-12 pointer-events-none"
-    />
+    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.025] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
 
     <div className="relative z-10 flex items-start gap-4">
-      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500 shadow-[0_0_15px_rgba(81,192,12,0)] group-hover:shadow-[0_0_15px_rgba(81,192,12,0.4)]">
+      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-[0_0_14px_rgba(81,192,12,0)] group-hover:shadow-[0_0_14px_rgba(81,192,12,0.35)]">
         <Zap className="w-5 h-5" />
       </div>
-      <p className="text-zinc-300 font-medium leading-snug group-hover:text-white transition-colors">
+      <p className="text-zinc-300 font-medium leading-snug group-hover:text-white transition-colors duration-300">
         {interest}
       </p>
     </div>
@@ -539,7 +529,7 @@ export default function App() {
               </section>
 
               {/* Areas of Interest - Now on Home */}
-              <section className="relative pt-12 border-t border-white/5 overflow-hidden">
+              <section className="relative pt-12 border-t border-white/5 overflow-visible">
                 {/* Section Background Glow */}
                 <div className="absolute bottom-0 right-0 w-full h-full bg-emerald-500/[0.02] blur-[100px] pointer-events-none" />
 
