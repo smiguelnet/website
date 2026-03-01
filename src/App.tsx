@@ -758,6 +758,14 @@ export default function App() {
                     <p className='text-sm sm:text-base font-mono text-emerald-300/90'>
                       {RESUME_DATA.research.expectedResult.formula}
                     </p>
+
+                    <button
+                      onClick={() => navigateToTab(tabs.RESEARCH)}
+                      className='mt-10 inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-emerald-500 text-black font-bold rounded-xl hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(81,192,12,0.3)]'
+                    >
+                      Research & Projects
+                      <ChevronRight className='w-4 h-4' />
+                    </button>
                   </div>
                 </div>
               </section>
