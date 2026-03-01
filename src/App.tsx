@@ -1075,63 +1075,63 @@ export default function App() {
                 </div>
 
                 <div className='space-y-6'>
-                    <div>
-                      <p className='text-[11px] font-mono uppercase tracking-[0.2em] text-emerald-400 mb-2'>
-                        Architecture Accelerator
+                  <div>
+                    <p className='text-[11px] font-mono uppercase tracking-[0.2em] text-emerald-400 mb-2'>
+                      Architecture Accelerator
+                    </p>
+                    <h4 className='text-3xl sm:text-4xl font-bold text-white tracking-tight leading-[1.1]'>
+                      Comprehensive Android Starter Kit
+                    </h4>
+                    <p className='text-zinc-300 mt-4 leading-relaxed max-w-4xl'>
+                      A practical starter architecture with complete CRUD flow, reusable UI
+                      scaffolding, and two synchronization models: Server-First and Local-First.
+                      This page migrates the original article into the current research format.
+                    </p>
+                  </div>
+
+                  <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+                    <div className='space-y-3'>
+                      <p className='text-[11px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
+                        Architectural Scope
                       </p>
-                      <h4 className='text-3xl sm:text-4xl font-bold text-white tracking-tight leading-[1.1]'>
-                        Comprehensive Android Starter Kit
-                      </h4>
-                      <p className='text-zinc-300 mt-4 leading-relaxed max-w-4xl'>
-                        A practical starter architecture with complete CRUD flow, reusable UI
-                        scaffolding, and two synchronization models: Server-First and Local-First.
-                        This page migrates the original article into the current research format.
-                      </p>
+                      <ul className='space-y-2 text-sm text-zinc-300'>
+                        <li className='flex gap-2'>
+                          <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                          Event-driven architecture and reactive programming
+                        </li>
+                        <li className='flex gap-2'>
+                          <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                          Data synchronization options: Server-First or Local-First
+                        </li>
+                      </ul>
                     </div>
 
-                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
-                      <div className='space-y-3'>
-                        <p className='text-[11px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
-                          Architectural Scope
-                        </p>
-                        <ul className='space-y-2 text-sm text-zinc-300'>
-                          <li className='flex gap-2'>
-                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
-                            Event-driven architecture and reactive programming
-                          </li>
-                          <li className='flex gap-2'>
-                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
-                            Data synchronization options: Server-First or Local-First
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div className='space-y-3'>
-                        <p className='text-[11px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
-                          Common Features
-                        </p>
-                        <ul className='space-y-2 text-sm text-zinc-300'>
-                          <li className='flex gap-2'>
-                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
-                            Splash screen, onboarding, login, and home with drawer menu
-                          </li>
-                          <li className='flex gap-2'>
-                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
-                            Navigation handler with Activities and Fragments
-                          </li>
-                          <li className='flex gap-2'>
-                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
-                            Sample customer CRUD operation
-                          </li>
-                        </ul>
-                      </div>
+                    <div className='space-y-3'>
+                      <p className='text-[11px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
+                        Common Features
+                      </p>
+                      <ul className='space-y-2 text-sm text-zinc-300'>
+                        <li className='flex gap-2'>
+                          <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                          Splash screen, onboarding, login, and home with drawer menu
+                        </li>
+                        <li className='flex gap-2'>
+                          <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                          Navigation handler with Activities and Fragments
+                        </li>
+                        <li className='flex gap-2'>
+                          <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                          Sample customer CRUD operation
+                        </li>
+                      </ul>
                     </div>
+                  </div>
 
-                    <img
-                      src='/assets/images/android-scaffold.gif'
-                      alt='Android starter application overview'
-                      className={androidImageClass}
-                    />
+                  <img
+                    src='/assets/images/android-scaffold.gif'
+                    alt='Android starter application overview'
+                    className={androidImageClass}
+                  />
                 </div>
               </section>
 
@@ -1258,25 +1258,25 @@ export default function App() {
               </section>
 
               <section>
-                  <h3 className='text-2xl font-bold text-white uppercase tracking-tight mb-3'>
-                    Software Architecture Approach
-                  </h3>
-                  <p className='text-zinc-200 max-w-4xl leading-relaxed'>
-                    This architecture defines components, connectors, framework selection, and
-                    synchronization strategy in a way that keeps the system evolvable without
-                    changing the feature-level contract.
-                  </p>
-                  <p className='text-zinc-200 mt-4'>
-                    Reference:{' '}
-                    <a
-                      href='https://developer.android.com/topic/libraries/architecture/guide.html'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='text-emerald-300 hover:text-emerald-200 underline underline-offset-4'
-                    >
-                      Google App Architecture
-                    </a>
-                  </p>
+                <h3 className='text-2xl font-bold text-white uppercase tracking-tight mb-3'>
+                  Software Architecture Approach
+                </h3>
+                <p className='text-zinc-200 max-w-4xl leading-relaxed'>
+                  This architecture defines components, connectors, framework selection, and
+                  synchronization strategy in a way that keeps the system evolvable without changing
+                  the feature-level contract.
+                </p>
+                <p className='text-zinc-200 mt-4'>
+                  Reference:{' '}
+                  <a
+                    href='https://developer.android.com/topic/libraries/architecture/guide.html'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-emerald-300 hover:text-emerald-200 underline underline-offset-4'
+                  >
+                    Google App Architecture
+                  </a>
+                </p>
               </section>
 
               <section>
@@ -1495,7 +1495,7 @@ export default function App() {
                   <div className='space-y-8'>
                     {RESUME_DATA.education.map((edu, i) => (
                       <div key={i} className='relative pl-6 border-l border-white/10 group'>
-                        <div className='absolute -left-1 w-2 h-2 rounded-full bg-emerald-500/50 group-hover:bg-emerald-500 transition-colors' />
+                        <div className='absolute -left-1 top-2.5 w-2 h-2 rounded-full bg-emerald-500/50 group-hover:bg-emerald-500 transition-colors' />
                         <h4 className='text-lg font-bold text-white'>{edu.degree}</h4>
                         <p className='text-emerald-500 font-mono text-xs'>{edu.institution}</p>
                         <p className='text-zinc-500 text-xs mt-1'>

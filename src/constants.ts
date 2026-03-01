@@ -281,7 +281,7 @@ export const RESUME_DATA = {
       location: 'Sao Paulo, Brazil',
     },
     {
-      degree: "Bachelor's degree, Social Communication (Advertising & Publicity)",
+      degree: "Bachelor's degree, Social Communication",
       institution: 'Faculdades Oswaldo Cruz',
       period: '1997 – 2001',
       location: 'Sao Paulo, Brazil',
