@@ -23,6 +23,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import { RESUME_DATA } from './constants';
+import ResearchFlowDiagram from './components/research/ResearchFlowDiagram';
 
 const Counter = ({
   value,
@@ -895,9 +896,10 @@ export default function App() {
                     <p className='text-base sm:text-lg text-zinc-300 leading-relaxed w-full max-w-none'>
                       {RESUME_DATA.research.description}
                     </p>
-                    <p className='border-l-2 border-emerald-500/70 bg-emerald-500/10 px-4 py-3 text-base sm:text-lg font-semibold text-white leading-relaxed'>
-                      Software development must evolve from code-centric execution to
-                      specification-centric engineering.
+                    <ResearchFlowDiagram />
+                    <p className='border-l-2 border-emerald-500/70 bg-emerald-500/10 px-4 py-3 text-base sm:text-lg text-white leading-relaxed'>
+                      Software engineering must evolve from code-centric execution to
+                      specification-centric systems design.
                     </p>
                   </div>
 
