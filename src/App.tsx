@@ -344,6 +344,11 @@ export default function App() {
     setLink('canonical', pageUrl);
   }, [activeTab]);
 
+  useEffect(() => {
+    if (booting) return;
+    window.scrollTo(0, 0);
+  }, [activeTab, booting]);
+
   const navigateToTab = (tab: TabValue, replace = false) => {
     setActiveTab(tab);
     const targetPath = PAGE_SEO[tab].path;
@@ -566,9 +571,9 @@ export default function App() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.2 }}
-                      className='text-5xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9] max-w-4xl'
+                      className='text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9] max-w-4xl'
                     >
-                      Accelerating Software Engineering with{' '}
+                      Accelerating Software Delivery with{' '}
                       <motion.span
                         animate={{
                           textShadow: ['0 0 0px #51c00c', '0 0 10px #51c00c', '0 0 0px #51c00c'],
@@ -580,7 +585,7 @@ export default function App() {
                         }}
                         className='text-emerald-500 italic'
                       >
-                        AI, Specs, and Agentic Systems
+                        AI coding, Spec-driven development
                       </motion.span>
                     </motion.h2>
 
