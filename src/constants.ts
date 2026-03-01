@@ -1,6 +1,6 @@
 export const RESUME_DATA = {
   name: 'Sérgio Barriviera Miguel',
-  title: 'Chief Troubleshooting Officer (CTO) & Software Architect',
+  title: 'Hands-On Software Architect',
   location: 'Porto, Portugal',
   email: 'sergio@smiguel.net',
   linkedin: 'https://www.linkedin.com/in/smiguelnet',

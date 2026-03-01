@@ -208,7 +208,7 @@ const SITE_URL = 'https://www.smiguel.net';
 
 const PAGE_SEO: Record<TabValue, { title: string; description: string; path: string }> = {
   [tabs.HOME]: {
-    title: 'Sergio Miguel | CTO & Software Architect',
+    title: 'Sergio Miguel | Hands-On Software Architect & AI Delivery Strategist',
     description:
       "Sergio Miguel's portfolio: AI-driven software architecture, domain design, and delivery acceleration across web, mobile, and cloud.",
     path: '/',
@@ -352,20 +352,30 @@ export default function App() {
 
   if (booting) {
     return (
-      <div className='fixed inset-0 bg-black flex flex-col items-center justify-center p-6 font-mono'>
+      <div className='fixed inset-0 bg-black flex flex-col items-center justify-center p-6'>
         <div className='w-full max-w-md'>
-          <TerminalLine text='Initializing SérgioOS v20.24...' delay={0.2} />
-          <TerminalLine text='Loading 20+ years of experience...' delay={0.5} />
-          <TerminalLine text='Bypassing mainframe security...' delay={0.8} />
-          <TerminalLine text='Optimizing coffee-to-code ratio...' delay={1.1} />
-          <TerminalLine text='Checking for legacy Java 1.3 dependencies...' delay={1.4} />
-          <TerminalLine text='System ready. Welcome, Architect.' delay={1.8} />
+          <div className='mb-3 text-xs uppercase tracking-[0.25em] text-emerald-400/70'>
+            Loading
+          </div>
+
+          <div className='font-mono'>
+            <TerminalLine text='Initializing SmiguelNet...' delay={0.2} />
+            <TerminalLine text='Compiling experience modules (20+ years)...' delay={0.5} />
+            <TerminalLine text='Indexing enterprise patterns & trade-offs...' delay={0.8} />
+            <TerminalLine text='Calibrating agent prompts & specs...' delay={1.1} />
+            <TerminalLine text='System ready. Let’s ship.' delay={1.5} />
+          </div>
+
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 1.5, delay: 0.2 }}
-            className='h-1 bg-emerald-500 mt-4 origin-left'
+            transition={{ duration: 1.3, delay: 0.2 }}
+            className='h-1 bg-emerald-500/90 mt-4 origin-left rounded'
           />
+
+          <div className='mt-3 font-mono text-xs text-emerald-400/80'>
+            <span className='animate-pulse'>▍</span>
+          </div>
         </div>
       </div>
     );
@@ -391,7 +401,7 @@ export default function App() {
                 <h1 className='text-sm font-bold text-white tracking-tight uppercase'>
                   Sergio Miguel
                 </h1>
-                <span className='hidden sm:inline text-[10px] text-zinc-500 font-mono border border-white/10 px-1.5 rounded'>
+                <span className='hidden sm:inline text-[10px] text-zinc-400 font-mono border border-white/10 px-1.5 rounded'>
                   HANDS-ON ARCHITECT
                 </span>
               </div>
@@ -406,7 +416,7 @@ export default function App() {
                 key={tab}
                 onClick={() => navigateToTab(tab)}
                 className={`text-xs font-mono uppercase tracking-widest transition-colors ${
-                  selectedMenuTab === tab ? 'text-emerald-400' : 'text-zinc-500 hover:text-zinc-300'
+                  selectedMenuTab === tab ? 'text-emerald-400' : 'text-zinc-400 hover:text-zinc-300'
                 }`}
               >
                 {TAB_LABELS[tab]}
@@ -484,7 +494,7 @@ export default function App() {
                       setIsMenuOpen(false);
                     }}
                     className={`text-left text-lg font-mono uppercase tracking-widest transition-colors ${
-                      selectedMenuTab === tab ? 'text-emerald-400' : 'text-zinc-500'
+                      selectedMenuTab === tab ? 'text-emerald-400' : 'text-zinc-400'
                     }`}
                   >
                     {TAB_LABELS[tab]}
@@ -1009,7 +1019,7 @@ export default function App() {
 
                       <div className='flex flex-wrap gap-2'>
                         {project.tech.map((t, j) => (
-                          <span key={j} className='text-[10px] font-mono text-zinc-500'>
+                          <span key={j} className='text-[10px] font-mono text-zinc-400'>
                             {t}
                           </span>
                         ))}
@@ -1477,7 +1487,7 @@ export default function App() {
                         <div className='absolute -left-1 top-2.5 w-2 h-2 rounded-full bg-emerald-500/50 group-hover:bg-emerald-500 transition-colors' />
                         <h4 className='text-lg font-bold text-white'>{edu.degree}</h4>
                         <p className='text-emerald-500 font-mono text-xs'>{edu.institution}</p>
-                        <p className='text-zinc-500 text-xs mt-1'>
+                        <p className='text-zinc-400 text-xs mt-1'>
                           {edu.period} • {edu.location}
                         </p>
                       </div>
@@ -1612,7 +1622,7 @@ export default function App() {
           </div>
 
           <div className='pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4'>
-            <div className='flex items-center gap-2 text-zinc-500 font-mono text-xs'>
+            <div className='flex items-center gap-2 text-zinc-400 font-mono text-xs'>
               <Command className='w-3 h-3' />
               <span>Sérgio Miguel © {new Date().getFullYear()} • All rights reserved.</span>
             </div>
@@ -1620,7 +1630,7 @@ export default function App() {
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className='text-xs text-zinc-500 hover:text-emerald-400 transition-colors uppercase tracking-widest'
+              className='text-xs text-zinc-400 hover:text-emerald-400 transition-colors uppercase tracking-widest'
             >
               Back to Top
             </button>
