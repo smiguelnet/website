@@ -144,7 +144,7 @@ const MetricGauge = ({ label, value, suffix, delay = 0 }: MetricGaugeProps) => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.7 }}
         transition={{ delay: delay + 0.8 }}
-        className='relative z-10 text-[11px] uppercase tracking-[0.3em] text-emerald-400 font-bold leading-tight max-w-[180px] group-hover:opacity-100 group-hover:text-white transition-all'
+        className='relative z-10 w-full min-h-[3.4rem] flex items-center justify-center text-center text-[11px] sm:text-xs uppercase tracking-[0.14em] text-emerald-400 font-bold leading-snug group-hover:opacity-100 group-hover:text-white transition-all'
       >
         {label}
       </motion.span>
@@ -763,7 +763,7 @@ export default function App() {
               </section>
 
               {/* Executive Achievement Dashboard */}
-              <section className='relative pt-1 pb-8 border-white/5 overflow-hidden'>
+              <section className='relative pt-1 pb-2 border-white/5 overflow-hidden'>
                 {/* Section Background Glow */}
                 <div className='absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-emerald-500/[0.02] blur-[140px] pointer-events-none' />
 
@@ -1061,7 +1061,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className='mt-20 border-t border-white/5 bg-black/30'>
+      <footer className='mt-10 border-t border-white/5 bg-black/30'>
         <div className='max-w-6xl mx-auto px-6 py-16'>
           <div className='relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-emerald-500/10 via-emerald-500/[0.03] to-transparent p-8 md:p-10 mb-12'>
             <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(81,192,12,0.22),transparent_42%)] pointer-events-none' />
@@ -1102,9 +1102,7 @@ export default function App() {
           <div className='pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4'>
             <div className='flex items-center gap-2 text-zinc-500 font-mono text-xs'>
               <Command className='w-3 h-3' />
-              <span>
-                Sérgio Miguel © {new Date().getFullYear()} • Built with React & Emerald Energy
-              </span>
+              <span>Sérgio Miguel © {new Date().getFullYear()} • All rights reserved.</span>
             </div>
             <button
               onClick={() => {

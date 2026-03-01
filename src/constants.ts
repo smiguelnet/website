@@ -51,10 +51,15 @@ export const RESUME_DATA = {
     },
   },
   achievements: [
-    { label: 'Production Systems Delivered', value: 50, suffix: '+', goal: 60 },
-    { label: 'Enterprise Systems Re-Architected', value: 10, suffix: '+', goal: 15 },
-    { label: 'Legacy Systems Modernized', value: 15, suffix: '+', goal: 20 },
-    { label: 'Features Delivered to Production', value: 200, suffix: '+', goal: 250 },
+    {
+      label: 'Production Systems Delivered Across Multiple Domains',
+      value: 50,
+      suffix: '+',
+      goal: 60,
+    },
+    { label: 'Enterprise Architecture Transformations', value: 10, suffix: '+', goal: 15 },
+    { label: 'Legacy Platform Modernizations', value: 15, suffix: '+', goal: 20 },
+    { label: 'Business Capabilities Engineered', value: 200, suffix: '+', goal: 250 },
   ],
   stats: [
     { label: 'Years of Experience', value: '20+' },
