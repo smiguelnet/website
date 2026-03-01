@@ -269,33 +269,7 @@ export default function App() {
     typeof window === 'undefined' ? tabs.HOME : getTabFromPath(window.location.pathname),
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const expertiseSkillGroups = [
-    {
-      title: 'Core Languages',
-      skills: RESUME_DATA.skills.languages,
-      levels: [95, 90, 88, 83, 80, 76],
-    },
-    {
-      title: 'Frontend',
-      skills: RESUME_DATA.skills.frontend,
-      levels: [90, 86, 72, 68],
-    },
-    {
-      title: 'Cloud & DevOps',
-      skills: RESUME_DATA.skills.cloud,
-      levels: [92, 84, 82, 79],
-    },
-    {
-      title: 'Data Architectures',
-      skills: RESUME_DATA.skills.databases,
-      levels: [91, 87, 84, 83, 78],
-    },
-    {
-      title: 'Special Ops',
-      skills: RESUME_DATA.skills.special,
-      levels: [88, 86, 84, 80, 78],
-    },
-  ];
+  const expertiseSkillGroups = RESUME_DATA.technicalSkills;
 
   useEffect(() => {
     const timer = setTimeout(() => setBooting(false), 2500);
@@ -1550,17 +1524,18 @@ export default function App() {
                       key={group.title}
                       className='relative space-y-3 p-4 rounded-2xl border border-white/5 bg-gradient-to-br from-emerald-500/[0.06] via-emerald-500/[0.015] to-transparent hover:border-emerald-500/25 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_20px_rgba(81,192,12,0.12)] transition-all duration-300'
                     >
-                      <div className='absolute left-0 top-3 bottom-3 w-[2px] rounded-full bg-emerald-500/45' />
                       <p className='text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-300 pl-3'>
                         {group.title}
                       </p>
                       <div className='space-y-2.5'>
-                        {group.skills.map((skill, i) => {
-                          const level = group.levels[i] ?? 75;
+                        {group.items.map((skill, i) => {
+                          const level = skill.proficiency;
                           return (
-                            <div key={skill} className='space-y-1.5'>
+                            <div key={skill.name} className='space-y-1.5'>
                               <div className='flex items-center justify-between gap-3'>
-                                <span className='text-xs text-zinc-300 leading-tight'>{skill}</span>
+                                <span className='text-xs text-zinc-300 leading-tight'>
+                                  {skill.name}
+                                </span>
                                 <span className='text-[10px] font-mono text-emerald-400 shrink-0'>
                                   {level}%
                                 </span>

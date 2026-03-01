@@ -241,13 +241,71 @@ export const RESUME_DATA = {
       tech: ['Brand Design', 'Web Design', 'E-commerce', 'CGI', 'Perl', 'ASP'],
     },
   ],
-  skills: {
-    languages: ['Java (1.3 to 11)', 'NodeJS', 'TypeScript', 'Solidity', 'Python', 'C++'],
-    frontend: ['React', 'React Native', 'AngularJS', 'JQuery'],
-    cloud: ['AWS (ECS, SQS, Lambda, etc.)', 'Heroku', 'Docker', 'Kubernetes'],
-    databases: ['SQL Server', 'Postgres', 'MongoDB', 'DynamoDB', 'Neo4j'],
-    special: ['Blockchain', 'Fintech', 'Gamification', 'RPA', 'Machine Learning'],
-  },
+  technicalSkills: [
+    {
+      title: 'Software Architecture',
+      items: [
+        { name: 'Distributed Systems Design', proficiency: 97 },
+        { name: 'Event-Driven Architecture', proficiency: 92 },
+        { name: 'Security & Financial Compliance', proficiency: 90 },
+        { name: 'Spec-Driven Development (SDD)', proficiency: 45 },
+        { name: 'AI-Assisted & Agentic Coding', proficiency: 40 },
+      ],
+    },
+    {
+      title: 'Core Languages',
+      items: [
+        { name: 'Java', proficiency: 96 },
+        { name: 'JavaScript', proficiency: 94 },
+        { name: 'TypeScript', proficiency: 92 },
+        { name: 'Shell Scripting', proficiency: 80 },
+        { name: 'Python', proficiency: 60 },
+        { name: 'Rust', proficiency: 45 },
+        { name: 'Solidity', proficiency: 40 },
+        { name: 'C++', proficiency: 35 },
+      ],
+    },
+
+    {
+      title: 'Cloud & DevOps',
+      items: [
+        { name: 'AWS', proficiency: 95 },
+        { name: 'Docker', proficiency: 90 },
+        { name: 'Kubernetes', proficiency: 70 },
+        { name: 'Heroku', proficiency: 60 },
+        { name: 'Ansible', proficiency: 50 },
+      ],
+    },
+    {
+      title: 'AI & Agentic Systems',
+      items: [
+        { name: 'OpenAI Codex', proficiency: 92 },
+        { name: 'Claude Code', proficiency: 90 },
+        { name: 'Copilot (Orchestra)', proficiency: 90 },
+        { name: 'LangChain', proficiency: 70 },
+        { name: 'Multi-Agent Orchestration Tools', proficiency: 60 },
+      ],
+    },
+    {
+      title: 'Frontend & Mobile',
+      items: [
+        { name: 'React', proficiency: 92 },
+        { name: 'React Native', proficiency: 90 },
+        { name: 'Tailwind CSS', proficiency: 88 },
+        { name: 'Shadcn/UI', proficiency: 40 },
+      ],
+    },
+    {
+      title: 'Special Ops',
+      items: [
+        { name: 'Fintech & Payment Systems', proficiency: 95 },
+        { name: 'Gamification', proficiency: 92 },
+        { name: 'OWASP, WAF, PCI-DSS', proficiency: 90 },
+        { name: 'Blockchain', proficiency: 80 },
+        { name: 'Smart Contracts', proficiency: 70 },
+      ],
+    },
+  ],
   certifications: [
     {
       title: 'Cloud & Architecture',
