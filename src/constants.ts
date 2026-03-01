@@ -9,7 +9,7 @@ export const RESUME_DATA = {
   website: 'www.smiguel.net',
   photo: 'assets/images/photo.jpg', // Placeholder - user can update if path is different
   about:
-    'Software architect and researcher with 20+ years of experience designing and evolving complex systems. My work focuses on accelerating software engineering through AI, specification-driven development, and agentic systems — bridging classical architectural rigor with the next generation of intelligent development. I build scalable, resilient systems designed to continuously evolve with technology.',
+    'Software architect and researcher with 20+ years of experience building complex, mission-critical systems. I accelerate software delivery through AI, specification-driven development, and agentic systems — uniting architectural rigor with intelligent execution. I design scalable, resilient systems that evolve with technology.',
   quote: {
     text: 'Without right requirements and a good design, programming is the art of adding bugs to an empty text file.',
     author: 'Louis Srygley',
@@ -285,8 +285,8 @@ export const RESUME_DATA = {
         { name: 'Distributed Systems Design', proficiency: 97 },
         { name: 'Event-Driven Architecture', proficiency: 92 },
         { name: 'Security & Financial Compliance', proficiency: 90 },
-        { name: 'Spec-Driven Development (SDD)', proficiency: 45 },
-        { name: 'AI-Assisted & Agentic Coding', proficiency: 40 },
+        { name: 'Spec-Driven Development (SDD)', proficiency: 75 },
+        { name: 'AI-Assisted & Agentic Coding', proficiency: 70 },
       ],
     },
     {
@@ -295,11 +295,11 @@ export const RESUME_DATA = {
         { name: 'Java', proficiency: 96 },
         { name: 'JavaScript', proficiency: 94 },
         { name: 'TypeScript', proficiency: 92 },
-        { name: 'Shell Scripting', proficiency: 80 },
-        { name: 'Python', proficiency: 60 },
-        { name: 'Rust', proficiency: 45 },
-        { name: 'Solidity', proficiency: 40 },
-        { name: 'C++', proficiency: 35 },
+        { name: 'Shell Scripting', proficiency: 86 },
+        { name: 'Solidity', proficiency: 72 },
+        { name: 'Python', proficiency: 65 },
+        { name: 'Rust', proficiency: 55 },
+        { name: 'C++', proficiency: 45 },
       ],
     },
 
