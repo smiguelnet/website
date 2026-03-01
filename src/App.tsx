@@ -730,48 +730,60 @@ export default function App() {
                   </h3>
                   <div className='h-px flex-1 bg-white/10' />
                 </div>
-                <div className='relative overflow-hidden p-8 md:p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] via-white/[0.03] to-transparent'>
+                <div className='relative overflow-hidden p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] via-white/[0.03] to-transparent'>
                   <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(81,192,12,0.2),transparent_48%)] pointer-events-none' />
 
-                  <div className='relative flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10'>
-                    <div className='flex items-start gap-4'>
-                      <div className='w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0'>
-                        <FlaskConical className='w-6 h-6' />
-                      </div>
-                      <div>
-                        <p className='text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-400 mb-2'>
+                  <div className='relative flex flex-col gap-5 sm:gap-6 mb-8 md:mb-10'>
+                    <div>
+                      <div className='flex items-center gap-3 mb-3'>
+                        <div className='w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0'>
+                          <FlaskConical className='w-5 h-5' />
+                        </div>
+                        <p className='text-[12px] pt-1 font-mono uppercase tracking-[0.2em] text-emerald-400'>
                           Research Focus
                         </p>
-                        <h4 className='text-2xl md:text-3xl font-bold text-white tracking-tight'>
-                          {RESUME_DATA.research.title}
-                        </h4>
                       </div>
+                      <h4 className='text-3xl sm:text-[2.5rem] lg:text-[3rem] font-bold text-white tracking-tight leading-[1.08]'>
+                        {RESUME_DATA.research.title}
+                      </h4>
                     </div>
-                    <p className='text-sm text-zinc-300 leading-relaxed max-w-md'>
+                    <p className='text-base sm:text-lg text-zinc-300 leading-relaxed w-full max-w-none'>
                       {RESUME_DATA.research.description}
                     </p>
                   </div>
 
-                  <div className='relative space-y-5'>
+                  <div className='relative space-y-4 sm:space-y-5'>
                     {RESUME_DATA.research.phases.map((phase, i) => (
                       <div
                         key={i}
-                        className='group rounded-2xl border border-white/10 bg-black/30 p-6 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300'
+                        className='group rounded-2xl border border-white/10 bg-black/30 p-5 sm:p-6 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300'
                       >
-                        <div className='flex items-center gap-3 mb-4'>
-                          <span className='w-8 h-8 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold flex items-center justify-center'>
-                            {i + 1}
-                          </span>
-                          <span className='text-[10px] font-mono uppercase tracking-[0.22em] text-zinc-500'>
-                            Step 0{i + 1}
+                        <div className='mb-4'>
+                          <span className='inline-flex items-center rounded-full border border-emerald-500/35 bg-emerald-500/10 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
+                            Step {i + 1}
                           </span>
                         </div>
-                        <h5 className='text-base font-semibold text-white leading-snug mb-3'>
+                        <h5 className='text-xl sm:text-2xl font-semibold text-white leading-tight mb-3'>
                           {phase.name}
                         </h5>
-                        <p className='text-sm text-zinc-400 leading-relaxed'>{phase.details}</p>
+                        <p className='text-base text-zinc-400 leading-relaxed'>{phase.details}</p>
                       </div>
                     ))}
+                  </div>
+
+                  <div className='relative mt-8 pt-6 border-t border-white/10'>
+                    <p className='text-[14px] font-mono uppercase text-emerald-400 mb-2'>
+                      Expected Result
+                    </p>
+                    <h5 className='text-xl sm:text-2xl font-semibold text-white leading-tight mb-3'>
+                      {RESUME_DATA.research.expectedResult.title}
+                    </h5>
+                    <p className='text-base text-zinc-300 leading-relaxed mb-4 max-w-4xl'>
+                      {RESUME_DATA.research.expectedResult.details}
+                    </p>
+                    <p className='text-sm sm:text-base font-mono text-emerald-300/90'>
+                      {RESUME_DATA.research.expectedResult.formula}
+                    </p>
                   </div>
                 </div>
               </section>

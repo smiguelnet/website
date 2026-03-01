@@ -23,26 +23,32 @@ export const RESUME_DATA = {
     'Machine Learning & Robotic Process Automation',
   ],
   research: {
-    title: 'Accelerating Software Development with AI',
+    title: 'From Process-Driven Acceleration to Agentic, Spec-Driven Engineering',
     description:
-      'A practical framework to increase delivery speed while preserving architecture, quality, and scalability.',
+      'A practical framework that reallocates engineering effort from manual coding to AI agents orchestrated by high-quality specifications, increasing speed, predictability, and architectural integrity. As specification maturity increases, manual coding effort decreases, enabling rapid experimentation at scale with reduced delivery risk.',
     phases: [
       {
-        name: 'Build an AI-Ready Foundation',
+        name: 'Design High-Quality Specifications',
         details:
-          'Acceleration starts with clear architecture and business alignment. By combining Domain-Driven Design, modern architectural patterns, and intelligent starter templates, teams avoid reinventing the wheel. AI supports this foundation by generating architecture drafts, validating design decisions, and identifying risks early before they become costly.',
+          'Acceleration begins with specification maturity. Instead of concentrating effort on manual coding, the focus shifts to precise domain modeling, explicit architectural boundaries, structured non-functional requirements, and deterministic acceptance criteria. When 70-80% of engineering effort is invested in specification design, AI agents operate with clarity, consistency, and reduced ambiguity.',
       },
       {
-        name: 'Augment the Development Lifecycle',
+        name: 'Orchestrate Agentic Execution',
         details:
-          'AI enhances every phase of delivery - from requirements and design to coding, testing, and deployment. Specifications can evolve into structured artifacts, code scaffolds, and automated tests. This shifts development from manual effort to AI-assisted engineering, increasing speed while preserving quality and architectural integrity.',
+          'With well-defined specifications, AI agents become structured execution engines. They generate architectural scaffolds, consistent implementations, automated test suites, and documentation with minimal iterative prompting. Human involvement shifts from manual coding to validation, architectural oversight, and strategic refinement, restoring engineering rigor to AI-assisted development.',
       },
       {
-        name: 'Reuse, Optimize, and Scale',
+        name: 'Validate, Govern, and Evolve',
         details:
-          'Sustainable acceleration depends on reusable assets and continuous feedback. APIs, microservices, and shared components evolve as strategic building blocks. With DevOps automation and AI-driven insights, teams reduce redundancy, prevent recurring errors, and achieve predictable, scalable software delivery.',
+          'Agentic systems require structured governance. Automated validation pipelines ensure generated artifacts remain aligned with specifications, architectural constraints, and non-functional requirements. Humans act as architectural guardians, reviewing outputs at defined checkpoints while enabling agents to iterate within controlled boundaries. This governance layer preserves quality, prevents architectural drift, and enables safe, continuous system evolution.',
       },
     ],
+    expectedResult: {
+      title: 'Enable Rapid Experimentation at Scale',
+      details:
+        'As specification maturity increases, manual coding effort decreases. Organizations gain the ability to prototype multiple strategies, test business variations, and target different customer segments in parallel. Agentic development preserves architectural integrity while dramatically reducing time-to-experiment and delivery risk.',
+      formula: 'Controlled autonomy -> Faster experimentation -> Reduced delivery risk',
+    },
   },
   achievements: [
     { label: 'Production Systems Delivered', value: 50, suffix: '+', goal: 60 },
