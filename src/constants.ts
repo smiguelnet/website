@@ -50,6 +50,28 @@ export const RESUME_DATA = {
       formula: 'Controlled autonomy -> Faster experimentation -> Reduced delivery risk',
     },
   },
+  homeResearch: {
+    title: 'From Process-Driven Acceleration to Agentic, Spec-Driven Engineering',
+    description:
+      'A high-level view of how specification maturity enables faster, more predictable, and architecturally consistent delivery with AI agents.',
+    phases: [
+      {
+        name: 'Design High-Quality Specifications',
+        details:
+          'Define clear domains, architecture boundaries, and acceptance criteria to remove ambiguity before execution.',
+      },
+      {
+        name: 'Orchestrate Agentic Execution',
+        details:
+          'Use specifications to drive scaffolds, implementation, tests, and docs while humans steer validation.',
+      },
+      {
+        name: 'Validate, Govern, and Evolve',
+        details:
+          'Apply governance checkpoints to keep outputs aligned, prevent drift, and evolve safely.',
+      },
+    ],
+  },
   achievements: [
     {
       label: 'Production Systems Delivered Across Multiple Domains',
