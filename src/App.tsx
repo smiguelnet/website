@@ -183,6 +183,7 @@ const tabs = {
   HOME: 'home',
   QUALIFICATIONS: 'profile',
   RESEARCH: 'research',
+  ANDROID_ARCHITECTURE: 'research/android-architecture',
   PROFESSIONAL_JOURNEY: 'experience',
 } as const;
 
@@ -199,6 +200,7 @@ const TAB_LABELS: Record<TabValue, string> = {
   [tabs.HOME]: 'Home',
   [tabs.QUALIFICATIONS]: 'Profile',
   [tabs.RESEARCH]: 'Research',
+  [tabs.ANDROID_ARCHITECTURE]: 'Android Architecture',
   [tabs.PROFESSIONAL_JOURNEY]: 'Experience',
 };
 
@@ -223,6 +225,12 @@ const PAGE_SEO: Record<TabValue, { title: string; description: string; path: str
       'Selected research and applied engineering projects in APIs, mobile platforms, architecture accelerators, and DevOps.',
     path: '/research',
   },
+  [tabs.ANDROID_ARCHITECTURE]: {
+    title: 'Android Architecture | Sergio Miguel',
+    description:
+      'Android starter application architecture: UI scaffold, CRUD workflow, and data synchronization strategies (Server-First and Local-First).',
+    path: '/research/android-architecture',
+  },
   [tabs.PROFESSIONAL_JOURNEY]: {
     title: 'Experience | Sergio Miguel',
     description:
@@ -236,6 +244,9 @@ const LEGACY_PATH_TO_TAB: Record<string, TabValue> = {
   '/projects': tabs.RESEARCH,
   '/expertise': tabs.QUALIFICATIONS,
   '/qualifications': tabs.QUALIFICATIONS,
+  '/android-architecture': tabs.ANDROID_ARCHITECTURE,
+  '/android-architecture.html': tabs.ANDROID_ARCHITECTURE,
+  '/research/android-architecture.html': tabs.ANDROID_ARCHITECTURE,
 };
 
 const normalizePath = (pathname: string) => {
@@ -360,6 +371,10 @@ export default function App() {
       }
     }
   };
+  const selectedMenuTab = activeTab === tabs.ANDROID_ARCHITECTURE ? tabs.RESEARCH : activeTab;
+  const androidImageClass =
+    'w-full lg:w-1/2 mx-auto border border-emerald-500/75 bg-white shadow-[0_0_26px_rgba(81,192,12,0.4)]';
+  const androidTopicClass = 'space-y-3 pt-6 border-t border-white/10';
 
   if (booting) {
     return (
@@ -417,7 +432,7 @@ export default function App() {
                 key={tab}
                 onClick={() => navigateToTab(tab)}
                 className={`text-xs font-mono uppercase tracking-widest transition-colors ${
-                  activeTab === tab ? 'text-emerald-400' : 'text-zinc-500 hover:text-zinc-300'
+                  selectedMenuTab === tab ? 'text-emerald-400' : 'text-zinc-500 hover:text-zinc-300'
                 }`}
               >
                 {TAB_LABELS[tab]}
@@ -495,7 +510,7 @@ export default function App() {
                       setIsMenuOpen(false);
                     }}
                     className={`text-left text-lg font-mono uppercase tracking-widest transition-colors ${
-                      activeTab === tab ? 'text-emerald-400' : 'text-zinc-500'
+                      selectedMenuTab === tab ? 'text-emerald-400' : 'text-zinc-500'
                     }`}
                   >
                     {TAB_LABELS[tab]}
@@ -971,17 +986,36 @@ export default function App() {
                           <FlaskConical className='w-5 h-5' />
                         </div>
                         <div className='flex gap-2'>
-                          {project.links.map((link, j) => (
-                            <a
-                              key={j}
-                              href={link.url}
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              className='p-2 bg-white/5 rounded-lg hover:bg-emerald-500 hover:text-black transition-all'
-                            >
-                              <ExternalLink className='w-3 h-3' />
-                            </a>
-                          ))}
+                          {project.links.map((link, j) => {
+                            const isInternalLink = link.url.startsWith('/');
+                            if (isInternalLink) {
+                              return (
+                                <button
+                                  key={j}
+                                  onClick={() => navigateToTab(getTabFromPath(link.url))}
+                                  className='p-2 bg-white/5 rounded-lg hover:bg-emerald-500 hover:text-black transition-all'
+                                  title={link.label}
+                                  aria-label={link.label}
+                                >
+                                  <ExternalLink className='w-3 h-3' />
+                                </button>
+                              );
+                            }
+
+                            return (
+                              <a
+                                key={j}
+                                href={link.url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='p-2 bg-white/5 rounded-lg hover:bg-emerald-500 hover:text-black transition-all'
+                                title={link.label}
+                                aria-label={link.label}
+                              >
+                                <ExternalLink className='w-3 h-3' />
+                              </a>
+                            );
+                          })}
                         </div>
                       </div>
                       <h4 className='text-xl font-bold text-white group-hover:text-emerald-400 transition-colors'>
@@ -1012,6 +1046,434 @@ export default function App() {
                   </article>
                 ))}
               </div>
+            </motion.section>
+          )}
+
+          {activeTab === tabs.ANDROID_ARCHITECTURE && (
+            <motion.section
+              key={tabs.ANDROID_ARCHITECTURE}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className='space-y-10'
+            >
+              <section className='pt-1 border-white/5'>
+                <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8'>
+                  <div className='flex items-center gap-4'>
+                    <h3 className='text-2xl font-bold text-white uppercase tracking-tight'>
+                      Android Starter Application
+                    </h3>
+                    <div className='hidden sm:block h-px flex-1 min-w-24 bg-white/10' />
+                  </div>
+                  <button
+                    onClick={() => navigateToTab(tabs.RESEARCH)}
+                    className='inline-flex items-center justify-center gap-2 px-4 py-2 bg-white/5 border border-white/10 text-zinc-200 rounded-xl hover:border-emerald-500/35 hover:text-white transition-all'
+                  >
+                    Back to Research
+                    <ChevronRight className='w-4 h-4' />
+                  </button>
+                </div>
+
+                <div className='space-y-6'>
+                    <div>
+                      <p className='text-[11px] font-mono uppercase tracking-[0.2em] text-emerald-400 mb-2'>
+                        Architecture Accelerator
+                      </p>
+                      <h4 className='text-3xl sm:text-4xl font-bold text-white tracking-tight leading-[1.1]'>
+                        Comprehensive Android Starter Kit
+                      </h4>
+                      <p className='text-zinc-300 mt-4 leading-relaxed max-w-4xl'>
+                        A practical starter architecture with complete CRUD flow, reusable UI
+                        scaffolding, and two synchronization models: Server-First and Local-First.
+                        This page migrates the original article into the current research format.
+                      </p>
+                    </div>
+
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+                      <div className='space-y-3'>
+                        <p className='text-[11px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
+                          Architectural Scope
+                        </p>
+                        <ul className='space-y-2 text-sm text-zinc-300'>
+                          <li className='flex gap-2'>
+                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                            Event-driven architecture and reactive programming
+                          </li>
+                          <li className='flex gap-2'>
+                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                            Data synchronization options: Server-First or Local-First
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className='space-y-3'>
+                        <p className='text-[11px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
+                          Common Features
+                        </p>
+                        <ul className='space-y-2 text-sm text-zinc-300'>
+                          <li className='flex gap-2'>
+                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                            Splash screen, onboarding, login, and home with drawer menu
+                          </li>
+                          <li className='flex gap-2'>
+                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                            Navigation handler with Activities and Fragments
+                          </li>
+                          <li className='flex gap-2'>
+                            <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                            Sample customer CRUD operation
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <img
+                      src='/assets/images/android-scaffold.gif'
+                      alt='Android starter application overview'
+                      className={androidImageClass}
+                    />
+                </div>
+              </section>
+
+              <section>
+                <div className='flex items-center gap-4 mb-3 pt-2'>
+                  <h3 className='text-2xl font-bold text-white uppercase tracking-tight'>
+                    Application Flow
+                  </h3>
+                  <div className='h-px flex-1 bg-white/10' />
+                </div>
+                <p className='text-zinc-400 max-w-3xl leading-relaxed mb-6'>
+                  Core screens first, then the complete CRUD workflow for contextualized end-to-end
+                  behavior.
+                </p>
+                <div className='space-y-6'>
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-2'>Icon and Splash Screen</h4>
+                    <img
+                      src='/assets/images/android-icon-splash.jpg'
+                      alt='Application icon and splash screen'
+                      className={androidImageClass}
+                    />
+                  </article>
+
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-1'>OnBoarding</h4>
+                    <p className='text-emerald-400 font-mono text-[11px] uppercase tracking-[0.15em] mb-4'>
+                      Three-step screen
+                    </p>
+                    <img
+                      src='/assets/images/android-onboarding.gif'
+                      alt='Application onboarding screen'
+                      className={androidImageClass}
+                    />
+                  </article>
+
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-1'>Login and Home</h4>
+                    <p className='text-emerald-400 font-mono text-[11px] uppercase tracking-[0.15em] mb-4'>
+                      Login, drawer menu, and home screen
+                    </p>
+                    <img
+                      src='/assets/images/android-login-home.gif'
+                      alt='Application login, menu, and home screen'
+                      className={androidImageClass}
+                    />
+                  </article>
+                </div>
+              </section>
+
+              <section>
+                <div className='flex items-center gap-4 mb-3 pt-2'>
+                  <h3 className='text-2xl font-bold text-white uppercase tracking-tight'>
+                    Sample CRUD
+                  </h3>
+                  <div className='h-px flex-1 bg-white/10' />
+                </div>
+                <p className='text-zinc-400 max-w-3xl leading-relaxed mb-6'>
+                  Complete customer CRUD behavior with tracing and offline/online synchronization
+                  transition.
+                </p>
+                <div className='space-y-6'>
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-4'>Add Customer</h4>
+                    <img
+                      src='/assets/images/android-add-customer.gif'
+                      alt='Application add customer screen'
+                      className={androidImageClass}
+                    />
+                  </article>
+
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-2'>
+                      Check Added Customer and Trace Data
+                    </h4>
+                    <p className='text-sm text-zinc-300 leading-relaxed mb-4'>
+                      Trace area shows local and remote identifiers and timestamps. Tools like Chuck
+                      and Stetho are used to improve traceability and debugging in development
+                      builds.
+                    </p>
+                    <img
+                      src='/assets/images/android-trace-customer.gif'
+                      alt='Application trace customer screen'
+                      className={androidImageClass}
+                    />
+                  </article>
+
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-2'>
+                      Customers List and Delete Operation
+                    </h4>
+                    <p className='text-sm text-zinc-300 leading-relaxed mb-4'>
+                      Delete operation is available through swipe gestures and toolbar actions.
+                    </p>
+                    <img
+                      src='/assets/images/android-delete-customer.gif'
+                      alt='Application delete customer screen'
+                      className={androidImageClass}
+                    />
+                  </article>
+
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-4'>
+                      Simulating Device with no Internet Connection
+                    </h4>
+                    <img
+                      src='/assets/images/android-add-offline-customer.gif'
+                      alt='Application add offline customer screen'
+                      className={androidImageClass}
+                    />
+                  </article>
+
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-4'>
+                      Behavior When Internet Connection Is Restored
+                    </h4>
+                    <img
+                      src='/assets/images/android-add-online-customer.gif'
+                      alt='Application add online customer screen'
+                      className={androidImageClass}
+                    />
+                  </article>
+                </div>
+              </section>
+
+              <section>
+                  <h3 className='text-2xl font-bold text-white uppercase tracking-tight mb-3'>
+                    Software Architecture Approach
+                  </h3>
+                  <p className='text-zinc-200 max-w-4xl leading-relaxed'>
+                    This architecture defines components, connectors, framework selection, and
+                    synchronization strategy in a way that keeps the system evolvable without
+                    changing the feature-level contract.
+                  </p>
+                  <p className='text-zinc-200 mt-4'>
+                    Reference:{' '}
+                    <a
+                      href='https://developer.android.com/topic/libraries/architecture/guide.html'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-emerald-300 hover:text-emerald-200 underline underline-offset-4'
+                    >
+                      Google App Architecture
+                    </a>
+                  </p>
+              </section>
+
+              <section>
+                <div className='flex items-center gap-4 mb-6'>
+                  <h3 className='text-2xl font-bold text-white uppercase tracking-tight'>
+                    Overview
+                  </h3>
+                  <div className='h-px flex-1 bg-white/10' />
+                </div>
+                <article className={androidTopicClass}>
+                  <img
+                    src='/assets/images/android-architecture.gif'
+                    alt='Android architecture overview'
+                    className={androidImageClass}
+                  />
+                  <p className='text-sm text-zinc-400 mt-4'>
+                    Synchronization Job component is used when the selected strategy is Local-First.
+                  </p>
+                </article>
+              </section>
+
+              <section>
+                <div className='flex items-center gap-4 mb-3 pt-2'>
+                  <h3 className='text-2xl font-bold text-white uppercase tracking-tight'>
+                    Possible Strategies
+                  </h3>
+                  <div className='h-px flex-1 bg-white/10' />
+                </div>
+                <p className='text-zinc-400 max-w-3xl leading-relaxed mb-6'>
+                  The same repository contract supports both synchronization styles.
+                </p>
+                <div className='space-y-6'>
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-4'>1. Server-First</h4>
+                    <ul className='space-y-2 text-sm text-zinc-300 mb-4'>
+                      <li className='flex gap-2'>
+                        <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                        Handle data that exists on the server side.
+                      </li>
+                      <li className='flex gap-2'>
+                        <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                        Call endpoint first, then update local database after success.
+                      </li>
+                    </ul>
+                    <img
+                      src='/assets/images/android-data-async-01.gif'
+                      alt='Data synchronization strategy server-first'
+                      className={androidImageClass}
+                    />
+                  </article>
+
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-4'>2. Local-First</h4>
+                    <ul className='space-y-2 text-sm text-zinc-300 mb-4'>
+                      <li className='flex gap-2'>
+                        <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                        Show data based on local repository.
+                      </li>
+                      <li className='flex gap-2'>
+                        <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                        Save locally first, then perform remote synchronization.
+                      </li>
+                    </ul>
+                    <img
+                      src='/assets/images/android-data-async-02.gif'
+                      alt='Data synchronization strategy local-first'
+                      className={androidImageClass}
+                    />
+                    <div className='mt-5 border-l-2 border-amber-300/50 pl-4'>
+                      <p className='text-sm font-semibold text-amber-200 mb-2'>
+                        Centralize the rule
+                      </p>
+                      <p className='text-sm text-zinc-200 leading-relaxed mb-3'>
+                        Regardless of selected strategy, keep repository as the single place where
+                        synchronization rules live.
+                      </p>
+                      <p className='text-sm font-semibold text-amber-200 mb-2'>
+                        Cache and data expiration policy
+                      </p>
+                      <p className='text-sm text-zinc-200 leading-relaxed'>
+                        Local and remote timestamps can be used to apply cache and expiration
+                        policies consistently.
+                      </p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section>
+                <div className='flex items-center gap-4 mb-3 pt-2'>
+                  <h3 className='text-2xl font-bold text-white uppercase tracking-tight'>
+                    Selected Strategy
+                  </h3>
+                  <div className='h-px flex-1 bg-white/10' />
+                </div>
+                <p className='text-zinc-400 max-w-3xl leading-relaxed mb-6'>
+                  Local-First strategy with foreground/background balancing and acceleration
+                  framework usage.
+                </p>
+                <div className='space-y-6'>
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-4'>
+                      Local-First Data Synchronization Process
+                    </h4>
+                    <img
+                      src='/assets/images/android-process.gif'
+                      alt='Foreground and background operations'
+                      className={androidImageClass}
+                    />
+                  </article>
+
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-1'>
+                      Using an acceleration framework
+                    </h4>
+                    <p className='text-emerald-400 font-mono text-[11px] uppercase tracking-[0.15em] mb-4'>
+                      Starter Application: Tailoring Architecture
+                    </p>
+                    <img
+                      src='/assets/images/android-from-method-to-code.gif'
+                      alt='Starter application tailoring architecture'
+                      className={androidImageClass}
+                    />
+                  </article>
+
+                  <article className={androidTopicClass}>
+                    <h4 className='text-xl font-bold text-white mb-1'>
+                      Using an acceleration framework
+                    </h4>
+                    <p className='text-emerald-400 font-mono text-[11px] uppercase tracking-[0.15em] mb-4'>
+                      Starter Application: Software Development
+                    </p>
+                    <p className='mt-4 text-sm text-zinc-300'>
+                      Note: this starter project is under development to improve test-phase
+                      acceleration.
+                    </p>
+                  </article>
+
+                  <div>
+                    <img
+                      src='/assets/images/android-from-method-to-code-2.gif'
+                      alt='Starter application accelerating development'
+                      className={androidImageClass}
+                    />
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <article className={androidTopicClass}>
+                  <h3 className='text-2xl font-bold text-white uppercase tracking-tight mb-5'>
+                    Resources Reference
+                  </h3>
+                  <ul className='space-y-2 text-sm text-zinc-300'>
+                    <li className='flex gap-2'>
+                      <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                      Android Support Library
+                    </li>
+                    <li className='flex gap-2'>
+                      <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                      Android Architecture Components
+                    </li>
+                    <li className='flex gap-2'>
+                      <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                      Butterknife, Dagger
+                    </li>
+                    <li className='flex gap-2'>
+                      <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                      RxAndroid, RxRelay, RxLint
+                    </li>
+                    <li className='flex gap-2'>
+                      <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                      Gson, OkHttp, Retrofit
+                    </li>
+                    <li className='flex gap-2'>
+                      <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                      Priority Job Queue and GCM Network Manager
+                    </li>
+                    <li className='flex gap-2'>
+                      <span className='mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0' />
+                      Timber, Chuck, and Stetho
+                    </li>
+                  </ul>
+
+                  <p className='text-sm text-zinc-300 mt-5'>
+                    Full details and versions:
+                    <a
+                      href='https://github.com/smiguelnet/android-starter-application'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='ml-2 text-emerald-300 hover:text-emerald-200 underline underline-offset-4'
+                    >
+                      GitHub Repository
+                    </a>
+                  </p>
+                </article>
+              </section>
             </motion.section>
           )}
 

@@ -117,7 +117,7 @@ export const RESUME_DATA = {
       description:
         'Comprehensive Android Starter Kit offering data synchronization (Server-First or Local-First) and pre-configured common features.',
       note: 'Built to accelerate delivery with tested architectural patterns and ready-to-use cross-cutting capabilities.',
-      links: [{ label: 'Full Article', url: 'https://smiguel.net/android-architecture.html' }],
+      links: [{ label: 'Full Article', url: '/research/android-architecture' }],
       tech: ['Android', 'Reactive Programming', 'Event-Driven'],
     },
     {

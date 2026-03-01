@@ -24,6 +24,12 @@ const pages = [
       'Selected research and applied engineering projects in APIs, mobile platforms, architecture accelerators, and DevOps.',
   },
   {
+    path: '/research/android-architecture',
+    title: 'Android Architecture | Sergio Miguel',
+    description:
+      'Android starter application architecture: UI scaffold, CRUD workflow, and data synchronization strategies (Server-First and Local-First).',
+  },
+  {
     path: '/profile',
     title: 'Profile | Sergio Miguel',
     description:
