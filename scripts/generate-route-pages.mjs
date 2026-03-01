@@ -101,10 +101,18 @@ const main = async () => {
     await fs.writeFile(path.join(routeDir, 'index.html'), renderForPage(baseHtml, page), 'utf-8');
   }
 
-  // Fallback page for static hosts that support custom 404 fallback.
-  await fs.writeFile(path.join(distDir, '404.html'), baseHtml, 'utf-8');
+  // Preserve a custom 404 page from public/, otherwise create SPA fallback.
+  const fallback404Path = path.join(distDir, '404.html');
+  const hasCustom404 = await fs
+    .access(fallback404Path)
+    .then(() => true)
+    .catch(() => false);
 
-  process.stdout.write('Generated SEO route pages and 404 fallback.\n');
+  if (!hasCustom404) {
+    await fs.writeFile(fallback404Path, baseHtml, 'utf-8');
+  }
+
+  process.stdout.write('Generated SEO route pages and preserved custom error pages.\n');
 };
 
 main().catch(error => {
