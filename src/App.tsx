@@ -10,7 +10,6 @@ import {
   FileDown,
   ExternalLink,
   Code2,
-  ShieldCheck,
   ChevronRight,
   Command,
   Activity,
@@ -1509,18 +1508,28 @@ export default function App() {
                 <div className='p-8 rounded-3xl bg-white/5 border border-white/10'>
                   <div className='flex items-center gap-4 mb-8'>
                     <Award className='w-6 h-6 text-emerald-500' />
-                    <h3 className='text-2xl font-bold text-white'>Certifications</h3>
+                    <h3 className='text-2xl font-bold text-white'>
+                      Certifications & Professional Credentials
+                    </h3>
                   </div>
-                  <div className='grid grid-cols-1 gap-3'>
-                    {RESUME_DATA.certifications.map((cert, i) => (
+                  <div className='space-y-8'>
+                    {RESUME_DATA.certifications.map(group => (
                       <div
-                        key={i}
-                        className='p-4 rounded-xl bg-black/30 border border-white/5 hover:border-emerald-500/30 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all flex items-center gap-4 group'
+                        key={group.title}
+                        className='relative pl-6 border-l border-white/10 group'
                       >
-                        <div className='w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors'>
-                          <ShieldCheck className='w-4 h-4 text-emerald-500' />
-                        </div>
-                        <span className='text-sm text-zinc-300 leading-tight'>{cert}</span>
+                        <div className='absolute -left-1 top-2 w-2 h-2 rounded-full bg-emerald-500/50 group-hover:bg-emerald-500 transition-colors' />
+                        <h4 className='text-lg font-bold text-white leading-tight'>
+                          {group.title}
+                        </h4>
+                        <ul className='mt-3 space-y-2.5'>
+                          {group.items.map(item => (
+                            <li key={item} className='flex items-start gap-2.5'>
+                              <span className='mt-2 w-1.5 h-1.5 rounded-full bg-zinc-500/20 shrink-0' />
+                              <span className='text-sm text-zinc-300 leading-relaxed'>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     ))}
                   </div>

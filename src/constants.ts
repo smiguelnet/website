@@ -249,17 +249,34 @@ export const RESUME_DATA = {
     special: ['Blockchain', 'Fintech', 'Gamification', 'RPA', 'Machine Learning'],
   },
   certifications: [
-    'Oracle Certified Master, Java EE 5 Enterprise Architect (OCMJEA)',
-    'Oracle Certified Master, Java EE 6 Enterprise Architect (OCMJEA)',
-    'Oracle Certified Professional, Java EE 5 Business Component Developer',
-    'Sun Certified Web Component Developer for the Java Platform, EE 5',
-    'Sun Certified Programmer for the Java Platform, SE 6',
-    'Oracle Certified Associate, Java SE 5/SE 6',
-    'Certified Scrum Master (CSM)',
-    'IBM Certified Solution Designer',
-    'AWS Certified Solutions Architect Associate',
-    'Automation Anywhere Certified Advanced RPA Professional',
-    'Member of IEEE',
+    {
+      title: 'Cloud & Architecture',
+      items: [
+        'AWS Certified Solutions Architect',
+        'Oracle Certified Master, Java EE Enterprise Architect (JEE5, JEE6)',
+        'IBM Certified Solution Designer',
+      ],
+    },
+    {
+      title: 'Platform & Enterprise Java',
+      items: [
+        'Oracle Certified Professional, Java EE Business Component Developer',
+        'Sun Certified Web Component Developer (Java EE)',
+        'Sun Certified Programmer (Java SE)',
+        'Oracle Certified Associate (Java SE)',
+      ],
+    },
+    {
+      title: 'Automation & Process',
+      items: [
+        'Automation Anywhere Certified Advanced RPA Professional',
+        'Certified Scrum Master (CSM)',
+      ],
+    },
+    {
+      title: 'Professional Membership',
+      items: ['Member of IEEE'],
+    },
   ],
   education: [
     {
