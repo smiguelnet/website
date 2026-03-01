@@ -133,7 +133,7 @@ export const RESUME_DATA = {
   experience: [
     {
       company: 'Everup',
-      role: 'CTO, Hands-On Software Architect',
+      role: 'Shareholder & CTO, Hands-On Software Architect',
       period: '2020 – Current',
       location: 'London, United Kingdom',
       description:
@@ -154,31 +154,31 @@ export const RESUME_DATA = {
     },
     {
       company: 'Animoca Brands',
-      role: 'Blockchain Engineer',
+      role: 'Senior Blockchain Engineer – MotoGP NFT Platform',
       period: '2019 – 2020',
       location: 'Hong Kong',
       description:
-        'Built and maintained blockchain solutions for digital game assets and tokenized ecosystems, with a focus on secure smart contract engineering and NFT standards.',
+        'Transitioned to Animoca Brands following the acquisition of SingularCK to continue leading the development and scaling of the NinjaStickers platform and MotoGP NFT initiatives within Animoca’s global digital asset ecosystem.',
       highlights: [
-        'Implemented and integrated smart contracts for digital asset ownership.',
-        'Worked with ERC-20, ERC-721, and ERC-1155 standards in production workflows.',
-        'Supported secure asset lifecycle management for gaming products.',
+        'Led smart contract engineering and production deployment for MotoGP NFT collections.',
+        'Implemented ERC-20, ERC-721, and ERC-1155 standards in live production environments.',
+        'Ensured secure digital asset lifecycle management and blockchain scalability for licensed collectibles.',
       ],
-      tech: ['Blockchain', 'DeFi', 'Ethereum', 'Solidity', 'Truffle', 'Hardhat'],
+      tech: ['Blockchain', 'Ethereum', 'Solidity', 'Smart Contracts', 'Truffle', 'Hardhat'],
     },
     {
       company: 'SingularCK',
-      role: 'CTO, Hands-On Software Architect',
+      role: 'Shareholder & CTO, Hands-On Software Architect',
       period: '2018 – 2019',
       location: 'Sao Paulo, Brazil',
       description:
-        'Defined and led the architecture of a cloud-native digital collectibles marketplace, aligning product growth with scalable engineering foundations.',
+        'Served as Shareholder and CTO at SingularCK, leading the architecture and delivery of NinjaStickers — a cloud-native NFT marketplace for licensed digital collectibles, including the MotoGP NFT collection.',
       highlights: [
-        'Designed a modern cloud-native architecture for marketplace operations.',
-        'Guided technical direction across product and engineering teams.',
-        'Delivered foundations for digital asset and NFT marketplace capabilities.',
+        'Architected and delivered the blockchain infrastructure and marketplace platform for NinjaStickers.',
+        'Led smart contract design, cloud-native system architecture, and product engineering strategy.',
+        'Played a key technical leadership role during the company’s acquisition by Animoca Brands.',
       ],
-      tech: ['Cloud-Native', 'Blockchain', 'Ethereum', 'Stellar', 'NFTs'],
+      tech: ['Cloud-Native', 'Blockchain', 'Ethereum', 'Stellar', 'NFT Infrastructure'],
     },
     {
       company: 'Setia Tecnologia',

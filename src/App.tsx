@@ -787,9 +787,9 @@ export default function App() {
                 </h3>
                 <div className='h-px flex-1 bg-white/10' />
               </div>
-              <p className='text-zinc-400 max-w-3xl'>
-                Career progression across architecture, engineering leadership, fintech, blockchain,
-                telecom, and early web product development.
+              <p className='text-zinc-400 max-w-2xl'>
+                Career progression across enterprise architecture, mission-critical banking systems,
+                fintech platforms, blockchain ecosystems, and AI-driven engineering
               </p>
 
               <div className='relative'>
