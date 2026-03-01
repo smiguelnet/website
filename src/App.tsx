@@ -789,7 +789,7 @@ export default function App() {
               </div>
               <p className='text-zinc-400 max-w-2xl'>
                 Career progression across enterprise architecture, mission-critical banking systems,
-                fintech platforms, blockchain ecosystems, and AI-driven engineering
+                fintech platforms, blockchain ecosystems, and AI-driven engineering leadership.
               </p>
 
               <div className='relative'>
@@ -894,6 +894,10 @@ export default function App() {
                     </div>
                     <p className='text-base sm:text-lg text-zinc-300 leading-relaxed w-full max-w-none'>
                       {RESUME_DATA.research.description}
+                    </p>
+                    <p className='border-l-2 border-emerald-500/70 bg-emerald-500/10 px-4 py-3 text-base sm:text-lg font-semibold text-white leading-relaxed'>
+                      Software development must evolve from code-centric execution to
+                      specification-centric engineering.
                     </p>
                   </div>
 

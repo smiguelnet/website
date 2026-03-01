@@ -25,7 +25,7 @@ export const RESUME_DATA = {
   research: {
     title: 'From Process-Driven Acceleration to Agentic, Spec-Driven Engineering',
     description:
-      'A practical framework that reallocates engineering effort from manual coding to AI agents orchestrated by high-quality specifications, increasing speed, predictability, and architectural integrity. As specification maturity increases, manual coding effort decreases, enabling rapid experimentation at scale with reduced delivery risk.',
+      'A practical framework that shifts software development from code-centric execution to specification-centric engineering. By orchestrating AI agents through high-quality specifications, it enables predictable software delivery and rapid business experimentation. As specification maturity increases, manual coding effort decreases — preserving architectural integrity while accelerating safe experimentation at scale with reduced delivery risk.',
     phases: [
       {
         name: 'Design High-Quality Specifications',
