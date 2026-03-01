@@ -15,12 +15,12 @@ export const RESUME_DATA = {
     author: 'Louis Srygley',
   },
   interests: [
-    'AI-Driven Agentic Coding & Automation',
+    'AI-Driven Agentic Engineering & Automation',
     'Spec-Driven Development (SDD)',
-    'Domain-Driven Design (DDD)',
     'Cloud-Native & Serverless Architectures',
-    'Blockchain and Decentralized Applications',
-    'Machine Learning & Robotic Process Automation',
+    'Blockchain & Decentralized Systems',
+    'Machine Learning & Intelligent Automation',
+    'Gamification in Finance and Banking',
   ],
   research: {
     title: 'From Process-Driven Acceleration to Agentic, Spec-Driven Engineering',

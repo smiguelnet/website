@@ -162,13 +162,13 @@ const InterestCard = ({ interest, delay = 0 }: { interest: string; delay?: numbe
       y: -3,
       transition: { type: 'spring', stiffness: 360, damping: 28 },
     }}
-    className='relative p-5 rounded-2xl bg-emerald-500/[0.02] border border-white/10 hover:border-emerald-500/35 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-[border-color,background-color,box-shadow] duration-300 group overflow-hidden'
+    className='relative h-full p-5 rounded-2xl bg-emerald-500/[0.02] border border-white/10 hover:border-emerald-500/35 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-[border-color,background-color,box-shadow] duration-300 group overflow-hidden flex items-center'
     style={{ willChange: 'transform' }}
   >
     {/* Background Glow Effect */}
     <div className='absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/[0.025] to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-400' />
 
-    <div className='relative z-10 flex items-start gap-4'>
+    <div className='relative z-10 flex items-center gap-4'>
       <div className='w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-[0_0_14px_rgba(81,192,12,0)] group-hover:shadow-[0_0_14px_rgba(81,192,12,0.35)]'>
         <Zap className='w-5 h-5' />
       </div>
@@ -573,7 +573,7 @@ export default function App() {
                       transition={{ duration: 0.8, delay: 0.2 }}
                       className='text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9] max-w-4xl'
                     >
-                      Accelerating Software Delivery with{' '}
+                      Accelerating AI-Driven Software Delivery with{' '}
                       <motion.span
                         animate={{
                           textShadow: ['0 0 0px #51c00c', '0 0 10px #51c00c', '0 0 0px #51c00c'],
@@ -585,7 +585,7 @@ export default function App() {
                         }}
                         className='text-emerald-500 italic'
                       >
-                        AI coding, Spec-driven development
+                        Spec-Driven Engineering
                       </motion.span>
                     </motion.h2>
 
@@ -622,7 +622,7 @@ export default function App() {
                       </p>
 
                       <footer className='mt-3 flex items-center gap-3'>
-                        <span className='h-px w-10 bg-emerald-500/45' />
+                        <span className='h-px w-4 bg-gray-500/25' />
                         <cite className='text-[10px] text-emerald-400 font-mono not-italic uppercase tracking-[0.22em]'>
                           {RESUME_DATA.quote.author}
                         </cite>
@@ -673,32 +673,6 @@ export default function App() {
                       </div>
                     </div>
                   </motion.div>
-                </div>
-              </section>
-
-              {/* Executive Achievement Dashboard */}
-              <section className='relative pt-1 pb-8 border-white/5 overflow-hidden'>
-                {/* Section Background Glow */}
-                <div className='absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-emerald-500/[0.02] blur-[140px] pointer-events-none' />
-
-                <div className='relative z-10'>
-                  <div className='flex items-center gap-4 mb-12'>
-                    <h3 className='text-2xl font-bold text-white uppercase tracking-tighter'>
-                      Key Achievements
-                    </h3>
-                    <div className='h-px flex-1 bg-white/10' />
-                  </div>
-                  <div className='grid grid-cols-2 lg:grid-cols-4 gap-6'>
-                    {RESUME_DATA.achievements.map((achievement, i) => (
-                      <MetricGauge
-                        key={i}
-                        label={achievement.label}
-                        value={achievement.value}
-                        suffix={achievement.suffix}
-                        delay={i * 0.1}
-                      />
-                    ))}
-                  </div>
                 </div>
               </section>
 
@@ -784,6 +758,32 @@ export default function App() {
                     <p className='text-sm sm:text-base font-mono text-emerald-300/90'>
                       {RESUME_DATA.research.expectedResult.formula}
                     </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Executive Achievement Dashboard */}
+              <section className='relative pt-1 pb-8 border-white/5 overflow-hidden'>
+                {/* Section Background Glow */}
+                <div className='absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-emerald-500/[0.02] blur-[140px] pointer-events-none' />
+
+                <div className='relative z-10'>
+                  <div className='flex items-center gap-4 mb-12'>
+                    <h3 className='text-2xl font-bold text-white uppercase tracking-tighter'>
+                      Key Achievements
+                    </h3>
+                    <div className='h-px flex-1 bg-white/10' />
+                  </div>
+                  <div className='grid grid-cols-2 lg:grid-cols-4 gap-6'>
+                    {RESUME_DATA.achievements.map((achievement, i) => (
+                      <MetricGauge
+                        key={i}
+                        label={achievement.label}
+                        value={achievement.value}
+                        suffix={achievement.suffix}
+                        delay={i * 0.1}
+                      />
+                    ))}
                   </div>
                 </div>
               </section>
