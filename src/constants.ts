@@ -143,7 +143,13 @@ export const RESUME_DATA = {
         'Coordinated engineering execution across distributed teams with strong delivery discipline.',
         'Supported platform growth under regulatory and operational constraints.',
       ],
-      tech: ['React Native', 'AWS', 'Serverless', 'Event-Driven Architecture'],
+      tech: [
+        'React Native',
+        'Next.js',
+        'AWS Serverless',
+        'Event-Driven Architecture',
+        'Payments & Integrations',
+      ],
     },
     {
       company: 'Animoca Brands',
