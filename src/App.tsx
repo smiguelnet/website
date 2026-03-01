@@ -719,7 +719,7 @@ export default function App() {
                     {RESUME_DATA.homeResearch.phases.map((phase, i) => (
                       <div
                         key={i}
-                        className='group rounded-2xl border border-white/10 bg-black/30 p-5 sm:p-6 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300'
+                        className='group rounded-2xl border border-white/10 bg-black/30 p-5 sm:p-6 hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300'
                       >
                         <div className='mb-4'>
                           <span className='inline-flex items-center rounded-full border border-emerald-500/35 bg-emerald-500/10 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
@@ -810,7 +810,7 @@ export default function App() {
                         {String(i + 1).padStart(2, '0')}
                       </div>
 
-                      <div className='rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-7 hover:border-emerald-500/35 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.14)] transition-all duration-300'>
+                      <div className='rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-7 hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.14)] transition-all duration-300'>
                         <div className='flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4'>
                           <div className='space-y-2'>
                             <p className='text-[10px] font-mono uppercase tracking-[0.24em] text-emerald-400'>
@@ -907,7 +907,7 @@ export default function App() {
                     {RESUME_DATA.research.phases.map((phase, i) => (
                       <div
                         key={i}
-                        className='group rounded-2xl border border-white/10 bg-black/30 p-5 sm:p-6 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300'
+                        className='group rounded-2xl border border-white/10 bg-black/30 p-5 sm:p-6 hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.16)] transition-all duration-300'
                       >
                         <div className='mb-4'>
                           <span className='inline-flex items-center rounded-full border border-emerald-500/35 bg-emerald-500/10 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.18em] text-emerald-300'>
@@ -957,7 +957,7 @@ export default function App() {
                 {RESUME_DATA.projects.map((project, i) => (
                   <article
                     key={i}
-                    className='p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/30 shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all duration-300 flex flex-col justify-between group'
+                    className='p-6 rounded-3xl bg-white/5 border border-white/10 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-emerald-500/[0.04] shadow-[0_0_0_rgba(81,192,12,0)] hover:shadow-[0_0_24px_rgba(81,192,12,0.18)] transition-all duration-300 flex flex-col justify-between group'
                   >
                     <div>
                       <div className='flex items-center justify-between mb-4'>
